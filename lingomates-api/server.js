@@ -2,8 +2,7 @@ const express = require("express"); //importing express
 const app = require("./app");
 const cors = require("cors"); //imorting cors
 const morgan = require("morgan"); // Import the Morgan middleware for logging
-const {PORT} = require("./config");
-const db = require("./db")
+const {PORT} = require("./config")
 
 
 // Middleware
@@ -12,10 +11,7 @@ app.use(morgan("dev")); // Use Morgan middleware with 'dev' format for request l
 app.use(express.json()); // Parse incoming requests with JSON payloads
 
 // Start the server
-//const PORT = 3001;
-
-//enabling the localhost at PORT - 3001
-app.listen(3001, () => {
-  //console logging the iniation of the server
-  console.log(`Server running  http://localhost:3001`);
-});
+app.listen(PORT, () => {
+    //console logging the iniation of the server
+    console.log(`Server running  http://localhost:${PORT}`);
+  });
