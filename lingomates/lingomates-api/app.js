@@ -5,9 +5,6 @@ const { NotFoundError } = require("./utils/errors")
 const config = require("./config")
 
 const authRoutes = require("./routes/auth")
-const exerciseRoutes=require("./routes/exerciseRoutes")
-const nutritionRoutes = require("./routes/nutrition")
-const sleepRoutes = require("./routes/sleep")
 
 const db = require("./db")
 const app = express()
