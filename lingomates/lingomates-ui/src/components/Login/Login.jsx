@@ -2,8 +2,10 @@ import "./Login.css";
 import Landing from "../Landing/Landing";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import jwtDecode from "jwt-decode"
+import axios from "axios"
 
-export default function Login({ userId, setUserId, loggedIn, setLoggedIn }) {
+export default function Login({setUserId, setLoggedIn, setLoginError}) {
   //states
   const [emailLogin, setEmailLogin] = useState("");
   const [passwordLogin, setPasswordLogin] = useState("");
@@ -14,6 +16,21 @@ export default function Login({ userId, setUserId, loggedIn, setLoggedIn }) {
       emailLogin,
       passwordLogin,
     });
+
+    console.log("What's in response: ", response)
+
+    if(response.status === 200){
+      setLoggedIn(true)
+      setLoginError("") 
+
+      const {token} = response.data
+      localStorage.setItem("token", token); //adds token to localStorage by creating a "dictionary" where "token" = key and token = value
+      const decodedToken = jwtDecode(token) //decodes token to human readable informtation where payload/data in token can be accessed
+      setUserId(decodedToken.userId)  
+
+    }else{
+      console.log(response.data.message); //optional - display error message
+    }
   };
 
   const handleSubmit = (e) => {

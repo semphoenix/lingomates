@@ -2,7 +2,8 @@ CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     firstName TEXT NOT NULL,
     lastName TEXT NOT NULL,
-    email TEXT NOT NULL UNIQUE CHECK (position('@' IN email) > 1),
+    email     TEXT NOT NULL UNIQUE CHECK (position('@' IN email) > 1),
+    username  TEXT NOT NULL, 
     password TEXT NOT NULL
 );
 
