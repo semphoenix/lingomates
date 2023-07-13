@@ -2,6 +2,7 @@ import "./Register.css";
 import Landing from "../Landing/Landing";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios"
 
 export default function Register() {
   //states
@@ -12,7 +13,27 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
 
-  //handleLogin
+  //handleRegistation
+  const  handleRegistration = async (email, password, firstName, lastName, username) =>{
+
+      let response = await axios.post("http://localhost:3001/auth/register",{email, password, firstName, lastName, username})
+
+      if(response.status === 201){
+        const {token} = response.data
+        localStorage.setItem("token", token)
+        const decodedToken = jwtDecode(token)
+        setUserId(decodedToken.userId);
+
+        //Registration successful
+        setLoggedIn(true);
+        window.location.href = "/langprompt"
+
+      }else{
+        console.log(response.data.message); //optional - display error message
+      }
+   
+  }
+
 
   const handleSubmit = (e) => {
     e.preventDefault();

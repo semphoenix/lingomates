@@ -4,19 +4,27 @@ const User = require("../models/user")
 const jwt= require("jsonwebtoken")
 require("dotenv").config
 
+router.get("/login", function (req, res) {
+    return res.status(200).json({
+      ding: "dong",
+    })
+  })
+
 //route for login-need to create a user variable which is created once user is authenticated by checking database
 router.post("/login", async function(req,res, next){
     
     try{
       const user = await User.authenticate(req.body) //takes in user input from body of page as a paramater for authenticate method      
-       const token=jwt.sign(
-        {userId:user.id, username:user.username},
-        "SECRET_KEY", {
-            expiresIn:"1h",}
-        );
-       
-       return res.status(200).json(
-        {message:"login successfully",token:token,
+
+      //creates jsonwebtoken for user by taking in 2 paramters-payload(desired data) and SECRET KEY 
+    //   const token = jwt.sign({userId: user.id, username: user.username}, process.env.SECRET_KEY, {
+    //         expiresIn:"1h"
+    //    })
+
+      //returns to component that links to this post
+      return res.status(200).json(
+        {message:"login successfully",
+        // token:token,
         user:user})
         
 
@@ -32,7 +40,7 @@ router.post("/register", async function(req, res,next){
     const user= await User.register(req.body)
      console.log("user info:", user)
         const token=jwt.sign({userId:user.id, username: user.username},
-            "SECRET_KEY",
+            process.env.SECRET_KEY,
              {
                 expiresIn:"1h",
             }

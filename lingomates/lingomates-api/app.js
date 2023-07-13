@@ -3,10 +3,7 @@ const cors = require("cors")
 const morgan = require("morgan")
 const { NotFoundError } = require("./utils/errors")
 const config = require("./config")
-
 const authRoutes = require("./routes/auth")
-
-const db = require("./db")
 const app = express()
 
 
@@ -20,7 +17,6 @@ app.use(morgan("tiny"))
 app.use("/auth", authRoutes)
 
 
-
 app.get("/", function (req, res) {
     return res.status(200).json({
       ping: "pong",
@@ -28,7 +24,6 @@ app.get("/", function (req, res) {
   })
 
 
- 
   /** Generic error handler; anything unhandled goes here. */
   app.use(function (err, req, res, next) {
     if (!config.IS_TESTING) console.error(err.stack)
