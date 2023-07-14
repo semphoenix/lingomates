@@ -2,23 +2,40 @@ import "./Login.css";
 import Landing from "../Landing/Landing";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import jwtDecode from "jwt-decode"
+import axios from "axios"
 
-export default function Login({ userId, setUserId, loggedIn, setLoggedIn }) {
+export default function Login({setUserId, setLoggedIn, setLoginError}) {
   //states
-  const [emailLogin, setEmailLogin] = useState("");
-  const [passwordLogin, setPasswordLogin] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   //handleLogin
-  const handleLogin = async (emailLogin, passwordLogin) => {
+  const handleLogin = async (email, password) => {
     let response = await axios.post("http://localhost:3001/auth/login", {
-      emailLogin,
-      passwordLogin,
+      email,
+      password,
     });
+
+    console.log("What's in response: ", response)
+
+    if(response.status === 200){
+      setLoggedIn(true)
+      setLoginError("") 
+
+      const {token} = response.data
+      localStorage.setItem("token", token); //adds token to localStorage by creating a "dictionary" where "token" = key and token = value
+      const decodedToken = jwtDecode(token) //decodes token to human readable informtation where payload/data in token can be accessed
+      setUserId(decodedToken.userId)  
+
+    }else{
+      console.log(response.data.message); //optional - display error message
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleLogin(emailLogin, passwordLogin);
+    handleLogin(email, password);
   };
 
   return (
@@ -33,8 +50,8 @@ export default function Login({ userId, setUserId, loggedIn, setLoggedIn }) {
           type="email"
           placeholder="Email"
           className="email-field"
-          value={emailLogin}
-          onChange={(e) => setEmailLogin(e.target.value)}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <input
@@ -42,8 +59,8 @@ export default function Login({ userId, setUserId, loggedIn, setLoggedIn }) {
           type="password"
           placeholder="Password"
           className="password-field"
-          value={passwordLogin}
-          onChange={(e) => setPasswordLogin(e.target.value)}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
         <button type="submit" className="submit-button">

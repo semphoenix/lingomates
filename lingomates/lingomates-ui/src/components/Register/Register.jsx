@@ -2,8 +2,10 @@ import "./Register.css";
 import Landing from "../Landing/Landing";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios"
+import jwtDecode from "jwt-decode"
 
-export default function Register() {
+export default function Register({setUserId, setLoggedIn}) {
   //states
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -12,7 +14,28 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
 
-  //handleRegister
+  //handleRegistation
+  const  handleRegistration = async (email, password, firstName, lastName, username) =>{
+
+      let response = await axios.post("http://localhost:3001/auth/register",{email, password, firstName, lastName, username})
+
+      if(response.status === 201){
+        const {token} = response.data
+        localStorage.setItem("token", token)
+        const decodedToken = jwtDecode(token)
+        setUserId(decodedToken.userId);
+
+        //Registration successful
+        setLoggedIn(true);
+        window.location.href = "/langprompt"
+
+      }else{
+        console.log(response.data.message); //optional - display error message
+      }
+   
+  }
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
