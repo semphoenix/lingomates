@@ -12,7 +12,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
 
-  //handleLogin
+  //handleRegister
 
   const handleSubmit = (e) => {
     e.preventDefault();
