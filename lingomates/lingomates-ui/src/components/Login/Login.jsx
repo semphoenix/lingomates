@@ -7,14 +7,14 @@ import axios from "axios"
 
 export default function Login({setUserId, setLoggedIn, setLoginError}) {
   //states
-  const [emailLogin, setEmailLogin] = useState("");
-  const [passwordLogin, setPasswordLogin] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   //handleLogin
-  const handleLogin = async (emailLogin, passwordLogin) => {
+  const handleLogin = async (email, password) => {
     let response = await axios.post("http://localhost:3001/auth/login", {
-      emailLogin,
-      passwordLogin,
+      email,
+      password,
     });
 
     console.log("What's in response: ", response)
@@ -35,7 +35,7 @@ export default function Login({setUserId, setLoggedIn, setLoginError}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleLogin(emailLogin, passwordLogin);
+    handleLogin(email, password);
   };
 
   return (
@@ -50,8 +50,8 @@ export default function Login({setUserId, setLoggedIn, setLoginError}) {
           type="email"
           placeholder="Email"
           className="email-field"
-          value={emailLogin}
-          onChange={(e) => setEmailLogin(e.target.value)}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <input
@@ -59,8 +59,8 @@ export default function Login({setUserId, setLoggedIn, setLoginError}) {
           type="password"
           placeholder="Password"
           className="password-field"
-          value={passwordLogin}
-          onChange={(e) => setPasswordLogin(e.target.value)}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
         <button type="submit" className="submit-button">

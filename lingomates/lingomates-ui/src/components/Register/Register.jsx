@@ -3,8 +3,9 @@ import Landing from "../Landing/Landing";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios"
+import jwtDecode from "jwt-decode"
 
-export default function Register() {
+export default function Register({setUserId, setLoggedIn}) {
   //states
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");

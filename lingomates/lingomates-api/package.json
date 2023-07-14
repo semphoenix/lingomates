@@ -7,7 +7,9 @@
     "jsonwebtoken": "^9.0.1",
     "morgan": "^1.10.0",
     "nodeman": "^1.1.2",
-    "nodemon": "^3.0.1",
     "pg": "^8.11.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
