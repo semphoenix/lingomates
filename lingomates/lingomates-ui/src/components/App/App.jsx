@@ -9,11 +9,17 @@ import {
   Route,
   BrowserRouter,
 } from "react-router-dom";
+import LangPrompt from "../LangPrompt/LangPromp";
+import { useState } from "react";
+import ProfPrompt from "../ProfPrompt/ProfPrompt";
 
 function App() {
   const [userId, setUserId] = useState();
   const [loginError, setLoginError] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+  const [languages, setLanguages] = useState([])
+  const [profLevels, setProfLevels] = useState({});
+
 
 
   //use useEffect to see if user has logged in before or not 
@@ -47,6 +53,11 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Landing />} />
+
+       
+          <Route path="/langprompt" element={<LangPrompt languages={languages} setLanguages={setLanguages}/>}/>
+          <Route path="/profprompt/:languages" element={<ProfPrompt languages={languages} profLevels={profLevels} setProfLevels={setProfLevels}/>}/>
+
           <Route path="/login" element={<Login setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError}/>} />
           <Route path="/register" element={<Register setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError} />} />
         </Routes>

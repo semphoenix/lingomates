@@ -36,6 +36,7 @@ export default function Register({setUserId, setLoggedIn}) {
   }
 
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     handleRegistration(email, password, firstName, lastName, username);

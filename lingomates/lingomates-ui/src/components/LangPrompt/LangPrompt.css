@@ -1,0 +1,7 @@
+.flag {
+    width: 200px;
+}
+
+.langbutton.selected {
+    background-color: green;
+}
