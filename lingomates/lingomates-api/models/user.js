@@ -11,8 +11,8 @@ class User{
     static createPublicUser(user){
         return{
             id: user.id, 
-            firstName : user.firstName,
-            lastName : user.lastName, 
+            firstName : user.first_name,
+            lastName : user.last_name, 
             email : user.email, 
             // location : user.location, 
             // date : user.date
@@ -22,7 +22,8 @@ class User{
     //authentification function-authenticates givensss user credentials
     static async authenticate(creds){
         const {email, password} = creds
-        console.log(creds)
+        console.log("authenticate info:", creds)
+        console.log("whats in email: ", email)
         const requiredCreds = ["email", "password"]
         //checking if user provided required credentials-email and password
         try{         
@@ -54,7 +55,7 @@ class User{
     //register function 
     static async register(creds){
         
-        const requiredFields = ["email","password","first_name","last_name","username"]
+        const requiredFields = ["email","password","firstName","lastName","username"]
         requiredFields.forEach(field=>{
             if(!creds.hasOwnProperty(field)){
                throw new BadRequestError(`Missing ${field} in request body`)
@@ -80,7 +81,7 @@ class User{
         username)
         VALUES($1, $2, $3, $4, $5)
         RETURNING id, email, first_name, last_name, username
-       `, [lowerCasedEmail, hashedPassword, creds.first_name, creds.last_name, creds.username])
+       `, [lowerCasedEmail, hashedPassword, creds.firstName, creds.lastName, creds.username])
 
         const user = result.rows[0]; 
         return user; 
@@ -92,8 +93,8 @@ class User{
         `SELECT id,
                 email,
                 password,
-                first_name AS "firstName",
-                last_name AS "lastName",
+                first_name,
+                last_name,
                 username
 
         FROM users WHERE email = $1`,[email.toLowerCase()]

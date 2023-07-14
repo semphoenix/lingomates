@@ -1,10 +1,10 @@
 CREATE TABLE users(
-    id SERIAL PRIMARY KEY,
-    firstName TEXT NOT NULL,
-    lastName TEXT NOT NULL,
-    email     TEXT NOT NULL UNIQUE CHECK (position('@' IN email) > 1),
-    username  TEXT NOT NULL, 
-    password TEXT NOT NULL
+    id             SERIAL PRIMARY KEY,
+    first_name     TEXT NOT NULL,
+    last_name      TEXT NOT NULL,
+    email          TEXT NOT NULL UNIQUE CHECK (position('@' IN email) > 1),
+    username       TEXT NOT NULL, 
+    password       TEXT NOT NULL
 );
 
 CREATE TABLE lingua(
@@ -26,7 +26,7 @@ CREATE TABLE userLingua(
 CREATE TABLE friends(
     id SERIAL PRIMARY KEY,
     userId INTEGER NOT NULL,
-    FOREIGN KEY (userId) REFERENCES users(id),
+    FOREIGN KEY (userId) REFERENCES users(id)
 );
 
 CREATE TABLE conversation(
@@ -44,7 +44,8 @@ CREATE TABLE userConversation(
     user1 INTEGER NOT NULL,
     user2 INTEGER NOT NULL,
     FOREIGN KEY (user1) REFERENCES users(id),
-    FOREIGN KEY (user2) REFERENCES users(id) FOREIGN KEY (conversationId) REFERENCES conversation(id)
+    FOREIGN KEY (user2) REFERENCES users(id),
+    FOREIGN KEY (conversationId) REFERENCES conversation(id)
 );
 
 CREATE TABLE directMessage(
@@ -52,7 +53,8 @@ CREATE TABLE directMessage(
     conversationId INTEGER NOT NULL,
     senderId INTEGER NOT NULL,
     receiverId INTEGER NOT NULL,
-    messageText TEX FOREIGN KEY (conversationId) REFERENCES conversation(id),
+    messageText TEXT NOT NULL, 
+    FOREIGN KEY (conversationId) REFERENCES conversation(id),
     FOREIGN KEY (senderId) REFERENCES users(id),
     FOREIGN KEY (receiverId) REFERENCES users(id)
 );

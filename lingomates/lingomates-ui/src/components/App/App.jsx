@@ -36,13 +36,19 @@ function App() {
       checkLoggedIn()
   },[])
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setLoggedIn(false);
+  }
+
+  
   return (
     <div>
       <Router>
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError}/>} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError} />} />
         </Routes>
       </Router>
     </div>
