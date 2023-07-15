@@ -66,3 +66,5 @@ https://www.figma.com/file/koHfbDkaoyHzxiXx2bmThl/Data-Model?type=whiteboard&nod
 <img width="696" alt="Screenshot 2023-07-14 at 7 00 05 PM" src="https://github.com/duomingle/capstone-project/assets/109244364/4855368c-3b52-4d51-a72b-04b106934ff3">
 
 ***Don't forget to set up your Issues, Milestones, and Project Board!***
+View our project board:
+https://trello.com/invite/b/JM3ILEdV/ATTIa11b0715365da20949699993352f60feF643930D/lingo-mates
