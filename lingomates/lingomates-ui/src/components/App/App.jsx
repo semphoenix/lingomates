@@ -1,6 +1,7 @@
 import Login from "../Login/Login";
 import Landing from "../Landing/Landing";
 import Register from "../Register/Register";
+import Home from "../Home/Home"
 import jwtDecode from "jwt-decode"
 import { useEffect, useState } from "react";
 import {
@@ -11,8 +12,11 @@ import {
 } from "react-router-dom";
 import LangPrompt from "../LangPrompt/LangPromp";
 import ProfPrompt from "../ProfPrompt/ProfPrompt";
+
 import io from 'socket.io-client'
 const socket =io.connect ("http://localhost:3001") // the backend is running on port 3001
+
+
 
 function App() {
   const [userId, setUserId] = useState();
@@ -20,6 +24,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [languages, setLanguages] = useState([])
   const [profLevels, setProfLevels] = useState({});
+
   
   const sendMessage=()=>{
     socket.emit("send_message",  
@@ -70,9 +75,9 @@ function App() {
        
           <Route path="/langprompt" element={<LangPrompt languages={languages} setLanguages={setLanguages}/>}/>
           <Route path="/profprompt/:languages" element={<ProfPrompt languages={languages} profLevels={profLevels} setProfLevels={setProfLevels}/>}/>
-
           <Route path="/login" element={<Login setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError}/>} />
           <Route path="/register" element={<Register setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError} />} />
+          <Route path="/home" element={<Home loggedIn={loggedIn}/>} />
         </Routes>
       </Router>
     </div>
