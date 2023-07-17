@@ -9,11 +9,23 @@ import {
   Route,
   BrowserRouter,
 } from "react-router-dom";
+import LangPrompt from "../LangPrompt/LangPromp";
+import ProfPrompt from "../ProfPrompt/ProfPrompt";
+import io from 'socket.io-client'
+const socket =io.connect ("http://localhost:3001") // the backend is running on port 3001
 
 function App() {
   const [userId, setUserId] = useState();
   const [loginError, setLoginError] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+  const [languages, setLanguages] = useState([])
+  const [profLevels, setProfLevels] = useState({});
+  
+  const sendMessage=()=>{
+    socket.emit("send_message",  
+    //this only emits data to the backend and the backend will emit that event to the front end using another event we listening to in the front end
+    {message: document.getElementById('input_message').value } )
+  }
 
 
   //use useEffect to see if user has logged in before or not 
@@ -44,9 +56,21 @@ function App() {
   
   return (
     <div>
+      <form onSubmit={sendMessage}>
+      <input type="text" id="input_message" />
+      <input type="submit" />
+      </form>
+      
+     
+     
       <Router>
         <Routes>
           <Route path="/" element={<Landing />} />
+
+       
+          <Route path="/langprompt" element={<LangPrompt languages={languages} setLanguages={setLanguages}/>}/>
+          <Route path="/profprompt/:languages" element={<ProfPrompt languages={languages} profLevels={profLevels} setProfLevels={setProfLevels}/>}/>
+
           <Route path="/login" element={<Login setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError}/>} />
           <Route path="/register" element={<Register setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError} />} />
         </Routes>
