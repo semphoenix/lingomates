@@ -36,10 +36,12 @@ class User{
         //calls fetch function and if the email parameter matches an email
         //in the database then returns a user object
         const user = await User.fetchUserByEmail(email)
+            console.log("whats in user: ", user)
 
         if(user){
             //compares user given password to hashed password in db
             const isValid = await bcrypt.compare(password, user.password)
+            console.log("isValid?", isValid)
             if(isValid == true){
                 return User.createPublicUser(user) //returns desired user information to frontend
             }
@@ -48,8 +50,6 @@ class User{
           console.log("user doesn't exist")
             throw new UnauthorizedError("invalid username or password")
         }
-        //throw unauthorized error if not validated
-        //throw new UnauthorizedError()
     }
 
     //register function 
