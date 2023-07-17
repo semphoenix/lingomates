@@ -1,6 +1,7 @@
 import Login from "../Login/Login";
 import Landing from "../Landing/Landing";
 import Register from "../Register/Register";
+import Home from "../Home/Home"
 import jwtDecode from "jwt-decode"
 import { useEffect, useState } from "react";
 import {
@@ -10,7 +11,6 @@ import {
   BrowserRouter,
 } from "react-router-dom";
 import LangPrompt from "../LangPrompt/LangPromp";
-import { useState } from "react";
 import ProfPrompt from "../ProfPrompt/ProfPrompt";
 
 function App() {
@@ -57,9 +57,9 @@ function App() {
        
           <Route path="/langprompt" element={<LangPrompt languages={languages} setLanguages={setLanguages}/>}/>
           <Route path="/profprompt/:languages" element={<ProfPrompt languages={languages} profLevels={profLevels} setProfLevels={setProfLevels}/>}/>
-
           <Route path="/login" element={<Login setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError}/>} />
           <Route path="/register" element={<Register setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError} />} />
+          <Route path="/home" element={<Home loggedIn={loggedIn}/>} />
         </Routes>
       </Router>
     </div>

@@ -9,7 +9,7 @@ function getDatabaseUri(){
    const dbPass = process.env.DATABASE_PASS? encodeURI(process.env.DATABASE_PASS) : "postgres" //checks if password does exist then encode it
    const dbHost = process.env. DATABASE_HOST || "localhost"
    const dbPort = process.env.DATABASE_PORT || "5432"
-   const dbName = process.env.DATABASE_NAME || "lifetracker"
+   const dbName = process.env.DATABASE_NAME || "lingomate"
    // DATABASE_TEST_NAME=lifetracker_test
 
    const dbHostedURL = process.env.DATABASE_HOSTED_URL
