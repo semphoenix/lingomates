@@ -13,12 +13,14 @@ import {
 import LangPrompt from "../LangPrompt/LangPromp";
 import ProfPrompt from "../ProfPrompt/ProfPrompt";
 
+
 import io from 'socket.io-client'
+
 const socket =io.connect ("http://localhost:3001") // the backend is running on port 3001
 
 
 
-function App() {
+function App() { 
   const [userId, setUserId] = useState();
   const [loginError, setLoginError] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
@@ -29,7 +31,8 @@ function App() {
   const sendMessage=()=>{
     socket.emit("send_message",  
     //this only emits data to the backend and the backend will emit that event to the front end using another event we listening to in the front end
-    {message: document.getElementById('input_message').value } )
+    {message: document.getElementById('input_message').value,
+  userId: 3 } )
   }
 
 
@@ -61,6 +64,9 @@ function App() {
   
   return (
     <div>
+
+      {userId}
+
       <form onSubmit={sendMessage}>
       <input type="text" id="input_message" />
       <input type="submit" />
