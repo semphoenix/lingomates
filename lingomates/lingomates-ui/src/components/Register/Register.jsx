@@ -13,11 +13,13 @@ export default function Register({setUserId, setLoggedIn}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
+  const [profilePicture, setProfilePicture] = useState("");
+  const [nativeLanguage, setNativeLanguage] = useState("");
 
   //handleRegistation
-  const  handleRegistration = async (email, password, firstName, lastName, username) =>{
+  const  handleRegistration = async (email, password, firstName, lastName, username, profilePicture, nativeLanguage) =>{
 
-      let response = await axios.post("http://localhost:3001/auth/register",{email, password, firstName, lastName, username})
+      let response = await axios.post("http://localhost:3001/auth/register",{email, password, firstName, lastName, username, profilePicture, nativeLanguage})
 
       if(response.status === 201){
         const {token} = response.data
@@ -25,7 +27,7 @@ export default function Register({setUserId, setLoggedIn}) {
         const decodedToken = jwtDecode(token)
         setUserId(decodedToken.userId);
 
-        //Registration successful
+        //Registration successful!
         setLoggedIn(true);
         window.location.href = "/langprompt"
 
@@ -39,7 +41,7 @@ export default function Register({setUserId, setLoggedIn}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleRegistration(email, password, firstName, lastName, username);
+    handleRegistration(email, password, firstName, lastName, username, profilePicture, nativeLanguage);
     console.log("firstName value: ", firstName);
   };
 
@@ -107,6 +109,25 @@ export default function Register({setUserId, setLoggedIn}) {
           value={confirmedPassword}
           onChange={(e) => setConfirmedPassword(e.target.value)}
         />
+        <input
+          name="profilePicture"
+          type="url"
+          placeholder="Profile Picture URL"
+          className="profilepic-field"
+          value={profilePicture}
+          onChange={(e) => setProfilePicture(e.target.value)}
+        />
+        <select required defaultValue="nativeLangSelect" placeholder='What is your native language?' onChange={(event)=> setNativeLanguage(event.target.value)}>
+            <option value="nativeLangSelect" disabled>What is your native language?</option>
+            <option value="english">English</option>
+            <option value="spanish">Spanish</option>
+            <option value="portugese">Portugese</option>
+            <option value="swedish">Swedish</option>
+            <option value="french">French</option>
+            <option value="italian">Italian</option>
+            <option value="german">German</option>
+            <option value="other">Other</option>
+        </select>
         <button type="submit" className="submit-button">
           Sign Up
         </button>
