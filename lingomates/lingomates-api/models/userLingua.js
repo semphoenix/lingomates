@@ -9,13 +9,6 @@ class UserLingua {
     console.log(userLinguaData.userId)
     console.log(userLinguaData.linguaId)
     console.log(userLinguaData.profLevel)
-    
-    // Check if all required fields are present in the sleepData object
-    // for (const field of requiredFields) {
-    //   if (!userLinguaData.hasOwnProperty(field)) {
-    //     throw new BadRequestError(`Missing ${field} in lingua data`);
-    //   }
-  
     // }
       const result =  await db.query(`
          INSERT INTO userLingua(

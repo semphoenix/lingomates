@@ -9,16 +9,13 @@ router.post("/", async function (req, res, next) {
     try {
         const userId = req.body.userId;    
         const profLevels = req.body.profLevels
-        console.log(profLevels)
-        // Validate request body
-        // if (!languageProficiencyData) {
-        // console.log("req is", req.body)
-        //   throw new BadRequestError('Missing required fields');
-        // }
-        // Iterate over the language proficiency data
+        // console.log(profLevels)
+        console.log("userID is,", userId)
+        console.log("req is", req.body)
         for (const language in profLevels) {
           const profLevel = profLevels[language];
           console.log("Prof level is", profLevel)
+          console.log("userId is", userId)
     
           // Retrieve linguaId from lingua table based on linguaName
           const linguaResult = await db.query('SELECT id FROM lingua WHERE linguaName = $1', [language]);
