@@ -4,7 +4,9 @@ CREATE TABLE users(
     last_name      TEXT NOT NULL,
     email          TEXT NOT NULL UNIQUE CHECK (position('@' IN email) > 1),
     username       TEXT NOT NULL, 
-    password       TEXT NOT NULL
+    password       TEXT NOT NULL,
+    profilePicture TEXT,
+    nativeLanguage TEXT NOT NULL
 );
 
 CREATE TABLE lingua(

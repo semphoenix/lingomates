@@ -14,6 +14,8 @@ class User{
             firstName : user.first_name,
             lastName : user.last_name, 
             email : user.email, 
+            profilePicture : user.profilePicture,
+            nativeLanguage : user.nativeLanguage
             // location : user.location, 
             // date : user.date
         }
@@ -55,7 +57,7 @@ class User{
     //register function 
     static async register(creds){
         
-        const requiredFields = ["email","password","firstName","lastName","username"]
+        const requiredFields = ["email","password","firstName","lastName","username","nativeLanguage"]
         requiredFields.forEach(field=>{
             if(!creds.hasOwnProperty(field)){
                throw new BadRequestError(`Missing ${field} in request body`)
@@ -78,10 +80,12 @@ class User{
         password,
         first_name,
         last_name,
-        username)
-        VALUES($1, $2, $3, $4, $5)
-        RETURNING id, email, first_name, last_name, username
-       `, [lowerCasedEmail, hashedPassword, creds.firstName, creds.lastName, creds.username])
+        username,
+        profilePicture,
+        nativeLanguage)
+        VALUES($1, $2, $3, $4, $5, $6, $7)
+        RETURNING id, email, first_name, last_name, username, profilePicture, nativeLanguage
+       `, [lowerCasedEmail, hashedPassword, creds.firstName, creds.lastName, creds.username, creds.profilePicture, creds.nativeLanguage])
 
         const user = result.rows[0]; 
         return user; 
@@ -95,7 +99,9 @@ class User{
                 password,
                 first_name,
                 last_name,
-                username
+                username,
+                profilePicture,
+                nativeLanguage
 
         FROM users WHERE email = $1`,[email.toLowerCase()]
         )
