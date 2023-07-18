@@ -1,16 +1,18 @@
-import react from "react"
-import "./Home.css"
+import React from "react";
+import "./Home.css";
+import background1 from "../images/img1.jpeg"
+import Navbar from "../Navbar/Navbar";
+export default function Home({loggedIn}){
 
-export default function Home(){
-     const spainImage = new URL("../images/img1.jpeg", import.meta.url)
     return(
-        <>
-            <div>
-              <img src={spainImage}/>
-            </div>
-          
-            <div>Hello</div>
-        </>
-        
+
+        <div  className="background-img">
+            <Navbar />
+            {/* <div>
+                <h1 className="text">Hello</h1>
+            </div> */}
+                
+        </div>
+     
     )
 }
