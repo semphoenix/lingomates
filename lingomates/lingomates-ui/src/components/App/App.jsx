@@ -3,6 +3,7 @@ import Landing from "../Landing/Landing";
 import Register from "../Register/Register";
 import Home from "../Home/Home"
 import jwtDecode from "jwt-decode"
+import axios from "axios";
 import { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
@@ -41,6 +42,7 @@ function App() {
       };
       checkLoggedIn()
   },[])
+  
 
   const handleLogout = () => {
     localStorage.removeItem("token");
