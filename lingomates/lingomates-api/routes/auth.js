@@ -11,11 +11,6 @@ router.get("/login", function (req, res) {
     })
   })
 
-  //retrieving and returning data from users table 
-router.get("/", async function(req, res) {
-    const data = await db.query(`SELECT * FROM users`)
-    return res.status(200).json(data.rows)
-})
 
 //route for login-need to create a user variable which is created once user is authenticated by checking database
 router.post("/login", async function(req,res, next){
