@@ -36,6 +36,7 @@ export default function Register({setUserId, setLoggedIn}) {
   }
 
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     handleRegistration(email, password, firstName, lastName, username);
@@ -77,15 +78,6 @@ export default function Register({setUserId, setLoggedIn}) {
           className="email-field"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          className="password-field"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
           required
         />
         <input

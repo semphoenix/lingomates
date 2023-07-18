@@ -12,11 +12,13 @@ export default function Login({setUserId, setLoggedIn, setLoginError}) {
 
   //handleLogin
   const handleLogin = async (email, password) => {
+    console.log("Before call")
     let response = await axios.post("http://localhost:3001/auth/login", {
       email,
       password,
     });
-
+    
+    console.log("after response")
     console.log("What's in response: ", response)
 
     if(response.status === 200){
@@ -28,7 +30,9 @@ export default function Login({setUserId, setLoggedIn, setLoginError}) {
       const decodedToken = jwtDecode(token) //decodes token to human readable informtation where payload/data in token can be accessed
       setUserId(decodedToken.userId)  
 
+      window.location.href = "/home"
     }else{
+      console.log("error cought")
       console.log(response.data.message); //optional - display error message
     }
   };
