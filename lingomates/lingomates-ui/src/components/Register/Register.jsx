@@ -27,7 +27,7 @@ export default function Register({setUserId, setLoggedIn}) {
         const decodedToken = jwtDecode(token)
         setUserId(decodedToken.userId);
 
-        //Registration successful
+        //Registration successful!
         setLoggedIn(true);
         window.location.href = "/langprompt"
 
