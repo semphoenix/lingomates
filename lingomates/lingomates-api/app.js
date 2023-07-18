@@ -7,7 +7,31 @@ const authRoutes = require("./routes/auth")
 const linguaRoutes = require("./routes/linguaRoutes")
 const userLinguaRoutes = require("./routes/userLinguaRoutes")
 const app = express()
+const { createServer } = require("http");
+const { Server } = require("socket.io");
 
+const httpServer = createServer(app);
+const io = new Server(httpServer, { 
+  cors:{
+    origin:"http://localhost:5173", //url for our front end
+    methods:["GET", "POST"] //methods we are accepting   
+  }
+});
+
+io.on("connection", (socket) => {
+  console.log(`User connected : ${socket.id}`)
+  socket.on("send_message", (data) => {
+    console.log(data);
+  })
+  socket.on("disconnect", ()=>{
+    console.log(`User connected : ${socket.id}`)
+  })
+   
+});
+
+httpServer.listen(3001, ()=> {
+  console.log("Server listening on port 3001")
+});
 
 app.use(cors())
 // parse incoming requests with JSON payloads

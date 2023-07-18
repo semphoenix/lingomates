@@ -3,7 +3,12 @@ import Login from '../Login/Login'
 import {useState} from 'react'
 import {Link} from 'react-router-dom'
 
+
 export default function Landing() {
+    const sendMessage=()=>{
+        // socket.emit   ()
+
+    }
     return (
         <div className='landing'>
             <Link to = "/">
