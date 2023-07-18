@@ -1,5 +1,5 @@
 import "./LangPrompt.css"
-
+import axios from "axios";
 export default function LangPrompt({languages, setLanguages}) {
 
     
@@ -20,10 +20,21 @@ export default function LangPrompt({languages, setLanguages}) {
     const handleContinue = (e) => {
         e.preventDefault();
         console.log("selected languages are", languages)
-        const selectedLanguagesParam = languages.map((language) => encodeURIComponent(language)).join(",");
+        const selectedLanguagesParam = languages.map((language) => encodeURIComponent(language)).join("_");
+        handleLingua();
          window.location.href  = `/profprompt/${selectedLanguagesParam}`;
+
     }
-  
+    //this will add the languages to the lingua table
+    const handleLingua = async () => {
+        try {
+            let response = await axios.post('http://localhost:3001/lingua')
+            console.log("Response output ", response)
+          } catch (error) {
+            console.log(error)
+          }
+    }
+
     return (
       <div className="langprompt">
         <h1>Which language(s) do you want to learn?</h1>
