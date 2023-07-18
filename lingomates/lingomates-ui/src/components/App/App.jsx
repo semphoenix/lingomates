@@ -2,6 +2,7 @@ import Login from "../Login/Login";
 import Landing from "../Landing/Landing";
 import Register from "../Register/Register";
 import jwtDecode from "jwt-decode"
+import axios from "axios";
 import { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
@@ -10,7 +11,6 @@ import {
   BrowserRouter,
 } from "react-router-dom";
 import LangPrompt from "../LangPrompt/LangPromp";
-import { useState } from "react";
 import ProfPrompt from "../ProfPrompt/ProfPrompt";
 
 function App() {
@@ -41,6 +41,7 @@ function App() {
       };
       checkLoggedIn()
   },[])
+  
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -56,7 +57,7 @@ function App() {
 
        
           <Route path="/langprompt" element={<LangPrompt languages={languages} setLanguages={setLanguages}/>}/>
-          <Route path="/profprompt/:languages" element={<ProfPrompt languages={languages} profLevels={profLevels} setProfLevels={setProfLevels}/>}/>
+          <Route path="/profprompt/:languages" element={<ProfPrompt profLevels={profLevels} setProfLevels={setProfLevels} userId = {userId}/>}/>
 
           <Route path="/login" element={<Login setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError}/>} />
           <Route path="/register" element={<Register setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError} />} />

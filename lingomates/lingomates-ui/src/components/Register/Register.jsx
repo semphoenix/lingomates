@@ -81,15 +81,6 @@ export default function Register({setUserId, setLoggedIn}) {
           required
         />
         <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          className="password-field"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <input
           name="username"
           type="text"
           placeholder="Username"
