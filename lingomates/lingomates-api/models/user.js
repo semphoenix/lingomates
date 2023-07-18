@@ -103,6 +103,14 @@ class User{
         return user; 
     }
 
+    static async fetchUserById(id){
+        const result = await db.query(
+            `SELECT * FROM users where id = ${id}`
+        )
+        const user = result.rows[0]
+        return user;
+    }
+    
 }
 
 module.exports= User
