@@ -13,11 +13,9 @@ import {
 } from "react-router-dom";
 import LangPrompt from "../LangPrompt/LangPromp";
 import ProfPrompt from "../ProfPrompt/ProfPrompt";
-
-
 import io from 'socket.io-client'
 
-const socket =io.connect ("http://localhost:3001") // the backend is running on port 3001
+const socket = io.connect ("http://localhost:3001") // the backend is running on port 3001
 
 
 

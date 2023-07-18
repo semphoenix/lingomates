@@ -113,7 +113,6 @@ export default function Register({setUserId, setLoggedIn}) {
           name="profilePicture"
           type="url"
           placeholder="Profile Picture URL"
-          required
           className="profilepic-field"
           value={profilePicture}
           onChange={(e) => setProfilePicture(e.target.value)}
@@ -127,6 +126,7 @@ export default function Register({setUserId, setLoggedIn}) {
             <option value="french">French</option>
             <option value="italian">Italian</option>
             <option value="german">German</option>
+            <option value="other">Other</option>
         </select>
         <button type="submit" className="submit-button">
           Sign Up
