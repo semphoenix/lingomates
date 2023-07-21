@@ -1,0 +1,55 @@
+
+/* .background-img{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background-image: url("../images/img1.jpeg");
+    background-position: center;
+     background-repeat: no-repeat; 
+     background-size: cover;
+     animation: change 10s infinite ease-in-out;
+} */
+
+/* @keyframes change{
+    0%{
+        background-image: url("../images/img3.webp");
+    }
+    20%{
+        background-image: url("../images/img2.webp");
+    }
+    40%{
+        background-image: url("../images/countryImg1.jpg");
+    }
+    60%{
+        background-image: url("../images/img1.jpeg");
+    }
+    80%{
+        background-image: url("../images/img6.webp");
+    }
+    100%{
+        background-image: url("../images/italyImg.jpeg");
+    }
+} */
+
+.welcome{
+    text-align: center;
+    font-size: 32px;
+}
+
+.search-form{
+    padding-top: 20px;
+    text-align: center;
+}
+
+.recommendedUsers-contianer{
+    display: flex;
+    flex-direction: row;
+}
+
+Community .span{
+    display: flex;
+    flex-direction: row;
+}

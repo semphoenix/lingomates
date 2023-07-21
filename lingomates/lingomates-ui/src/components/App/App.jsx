@@ -14,6 +14,7 @@ import {
 import LangPrompt from "../LangPrompt/LangPromp";
 import ProfPrompt from "../ProfPrompt/ProfPrompt";
 import io from 'socket.io-client'
+import Community from "../Community/Community";
 
 
 function App() { 
@@ -22,7 +23,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [languages, setLanguages] = useState([])
   const [profLevels, setProfLevels] = useState({});
-
+  const [dailyLanguages, setDailyLanguages] = useState([])
   
   const sendMessage=()=>{
     socket.emit("send_message",  
@@ -78,7 +79,7 @@ function App() {
           <Route path="/profprompt/:languages" element={<ProfPrompt languages={languages} profLevels={profLevels} setProfLevels={setProfLevels} userId={userId}/>}/>
           <Route path="/login" element={<Login setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError}/>} />
           <Route path="/register" element={<Register setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError} />} />
-          <Route path="/home" element={<Home loggedIn={loggedIn}/>} />
+          <Route path="/community" element={<Community loggedIn={loggedIn} userId={userId} dailyLanguages={dailyLanguages} setDailyLanguages={setDailyLanguages}/>} />
         </Routes>
       </Router>
     </div>
