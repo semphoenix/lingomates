@@ -2,25 +2,28 @@ import './Landing.css'
 import Login from '../Login/Login'
 import {useState} from 'react'
 import {Link} from 'react-router-dom'
+import { makeStyles } from '@mui/styles'
 
+import Header from '../Header/Header'
+import Hero from '../Hero/Hero'
+
+
+
+const useStyles = makeStyles({
+    // root: {
+    //     minHeight: '100vh',
+    //     backgroundImage: `url(${"src/components/images/countryImg2.jpg"})`
+    // },
+    
+})
 
 export default function Landing() {
-    const sendMessage=()=>{
-        // socket.emit   ()
-
-    }
+    const classes = useStyles();
     return (
-        <div className='landing'>
-            <Link to = "/">
-            <img className='logo' src='src/assets/snail.png'/>
-            </Link>
-            <h1>Lingomates</h1>
-            <Link to = "/register">
-            <button className="get-started-btn">Get started</button>
-            </Link>
-            <Link to = "/login">
-            <button className = "login-btn">Already have an account?</button>
-            </Link>
+        <div className={classes.root}>
+            {/* <CssBaseline/> */}
+            <Header/>
+            <Hero/>
         </div>
     )
 }
