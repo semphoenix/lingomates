@@ -16,9 +16,6 @@ import ProfPrompt from "../ProfPrompt/ProfPrompt";
 import io from 'socket.io-client'
 import Community from "../Community/Community";
 
-const socket = io.connect ("http://localhost:3001") // the backend is running on port 3001
-
-
 
 function App() { 
   const [userId, setUserId] = useState();
@@ -77,9 +74,7 @@ function App() {
      
       <Router>
         <Routes>
-          <Route path="/" element={<Landing />} />
-
-       
+          <Route path="/" element={<Landing />} /> 
           <Route path="/langprompt" element={<LangPrompt languages={languages} setLanguages={setLanguages}/>}/>
           <Route path="/profprompt/:languages" element={<ProfPrompt languages={languages} profLevels={profLevels} setProfLevels={setProfLevels} userId={userId}/>}/>
           <Route path="/login" element={<Login setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError}/>} />
