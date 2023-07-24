@@ -2,8 +2,9 @@ import Login from "../Login/Login";
 import Landing from "../Landing/Landing";
 import Register from "../Register/Register";
 import Home from "../Home/Home"
+import Profile from "../Profile/Profile";
 import jwtDecode from "jwt-decode"
-import axios from "axios";
+
 import { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
@@ -13,6 +14,7 @@ import {
 } from "react-router-dom";
 import LangPrompt from "../LangPrompt/LangPromp";
 import ProfPrompt from "../ProfPrompt/ProfPrompt";
+import Conversations from "../Conversations/Conversations";
 import io from 'socket.io-client'
 import Community from "../Community/Community";
 
@@ -23,15 +25,9 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [languages, setLanguages] = useState([])
   const [profLevels, setProfLevels] = useState({});
-  const [dailyLanguages, setDailyLanguages] = useState([])
-  
-  const sendMessage=()=>{
-    socket.emit("send_message",  
-    //this only emits data to the backend and the backend will emit that event to the front end using another event we listening to in the front end
-    {message: document.getElementById('input_message').value,
-  userId: 3 } )
-  }
 
+  
+ 
 
   //use useEffect to see if user has logged in before or not 
   useEffect(()=>{
@@ -61,25 +57,20 @@ function App() {
 
   
   return (
-    <div>
+    <div>    
 
-      {userId}
 
-      <form onSubmit={sendMessage}>
-      <input type="text" id="input_message" />
-      <input type="submit" />
-      </form>
-      
-     
-     
       <Router>
         <Routes>
-          <Route path="/" element={<Landing />} /> 
+          <Route path="/" element={<Landing />} />
+
+          <Route path="/profile" element={<Profile userId={userId}/>}/>
           <Route path="/langprompt" element={<LangPrompt languages={languages} setLanguages={setLanguages}/>}/>
           <Route path="/profprompt/:languages" element={<ProfPrompt languages={languages} profLevels={profLevels} setProfLevels={setProfLevels} userId={userId}/>}/>
           <Route path="/login" element={<Login setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError}/>} />
           <Route path="/register" element={<Register setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError} />} />
           <Route path="/community" element={<Community loggedIn={loggedIn} userId={userId} dailyLanguages={dailyLanguages} setDailyLanguages={setDailyLanguages}/>} />
+          <Route path="/conversations" element= {<Conversations userId={userId}/>}/>
         </Routes>
       </Router>
     </div>
