@@ -114,7 +114,7 @@ class User{
         console.log("this is the requested id in fetch by id: ", requestedId)
 
         const result = await db.query(
-            `SELECT username, first_name, last_name
+            `SELECT username, first_name, last_name, email, username , profilePicture, nativeLanguage 
             FROM users WHERE id=$1`, [requestedId]
         )
 

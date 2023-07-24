@@ -2,8 +2,9 @@ import Login from "../Login/Login";
 import Landing from "../Landing/Landing";
 import Register from "../Register/Register";
 import Home from "../Home/Home"
+import Profile from "../Profile/Profile";
 import jwtDecode from "jwt-decode"
-import axios from "axios";
+
 import { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
@@ -13,6 +14,7 @@ import {
 } from "react-router-dom";
 import LangPrompt from "../LangPrompt/LangPromp";
 import ProfPrompt from "../ProfPrompt/ProfPrompt";
+import Conversations from "../Conversations/Conversations";
 import io from 'socket.io-client'
 import Community from "../Community/Community";
 import News from "../News/News"
@@ -33,7 +35,7 @@ function App() {
   userId: 3 } )
   }
 
-
+ 
   //use useEffect to see if user has logged in before or not 
   useEffect(()=>{
       const checkLoggedIn = () =>{
@@ -63,26 +65,22 @@ function App() {
   
   console.log("what is selectedDailyLanguage value: ", selectedDailyLanguage)
   return (
-    <div>
+    <div>    
 
-      {userId}
 
-      <form onSubmit={sendMessage}>
-      <input type="text" id="input_message" />
-      <input type="submit" />
-      </form>
-      
-     
-     
       <Router>
         <Routes>
-          <Route path="/" element={<Landing />} /> 
+          <Route path="/" element={<Landing />} />
+
+          <Route path="/profile" element={<Profile userId={userId}/>}/>
           <Route path="/langprompt" element={<LangPrompt languages={languages} setLanguages={setLanguages}/>}/>
           <Route path="/profprompt/:languages" element={<ProfPrompt languages={languages} profLevels={profLevels} setProfLevels={setProfLevels} userId={userId}/>}/>
           <Route path="/login" element={<Login setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError}/>} />
           <Route path="/register" element={<Register setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError} />} />
           <Route path="/community" element={<Community loggedIn={loggedIn} userId={userId} dailyLanguages={dailyLanguages} setDailyLanguages={setDailyLanguages} setSelectedDailyLanguage={setSelectedDailyLanguage}/>} />
           <Route path="/feed" element={<News selectedDailyLanguage={selectedDailyLanguage}/>} />
+          <Route path="/conversations" element= {<Conversations userId={userId}/>}/>
+
         </Routes>
       </Router>
     </div>
