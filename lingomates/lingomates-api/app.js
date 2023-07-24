@@ -6,6 +6,7 @@ const config = require("./config")
 const authRoutes = require("./routes/auth")
 const linguaRoutes = require("./routes/linguaRoutes")
 const userLinguaRoutes = require("./routes/userLinguaRoutes")
+const profileRoutes=require("./routes/profileRoutes")
 const app = express()
 const { createServer } = require("http");
 const { Server } = require("socket.io");
@@ -20,12 +21,16 @@ const io = new Server(httpServer, {
 
 io.on("connection", (socket) => {
   console.log(`User connected : ${socket.id}`)
+
+
   socket.on("send_message", (data) => {
-    console.log(data);
+    socket.to(data.room).emit("receive_message",data)
   })
-  socket.on("disconnect", ()=>{
-    console.log(`User connected : ${socket.id}`)
-  })
+
+  socket.on("join_room", (data)=>{
+    console.log("room is", data)
+    socket.join(data)
+})
    
 });
 
@@ -39,10 +44,11 @@ app.use(express.json())
 // log requests info
 app.use(morgan("tiny"))
 
-//enabling the /auth route - using the imported auth routes
+//enabling the /routes - using the imported routes
 app.use("/auth", authRoutes)
 app.use("/lingua", linguaRoutes)
 app.use("/userLingua", userLinguaRoutes)
+app.use("/profileRoutes", profileRoutes)
 
 app.get("/", function (req, res) {
     return res.status(200).json({
