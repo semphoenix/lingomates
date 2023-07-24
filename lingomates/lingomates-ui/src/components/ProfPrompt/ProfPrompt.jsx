@@ -30,7 +30,7 @@ export default function ProfPrompt({ profLevels, setProfLevels, userId }) {
     handleLanguageProfs(userId, profLevels);
     // You can navigate to another page or perform any other actions here
     console.log(languages)
-    window.location.href = "/home"
+    window.location.href = "/community"
   };
 
 
