@@ -5,6 +5,7 @@ import axios from "axios";
 function Profile({ userId }) {
   const [profileData, setProfileData] = useState([]);
 
+  console.log("what is userId: ", userId)
   useEffect(() => {
     if (userId !== undefined) {
       axios

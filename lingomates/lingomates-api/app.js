@@ -49,6 +49,7 @@ app.use(morgan("tiny"))
 app.use("/auth", authRoutes)
 app.use("/lingua", linguaRoutes)
 app.use("/userLingua", userLinguaRoutes)
+app.use("/profileRoutes", profileRoutes)
 
 app.get("/", function (req, res) {
     return res.status(200).json({
