@@ -4,7 +4,7 @@ import background1 from "../images/img1.jpeg"
 import Navbar from "../Navbar/Navbar";
 import {useState, useEffect} from "react"
 import axios from "axios";
-export default function Community({loggedIn, userId, dailyLanguages, setDailyLanguages}){
+export default function Community({loggedIn, userId, dailyLanguages, setDailyLanguages, setSelectedDailyLanguage}){
 
     const [userData, setUserData] = useState({})
     const [recommendedUsers, setRecommendedUsers] = useState([])
@@ -12,7 +12,6 @@ export default function Community({loggedIn, userId, dailyLanguages, setDailyLan
     const [userList, setUserList] = useState([])
     const [usersLanguageData, setUsersLanguageData] = useState([])
     const [searchUsername, setSearchUsername] = useState("")
-    let usersToAdd = []
 
     console.log("userId value in community: ", userId)
 
@@ -65,6 +64,7 @@ export default function Community({loggedIn, userId, dailyLanguages, setDailyLan
             const response =  await axios.get(`http://localhost:3001/community/recommended/${userId}/${languageId}`).then((recUsers)=>{
                 console.log("recommended users: ", recUsers.data.users)
                 setRecommendedUsers(recUsers.data.users)
+                setSelectedDailyLanguage(languageId)
             })
             // console.log(event.target.value)
         }
@@ -76,11 +76,16 @@ export default function Community({loggedIn, userId, dailyLanguages, setDailyLan
      console.log("userData: ", userData)
     // console.log("current user id: ", userId)
     // console.log("recommended users: ", recommendedUsers)
-    console.log("users to add info: ", usersToAdd)
+
     console.log("searched username: ", searchUsername)
     console.log("current users' selected language: ", dailyLanguages)
 
     return(
+
+        <>
+            <div>
+                <Navbar />     
+            </div>
 
         <div className="recommended-container">
 
@@ -99,6 +104,7 @@ export default function Community({loggedIn, userId, dailyLanguages, setDailyLan
             {dailyLanguages?.map((language) => (
                 <option key={language.linguaid} value={language.linguaid}>
                     {language.linguaname}
+                    
                 </option>
             ))}
             </select>
@@ -120,6 +126,8 @@ export default function Community({loggedIn, userId, dailyLanguages, setDailyLan
                     })} 
             </div>
         </div>
+        </>
+          
 
         // <div  className="background-img">
         //     <Navbar />

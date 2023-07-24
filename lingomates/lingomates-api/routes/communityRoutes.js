@@ -21,7 +21,9 @@ router.get("/recommended/:id/:languageId", async function (req, res) {
     console.log("the language is ", langId)
 
     const recommendedUsers = await db.query(`SELECT 
-    u.first_name, 
+    u.first_name,
+    u.last_name,
+    u.id, 
     l.linguaName, 
     l.countryFlag, 
     l.imageUrl, 
