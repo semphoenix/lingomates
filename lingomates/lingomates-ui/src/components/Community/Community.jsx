@@ -7,7 +7,7 @@ import axios from "axios";
 export default function Community({loggedIn, userId, dailyLanguages, setDailyLanguages, setSelectedDailyLanguage}){
 
     const [userData, setUserData] = useState({})
-    const [recommendedUsers, setRecommendedUsers] = useState([])
+    const [recommendedUsers, setRecommendedUsers] = useState(null)
     const [filteredLang, setFilteredLang] = useState([])
     const [userList, setUserList] = useState([])
     const [usersLanguageData, setUsersLanguageData] = useState([])
@@ -109,22 +109,26 @@ export default function Community({loggedIn, userId, dailyLanguages, setDailyLan
             ))}
             </select>
 
+
         </div>
+
+        {recommendedUsers && 
+
+        (
             <div>
                 Recommended
-                {/* recommended users */}
                     {recommendedUsers?.map((recUsers, index)=>{
                         console.log("what's in recUser: ", recUsers)
 
                         return(
                                 <>
-                                <div className="recommendedUsers-contianer">
+                                <div key={index} className="recommendedUsers-contianer">
                                     <span>{recUsers.first_name}</span>
                                 </div>
                                 </> 
                             )      
                     })} 
-            </div>
+            </div>)}
         </div>
         </>
           
