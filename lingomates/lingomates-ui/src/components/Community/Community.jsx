@@ -1,9 +1,9 @@
 import React from "react";
 import "./Community.css";
-import background1 from "../images/img1.jpeg"
 import Navbar from "../Navbar/Navbar";
 import {useState, useEffect} from "react"
 import axios from "axios";
+
 export default function Community({loggedIn, userId, dailyLanguages, setDailyLanguages, setSelectedDailyLanguage}){
 
     const [userData, setUserData] = useState({})
