@@ -18,6 +18,7 @@ import Conversations from "../Conversations/Conversations";
 import io from 'socket.io-client'
 import Community from "../Community/Community";
 import News from "../News/News"
+import Viewprofile from "../Viewprofile/Viewprofile"
 
 function App() { 
   const [userId, setUserId] = useState();
@@ -80,7 +81,7 @@ function App() {
           <Route path="/community" element={<Community loggedIn={loggedIn} userId={userId} dailyLanguages={dailyLanguages} setDailyLanguages={setDailyLanguages} setSelectedDailyLanguage={setSelectedDailyLanguage}/>} />
           <Route path="/feed" element={<News selectedDailyLanguage={selectedDailyLanguage}/>} />
           <Route path="/conversations" element= {<Conversations userId={userId}/>}/>
-
+          <Route path="/userProfile/:id" element={<Viewprofile />} />
         </Routes>
       </Router>
     </div>
