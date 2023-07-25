@@ -5,7 +5,7 @@ const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const db = require("../db");
 
-router.get("/profileUserlinguas/:id",async function (request, response, next) {
+router.get("/:id",async function (request, response, next) {
     const userIdRequested = request.params.id;
     console.log("requested ID for profile is: ", userIdRequested);
     try {
