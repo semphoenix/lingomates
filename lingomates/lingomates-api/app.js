@@ -21,19 +21,23 @@ const io = new Server(httpServer, {
 });
 
 io.on("connection", (socket) => {
-  console.log(`User connected : ${socket.id}`)
+  console.log(`User Connected: ${socket.id}`);
 
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log(`User with ID: ${socket.id} joined room: ${data}`);
+  });
 
   socket.on("send_message", (data) => {
-    socket.to(data.room).emit("receive_message",data)
-  })
+    console.log(data)
+    socket.to(data.room).emit("receive_message", data);
+  });
 
-  socket.on("join_room", (data)=>{
-    console.log("room is", data)
-    socket.join(data)
-})
-   
+  socket.on("disconnect", () => {
+    console.log("User Disconnected", socket.id);
+  });
 });
+
 
 httpServer.listen(3001, ()=> {
   console.log("Server listening on port 3001")
