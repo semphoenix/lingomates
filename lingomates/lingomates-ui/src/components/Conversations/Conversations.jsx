@@ -5,7 +5,7 @@ import Chat from "../Chat/Chat";
 
 const socket = io.connect("http://localhost:3001");
 
-function Conversation() {
+function Conversation({userId}) {
   const [username, setUsername] = useState("");
   const [room, setRoom] = useState("");
   const [showChat, setShowChat] = useState(false);
@@ -18,7 +18,7 @@ function Conversation() {
   };
 
   return (
-    <div className="App">
+    <div className="conversation">
       {!showChat ? (
         <div className="joinChatContainer">
           <h3>Join A Chat</h3>

@@ -29,8 +29,11 @@ function Chat({ socket, username, room }) {
     }
   };
 
+  //this callback function is used to make sure that it run only when there
+  //are changes in the function and not everytime it renders other parts
   const handleReceiveMessage = useCallback(
     (data) => {
+        //takes in the list of messages from previous interaction and adds the new message
     setMessageList((list) => [...list, data]);
     },
     []
@@ -46,9 +49,7 @@ function Chat({ socket, username, room }) {
       socket.off("receive_message", handleReceiveMessage);
     };
   }, [socket, handleReceiveMessage]);
-    
-
-
+  
   return (
     <div className="chat-window">
       <div className="chat-header">
@@ -56,7 +57,7 @@ function Chat({ socket, username, room }) {
       </div>
       
       <div className="chat-body">
-        <ScrollToBottom className="message-container">
+        <ScrollToBottom className="message-container"> {/* go to the bottom of the page everytime */}
           {messageList.map((messageContent) => {
             return (
               <div
