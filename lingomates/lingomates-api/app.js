@@ -11,6 +11,7 @@ const communityRoutes = require("./routes/communityRoutes")
 const app = express()
 const { createServer } = require("http");
 const { Server } = require("socket.io");
+const DirectMessege=require("./models/directMessage")
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, { 
@@ -29,7 +30,20 @@ io.on("connection", (socket) => {
   });
 
   socket.on("send_message", (data) => {
+    const {message, sender, receiver, time} = data 
+    // const messageText= (data.message)
+    // const author=data.author
+    // let room=[user1,user2]
+    //     room=room.sort()
+    //     room=room.toString()
+    const room=[sender, receiver].sort().toString()
+    console.log(room)
+    console.log("Data in Send Message: ")
     console.log(data)
+
+    DirectMessege.createMessage(room, sender, receiver, message)
+
+    
     socket.to(data.room).emit("receive_message", data);
   });
 

@@ -14,6 +14,8 @@ function Chat({ socket, username, room }) {
     if (currentMessage !== "") {
       const messageData = {
         room: room,
+        sender: 2,
+        receiver: 3,
         author: username,
         message: currentMessage,
         time:
