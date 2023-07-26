@@ -1,15 +1,29 @@
 import "./Conversations.css"
 import io from "socket.io-client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Chat from "../Chat/Chat";
-
+import axios from "axios";
 const socket = io.connect("http://localhost:3001");
 
 function Conversation({userId}) {
+  //create a state for conversations so far by the user
+
+  const[userConvos, setUserConvos]=useState(null)
   
   const [username, setUsername] = useState("");
   const [room, setRoom] = useState("");
   const [showChat, setShowChat] = useState(false);
+
+
+  useEffect(()=>{
+
+    if(userId){
+    axios.get(`http://localhost:3001/conversationRoutes/userConversations/${userId}`)
+    .then((response)=>{
+      setUserConvos(response.data)
+    })}
+
+  },[userId])
 
   const joinRoom = () => {
     if (username !== "" && room !== "") {
@@ -18,11 +32,27 @@ function Conversation({userId}) {
     }
   };
 
+  console.log("userConvos: ");
+  console.log(userConvos);
+
+
   return (
     <div className="conversation">
+      {/* {userConvos ? (userConvos.userData.map((convo, index) => (
+            <button key={index} onClick={() => 
+            setRoom(convo.roomconvo)
+             }>Room with {convo.receiverd}
+            
+            </button>))): ""} */}      
+      {userConvos ? (userConvos.userData.map((convo, index) => (
+         <h1>{convo.roomconvo}</h1>   
+            
+            ))): ""}      
+      <h2></h2>
       {!showChat ? (
         <div className="joinChatContainer">
           <h3>Join A Chat</h3>
+
           <input
             type="text"
             placeholder="John..."

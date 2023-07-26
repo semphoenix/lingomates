@@ -6,10 +6,10 @@ class Conversations{
 
     static async getAllChats(user1){
         const result= await db.query(
-           `SELECT c.id AS conversationId, dm.senderId, dm.receiverId
+           `SELECT DISTINCT c.id AS conversationId,roomConvo, dm.senderId, dm.receiverId
             FROM conversation c
             INNER JOIN directMessage dm ON c.roomConvo = dm.room
-            WHERE dm.receiverId=$1;`, [user1]
+            WHERE dm.receiverId=$1 OR dm.senderId=$1;`, [user1]
         );
         const allChats=result.rows;
         return allChats;
@@ -41,8 +41,18 @@ class Conversations{
             `SELECT id, roomConvo FROM conversation
             WHERE roomConvo=$1 `, [room]
         )
-        const chatId= result.rowCount;
+        const chatId= result.rows[0];
         return chatId
+    }
+    static async fetchAllRoomswithUser(user1){
+        const result=await db.query(
+            `SELECT * FROM conversation 
+            WHERE roomConvo IN(SELECT room FROM directMessage
+            WHERE senderId=$1 OR receiverId=$1 )`,[user1]
+        )
+        const rooms=result.rows[0]
+        return rooms
+
     }
 
     

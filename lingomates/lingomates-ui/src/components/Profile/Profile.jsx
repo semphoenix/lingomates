@@ -4,6 +4,7 @@ import axios from "axios";
 
 function Profile({ userId }) {
   const [profileData, setProfileData] = useState([]);
+  
 
   console.log("what is userId: ", userId)
   useEffect(() => {
@@ -16,7 +17,7 @@ function Profile({ userId }) {
         });
     }
   }, [userId]);
-
+ 
   return (
     <div>
       {profileData && profileData.length > 0 ? ( // Check if 'userData' exists and has elements

@@ -4,7 +4,7 @@ const { BCRYPT_WORK_FACTOR } = require("../config");
 const Conversations = require("./conversations");
 
 class DirectMessage {
-  static async createMessage(roomId, sender, reciever, message) {
+  static async createMessage(roomId, sender, receiver, message) {
     const existingChat = await Conversations.fetchConvoByRoom(roomId);
     console.log("existingChat: ")
     console.log(existingChat)
@@ -22,7 +22,7 @@ class DirectMessage {
                 VALUES($1,$2,$3,$4)
                 RETURNING id, room ,senderId,receiverId,messageText,messaged_at
             `,
-        [roomId, sender, reciever, message]
+        [roomId, sender, receiver, message]
       );
 
       const userMessage = result.rows[0];
@@ -30,7 +30,7 @@ class DirectMessage {
     } 
     else {
         console.log("-----IN ELSE!-----")
-        const convo= await Conversations.conversationCreate(sender,reciever)
+        const convo= await Conversations.conversationCreate(sender,receiver)
         console.log("convo in direct message: ")
         console.log(convo)
         const result = await db.query(
@@ -42,7 +42,7 @@ class DirectMessage {
                     VALUES($1,$2,$3,$4)
                     RETURNING id, room,senderId,receiverId,messageText,messaged_at
                 `,
-            [convo.roomconvo, sender, reciever, message]
+            [convo.roomconvo, sender, receiver, message]
           );
     
           const userMessage = result.rows[0];

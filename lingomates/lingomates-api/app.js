@@ -8,6 +8,7 @@ const linguaRoutes = require("./routes/linguaRoutes")
 const userLinguaRoutes = require("./routes/userLinguaRoutes")
 const profileRoutes=require("./routes/profileRoutes")
 const communityRoutes = require("./routes/communityRoutes")
+const conversationRoutes=require("./routes/conversationRoutes")
 const app = express()
 const { createServer } = require("http");
 const { Server } = require("socket.io");
@@ -51,8 +52,6 @@ io.on("connection", (socket) => {
     console.log("User Disconnected", socket.id);
   });
 });
-
-
 httpServer.listen(3001, ()=> {
   console.log("Server listening on port 3001")
 });
@@ -69,6 +68,7 @@ app.use("/lingua", linguaRoutes)
 app.use("/userLingua", userLinguaRoutes)
 app.use("/profileRoutes", profileRoutes)
 app.use("/community", communityRoutes)
+app.use("/conversationRoutes",conversationRoutes)
 
 app.get("/", function (req, res) {
     return res.status(200).json({
