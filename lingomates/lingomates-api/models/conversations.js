@@ -14,7 +14,7 @@ class Conversations{
         const allChats=result.rows;
         return allChats;
 
-    }
+    } 
 
     static async conversationCreate(user1,user2){
         

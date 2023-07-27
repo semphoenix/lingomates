@@ -49,7 +49,7 @@ function App() {
           if(decodedToken.exp * 1000 > Date.now()){
               setLoggedIn(true)
           }else{
-            console.log("should make a loggout function")
+            // console.log("should make a loggout function")
           }
         }
       };
@@ -63,7 +63,7 @@ function App() {
   }
 
   
-  console.log("what is selectedDailyLanguage value: ", selectedDailyLanguage)
+  // console.log("what is selectedDailyLanguage value: ", selectedDailyLanguage)
   return (
     <div>    
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState,useCallback } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 
-function Chat({ socket, username, room }) {
+function Chat({ socket, room, senderId, receiverId }) {
 
 
   const [currentMessage, setCurrentMessage] = useState("");
@@ -14,9 +14,8 @@ function Chat({ socket, username, room }) {
     if (currentMessage !== "") {
       const messageData = {
         room: room,
-        sender: 2,
-        receiver: 3,
-        author: username,
+        sender: senderId,
+        receiver: receiverId,
         message: currentMessage,
         time:
           new Date(Date.now()).getHours() +
@@ -35,6 +34,7 @@ function Chat({ socket, username, room }) {
   //are changes in the function and not everytime it renders other parts
   const handleReceiveMessage = useCallback(
     (data) => {
+      console.log("--------MESSAGE WAS RECEIVED------------")
         //takes in the list of messages from previous interaction and adds the new message
     setMessageList((list) => [...list, data]);
     },
@@ -43,14 +43,13 @@ function Chat({ socket, username, room }) {
 
   //This useEffect is an event listner from the back end to detect any incoming messages
   useEffect(() => {
-    // Set up the event listener for "receive_message" event only once on mount
     socket.on("receive_message", handleReceiveMessage);
 
-    // Clean up the event listener when the component unmounts
     return () => {
       socket.off("receive_message", handleReceiveMessage);
     };
   }, [socket, handleReceiveMessage]);
+
   
   return (
     <div className="chat-window">
@@ -60,19 +59,17 @@ function Chat({ socket, username, room }) {
       
       <div className="chat-body">
         <ScrollToBottom className="message-container"> {/* go to the bottom of the page everytime */}
-          {messageList.map((messageContent) => {
+          {messageList.map((messageContent, index) => {
             return (
-              <div
-                className="message"
-                id={username === messageContent.author ? "you" : "other"}
-              >
-                <div>
+              <div key={index} className="message"
+                id={senderId === messageContent.sender ? "you" : "other"} >
+                <div  >
                   <div className="message-content">
                     <p>{messageContent.message}</p>
                   </div>
                   <div className="message-meta">
                     <p id="time">{messageContent.time}</p>
-                    <p id="author">{messageContent.author}</p>
+                    {/* <p id="author">{messageContent.author}</p> */}
                   </div>
                 </div>
               </div>

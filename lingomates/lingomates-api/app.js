@@ -26,7 +26,7 @@ io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
   socket.on("join_room", (data) => {
-    socket.join(data);
+    socket.join('1,2');
     console.log(`User with ID: ${socket.id} joined room: ${data}`);
   });
 
@@ -42,10 +42,13 @@ io.on("connection", (socket) => {
     console.log("Data in Send Message: ")
     console.log(data)
 
+    socket.to(room).emit("receive_message", data);
+
     DirectMessege.createMessage(room, sender, receiver, message)
 
     
-    socket.to(data.room).emit("receive_message", data);
+    
+
   });
 
   socket.on("disconnect", () => {
