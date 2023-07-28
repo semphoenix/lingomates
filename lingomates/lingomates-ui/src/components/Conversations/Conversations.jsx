@@ -11,6 +11,8 @@ function Conversation({userId}) {
   const[userConvos, setUserConvos]=useState(null)
   const [roomData, setRoomData] = useState(null)
   const [showChat, setShowChat] = useState(false)
+  const [receiverData, setReceiverData]=useState([])
+  const[receiverFetchId,setReceiverFetchId]=useState(null)
 
 
   useEffect(()=>{
@@ -20,10 +22,23 @@ function Conversation({userId}) {
     axios.get(`http://localhost:3001/conversationRoutes/userConversations/${userId}`)
     .then((response)=>{
       setUserConvos(response.data)
+      
     })}
 
   },[userId])
 
+
+  useEffect(()=>{
+ 
+
+    if (receiverFetchId) {
+    axios.get(`http://localhost:3001/conversationRoutes/${receiverFetchId}`)
+    .then((response)=>{
+      setReceiverData(response.data)
+      console.log(receiverData)
+    })}
+
+  },[receiverFetchId])
 
 
   return (
@@ -39,6 +54,7 @@ function Conversation({userId}) {
                   }
 
                   socket.emit("join_room", convo.roomconvo)
+                  setReceiverFetchId(convo.receiverid)
                   setShowChat(true)
                   setRoomData(roomObject)
 
@@ -48,7 +64,7 @@ function Conversation({userId}) {
         
           </div>
       ) : (
-        <Chat socket={socket} room={roomData.room} senderId={roomData.senderId} receiverId={roomData.receiverId}/>
+        <Chat socket={socket} room={roomData.room} senderId={roomData.senderId} receiverId={roomData.receiverId} receiverData={receiverData}/>
       )}
     </div>
   );

@@ -38,7 +38,7 @@ router.post("/", async function (req, res, next) {
     });
 
 router.get("/",async function (req, res, next) {
-    const data = await db.query(`SELECT * FROM usreLingua`)
+    const data = await db.query(`SELECT * FROM userLingua`)
     console.log("userLingua info from data", data.rows)
     return res.status(200).json(data.rows)
 })
