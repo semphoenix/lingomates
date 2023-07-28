@@ -14,6 +14,7 @@ router.get("/users", async function(req,res){
     return res.status(200).json({userData:userData})
 })
 
+//gets recommended users from database based on current users preferences
 router.get("/recommended/:id/:languageId", async function (req, res) {
     const userId = req.params.id;
     const langId = req.params.languageId; 
@@ -23,7 +24,8 @@ router.get("/recommended/:id/:languageId", async function (req, res) {
     const recommendedUsers = await db.query(`SELECT 
     u.first_name,
     u.last_name,
-    u.id, 
+    u.id,
+    u.profilePicture, 
     l.linguaName, 
     l.countryFlag, 
     l.imageUrl, 
@@ -38,12 +40,14 @@ router.get("/recommended/:id/:languageId", async function (req, res) {
     return(res.status(200).json({users:users}))
 })
 
+//gets all of current users languages they are learning
 router.get("/linguas/:id", async function(req, res){
     const userId = req.params.id;
 
     const lingas = await db.query(`
     SELECT ul.userid, 
-    ul.linguaid, 
+    ul.linguaid,
+    ul.proficiencyLevel, 
     l.id, 
     l.linguaname 
     FROM userlingua ul INNER JOIN lingua l 

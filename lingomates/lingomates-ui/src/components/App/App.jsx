@@ -19,6 +19,7 @@ import io from 'socket.io-client'
 import Community from "../Community/Community";
 import News from "../News/News"
 import Translate from "../Translate/Translate";
+import Viewprofile from "../Viewprofile/Viewprofile"
 
 function App() { 
   const [userId, setUserId] = useState();
@@ -83,6 +84,7 @@ function App() {
           <Route path="/conversations" element= {<Conversations userId={userId}/>}/>
           <Route path="/translate" element= {<Translate/>}/>
 
+          <Route path="/userProfile/:id" element={<Viewprofile />} />
         </Routes>
       </Router>
     </div>

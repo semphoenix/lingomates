@@ -46,10 +46,26 @@
 
 .recommendedUsers-contianer{
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    height: 100%;
+   
 }
-
+.recommended-users{
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    white-space: nowrap;
+}
 Community .span{
     display: flex;
     flex-direction: row;
+}
+
+.recommended-word{
+    width:100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }

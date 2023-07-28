@@ -5,10 +5,11 @@ import {useEffect, useState} from "react"
 export default function News({selectedDailyLanguage}){
 
     const [newsArticles, setNewsArticles] = useState([])
-    let apiKey = "a4a95cd2bef74346ad4624f072866046";
-    // let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`;
-    //https://newsapi.org/v2/top-headlines?country=us&apiKey=a4a95cd2bef74346ad4624f072866046
-    
+    const [loadNum, setLoadNum]  = useState(1) // manages page data
+    const [displayedArticles, setDisplayArticles] = useState([])
+
+    let apiKey = "a4a95cd2bef74346ad4624f072866046"; // should be in environment file
+
     let countryLanguage = ""; 
 
     if(selectedDailyLanguage === "1"){
@@ -30,29 +31,46 @@ export default function News({selectedDailyLanguage}){
         countryLanguage = "se"
     }
 
-    console.log("what is countryLanguage: ", countryLanguage)
+    const handleLoadMore = () => {
+        let newNum = loadNum + 1;
+        setLoadNum(newNum);
+        setDisplayArticles(newsArticles.slice(0, (loadNum*10)))
+        // addNewsArticles(newsArticles);
+    }
+
+    const addNewsArticles = (response) => {
+        // let articleArray = []
+        // for (let i = 0; i < (10*loadNum); i++) {
+        //     console.log("in for loop")
+        //     articleArray.push(response[i])
+        // }
+        setDisplayArticles(response.slice(0, (loadNum*10)))
+    }
+
+    console.log("displayedArticles: ")
+    console.log(displayedArticles)
 
     useEffect(()=>{
+        console.log('called useEffect')
 
-        if(selectedDailyLanguage){
+        // if(selectedDailyLanguage){
             try{
                 axios.get(`https://newsapi.org/v2/top-headlines?country=${countryLanguage}&apiKey=${apiKey}`).then((response)=>{
-                    console.log("data inside response: ", response.data.articles)
                     setNewsArticles(response.data.articles)
+                    setDisplayArticles(response.data.articles.slice(0, (loadNum*10)))
                 })
     
             }catch(error){
                 console.log(error)
             }
-        }
+        // }
         
     },[])
 
-    console.log("newsArticles data: ", newsArticles)
     return(
         <>
             <div>
-                {newsArticles?.map((articles)=>{
+                {displayedArticles?.map((articles)=>{
                     return(
                         <ul>
                             <li>{articles.title}</li>
@@ -60,9 +78,10 @@ export default function News({selectedDailyLanguage}){
                     )
                     
                 })}
+                {loadNum}
+                <button onClick={handleLoadMore}>Load More</button>
             </div>
        
-            <div>Welcome: {selectedDailyLanguage}</div>
         </>
         
     )

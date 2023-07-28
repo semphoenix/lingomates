@@ -9,7 +9,7 @@ function Profile({ userId }) {
   useEffect(() => {
     if (userId !== undefined) {
       axios
-        .get(`http://localhost:3001/profileRoutes/profileUserlinguas/${userId}`)
+        .get(`http://localhost:3001/profile/${userId}`)
         .then((response) => {
           //   console.log("what's in response: ", response.data);
           setProfileData(response.data.userData);

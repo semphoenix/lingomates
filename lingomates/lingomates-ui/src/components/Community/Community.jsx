@@ -1,16 +1,14 @@
 import React from "react";
 import "./Community.css";
 import Navbar from "../Navbar/Navbar";
-import {useState, useEffect} from "react"
+import {useState, useEffect} from "react";
 import axios from "axios";
-
+import {Card, CardContent, Typography, Avatar, Grid, Button, CardActions}from '@mui/material';
+import {Link} from "react-router-dom"
 export default function Community({loggedIn, userId, dailyLanguages, setDailyLanguages, setSelectedDailyLanguage}){
 
     const [userData, setUserData] = useState({})
-    const [recommendedUsers, setRecommendedUsers] = useState([])
-    const [filteredLang, setFilteredLang] = useState([])
-    const [userList, setUserList] = useState([])
-    const [usersLanguageData, setUsersLanguageData] = useState([])
+    const [recommendedUsers, setRecommendedUsers] = useState(null)
     const [searchUsername, setSearchUsername] = useState("")
 
     console.log("userId value in community: ", userId)
@@ -19,38 +17,23 @@ export default function Community({loggedIn, userId, dailyLanguages, setDailyLan
         event.preventDefault()
         console.log("inside searchForm")
      }
+
+
     useEffect(()=>{
+
+        // if current user id exists then 2 axios calls that returns current user data and user selected languages
         if(userId){
             try{
-
-                // axios.get(`/recommended/${userId}`).then((response)=>{
-                //     console.log("who is recommended: ", response.data)
-                //     setRecommendedUsers(response.data)
 
                 //gets current user that is logged in based on userId-comes from user id from token
                 axios.get(`http://localhost:3001/community/${userId}`).then((response)=>{
                     console.log("what is this: ", response.data.userData[0])
                     setUserData(response.data.userData[0])})
-
-                // axios.get(`http://localhost:3001/community/usersLinga`).then((langData)=>{
-                //     console.log("what's in lingData: ", langData.data.lingaData)
-                //     setUsersLanguageData(langData.data.lingaData)
-                // })
-
-                // //gets list of users in database
-                // axios.get(`http://localhost:3001/community/users`).then((users)=>{
-                //     console.log("what's in user: ", users.data.userData)
-                //     setUserList(users.data.userData)
-                // })
                 
-
                 axios.get(`http://localhost:3001/community/linguas/${userId}`).then((languages)=>{
                     console.log("what's in user selected language(s): ", languages.data.lingasData)
                      setDailyLanguages(languages.data.lingasData)
                 })
-
-                
-                // })
 
             }catch{(error)=>{
                 console.log(error);
@@ -109,33 +92,60 @@ export default function Community({loggedIn, userId, dailyLanguages, setDailyLan
             ))}
             </select>
 
+
         </div>
-            <div>
-                Recommended
-                {/* recommended users */}
+
+        {recommendedUsers && 
+
+        (     
+            
+            <div className="recommendedUsers-contianer">
+                         <div className="recommended-word"> Recommended </div>
+               
                     {recommendedUsers?.map((recUsers, index)=>{
                         console.log("what's in recUser: ", recUsers)
 
                         return(
                                 <>
-                                <div className="recommendedUsers-contianer">
-                                    <span>{recUsers.first_name}</span>
-                                </div>
+                                <Grid>
+                                    <Grid item>
+                                    <Card sx={{ minWidth: 200, minHeight: 150 }}>
+                                        <CardContent>
+                                            {/* sx={{justifyContent: "center", display: "flex"}} */}
+                                            <Avatar 
+                                            alt={recUsers.username} 
+                                            src={recUsers.profilepicture} 
+                                            sx={{margin:'auto', width: 80, height: 80}}/>
+
+                                            <Typography sx={{paddingBottom:2}} align="center">
+                                                {recUsers.first_name}
+                                            </Typography>
+
+                                            <CardActions style={{justifyContent: 'center', padding:0}}>
+                                                <Link to="/conversations">
+                                                    <Button variant="outlined" size="small">Message</Button>
+                                                </Link>
+                                                <br/>
+                                                
+                                            </CardActions>
+
+                                            <br/>
+                                            <CardActions style={{justifyContent: 'center',padding:0}}>
+                                                <Link to={"/userProfile/"+ recUsers.id}>View Profile</Link>
+                                            </CardActions>
+
+                                        </CardContent>
+                                    </Card>
+                                    </Grid>
+                                </Grid>
                                 </> 
                             )      
                     })} 
             </div>
+            )}
+
         </div>
         </>
-          
-
-        // <div  className="background-img">
-        //     <Navbar />
-        //     {/* <div>
-        //         <h1 className="text">Hello</h1>
-        //     </div> */}
-                
-        // </div>
-     
+              
     )
 }
