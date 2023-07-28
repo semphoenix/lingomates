@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "avian-silo-393821",
+  "private_key_id": "966746232de5e30dabfe4bc6234541c0ecb38a49",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC7PorlGXQXwzUq\neM2yRynDzCn5wljPxvCjMvNSw8pYJvz24rkLpAazax/MSUlGPgCqwhkOjQinmFpp\nvHwERMrRxL1jdu0D0M4OL+cFy/06vm3qRbu5QtcMdzJ8upTrrUToZXUGQKbDzGHp\nKa1+MI6bKObDR6HQDlbvh1R/RD3iQ8sm+TmhfQzlH4qub+Y5lC8YMpNlBHlWV0Bs\nBEuWsX1hirkrzCgdLVAZhbvTDbr1B4awODFydvVacKIbtviEhrKD9vcxvBojvoY0\nnJCjQXGJSuT+NwBgsqVKr3Px6obwABkfgTgPpnuEgMbfh07FMpuDh9POQnSPWxr7\ng4STqlklAgMBAAECggEARDT/IX9JI9LPDh6dR2DW3OUFMV7TPTTJuZk4u6Bol/3z\nzfc+0ve4HSlblu3nTDgPxCQaPouvaGV+IeAwCNoKS6lwF8hdhDNOrCpU7G6nWvu9\nTEaEoHKxpW/SK09IKiWe4Uz7+QAZ/173F5lAAqSrfefDT8VLM1/V2UEhzY5NQJsy\nyTZNATr5Vn0Zyj1rn2HRgxgK4jDYpZs2triNCzVE57WkLqoOYLn+8HgrudNQXhVs\nkPkxltGKtX11MNXvpNJwkEVkwRr7A7z7MtzLwZWNzlTg+oCu5beoDGoxEbP/tqGX\nbG8qlhu7yfyhloFRielemWoxl4Rjq8YHIrQBm25JbQKBgQD2ZlWwHc8Nf7pafavn\nnhUV18aRsh5frYSZf3lrFpERhQih1scWXrdsMMVe9h5ZjBHZGwXMPMMUxN6Dqo3I\n5ybwYPHwRorL81n4qDaU/jfTf72/aduDdx4ZnWdJtkC/pAz+I7PXnPSIQknoakkg\nPnrRa1Ysdqeqp0PVmEAzBwgKQwKBgQDCiix2StXJP6TnXTj9Cz2MLOY7eVwicqOS\npY+3OooAuVcaJiqqRq/M3syFYEkk5L4EPsINBTMCJfAy5i8h4XIEJHp9slRF7122\nSdEXrqyx3bpoMHNzUkcXycg6v4y5bK9X9OaZFg1Y0rUyAKtxLjU3N9+F42UuKzOE\nefk/pbTcdwKBgQDevWvApXHDFi/0FZ8M5k7RTBnpI0dp3oX77MxqDiBd4hEHnAyl\nIEJXv07spTiSYpjP1inLkzIW2FD+XXOGpc8BheGv/1UBQZ+XtRiCX70/qD5zhtI1\nab0AEtaIQAUQONC1/LhatTwo4SPGwi4Qw+pq3ckssKapEkO0FsoSVszh2QKBgQCa\nRT6bFB9S94CK5RdjO320Yoq1UTkqLCThDx/X2rlDd7bGCsw8uc+BtJEVl9SJSEgT\nT71M2/mmU3WWt4la4dArzs3ATiGcUATNoN4KXL+gUUgYhYuYQQAVsjNxuyMajEDE\njHYtoho1fOqp23QZTd5vioRcRYagRSwWey+YNI0nYwKBgQDwDRsCFFmhzj3FjuOs\n/pGUyo1CQaZ6GFcIEqh6qy5Uhj1NEN/s3/j3fjr8DxS9kV0NEMEQeZW88Cs5lMun\nkIrYxTHsIUnBzAOpLgFed1pREb6QKuORmD2qbl5JBFD8YM0RMKi4vEfSojKvppeo\nqwXqFz7I2pHMSYkFs3haNpcwAg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "lingomates@avian-silo-393821.iam.gserviceaccount.com",
+  "client_id": "106575962841496397146",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/lingomates%40avian-silo-393821.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
