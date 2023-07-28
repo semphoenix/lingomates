@@ -20,7 +20,7 @@ router.post("/login", async function(req,res, next){
         console.log("login user", user)
       //creates jsonwebtoken for user by taking in 2 paramters-payload(desired data) and SECRET KEY 
       const token = jwt.sign({userId: user.id, username: user.username}, process.env.SECRET_KEY, {
-            expiresIn:"1h"
+            expiresIn:'1h',
        })
 
       //returns to component that links to this post
@@ -44,7 +44,7 @@ router.post("/register", async function(req, res,next){
         const token=jwt.sign({userId:user.id, username: user.username},
             process.env.SECRET_KEY,
              {
-                expiresIn:"1h",
+                expiresIn:'1h',
             }
             )
 
