@@ -1,101 +1,212 @@
 body{
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100vh;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
 }
 h2 {
-   font-family: 'Nunito';
-   font-size: 40px;
+ font-family:'DM Serif Display';
+ font-size: 40px;
+}
+
+.opacity {
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Change the opacity value as needed (0.5 is 50% opacity) */
 }
 
 .background-img{
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 500px;
-    overflow: hidden;
-    position: relative;
-    background-image: url("../images/img1.jpeg");
-    background-position: center;
-     background-repeat: no-repeat; 
-     background-size: cover;
-     animation: change 10s infinite ease-in-out;
+  margin:0;
+  padding: 0;
+  width: 100%;
+  height: 920px;
+  overflow: hidden;
+  position: relative;
+  background-image: url("../images/img1.jpeg");
+  background-color: rgba(0, 0, 0, 0.75);
+  background-position: relative;
+   background-repeat: no-repeat; 
+   background-size: cover;
+   animation: change 10s infinite ease-in-out;
+
 }
+
+.background-img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Change the opacity value as needed (0.7 is 70% opacity) */
+  z-index: 1; /* Make sure the overlay appears below the text but above the image */
+}
+
+
 
 
 
 .title {
-    font-family: 'Nunito';
-    font-size: 75px;
+  color: white;
+  font-family:'Nunito';
+  font-size: 130px;
 }
 
 p {
-    font-family: 'Nunito';
-    font: 8000px ;  
-    
+  font-family: 'Nunito';
+  /* font-size: 20px ;   */
+  
 }
 
 .para {
-    font-size: 50px;
+  color: white;
+  font-size: 30px;
+  font-family: 'Poppins';
+  font-weight: bolder;
 }
+
+.mates {
+  color: brown
+}
+
 @keyframes change{
-    0%{
-        background-image: url("../images/img3.webp");
-    }
-    20%{
-        background-image: url("../images/img2.webp");
-    }
-    40%{
-        background-image: url("../images/countryImg1.jpg");
-    }
-    60%{
-        background-image: url("../images/img1.jpeg");
-    }
-    80%{
-        background-image: url("../images/img6.webp");
-    }
-    100%{
-        background-image: url("../images/italyImg.jpeg");
-    }
+  0%{
+      background-image: url("../images/img3.webp");
+  }
+  20%{
+      background-image: url("../images/img2.webp");
+  }
+  40%{
+      background-image: url("../images/countryImg1.jpg");
+  }
+  60%{
+      background-image: url("../images/img1.jpeg");
+  }
+  80%{
+      background-image: url("../images/img6.webp");
+  }
+  100%{
+      background-image: url("../images/italyImg.jpeg");
+  }
 }
 .text{
-    height: 100%;
-    width: 100%
+  height: 100%;
+  width: 100%
 }
 
 .img{
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-    background-position: center;
-    background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .cardContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Center the cards horizontally */
-    background-color: rgb(236, 229, 221);
-  }
-  
-  .facts, .fact2 {
-    flex: 1;
-    margin: 10px; 
-    max-width: 345px; 
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  /* justify-items: center;  */
+  align-items: center;
+}
 
-  /* AboutUs.css */
+.facts, .fact2 {
+  flex: 1;
+  margin: 10px; 
+  max-width: 345px; 
+}
+
+
+/* AboutUs.css */
 
 .about-us {
-    background-color: tan;
-  }
-  
+  /* background-color: tan; */
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  margin-top: 2rem;
+  padding: 200px;
+}
 
-  .white-back {
-    background-color: rgb(236, 229, 221);
-    height: 70%;
-    width: 100%
-  } 
+
+.white-back {
+  height: 100%;
+  width: 100%;
+  margin-top: 15em;
+  position: relative; /* Add position relative to allow stacking above the pseudo-element */
+  z-index: 2;
+  
+} 
+
+.about-us-left {
+  flex: 1;
+  padding: 1rem;
+}
+
+.about-us-right {
+  flex: 1;
+  padding: 1rem;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.myButton {
+	background-color:brown;
+	border-radius:28px;
+	border:1px solid brown;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px; 
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px l;
+}
+
+.myButton:hover {
+	background-color:red;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+/* Existing styles for .hero and other classes */
+
+/* Add animation styles */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 1s ease-out;
+}
+
+
+.flag-font {
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+
+

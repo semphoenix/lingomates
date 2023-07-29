@@ -16,6 +16,7 @@ import Conversations from "../Conversations/Conversations";
 import io from 'socket.io-client'
 import Community from "../Community/Community";
 import News from "../News/News"
+import Translate from "../Translate/Translate";
 import Viewprofile from "../Viewprofile/Viewprofile"
 import axios from "axios"
 
@@ -97,6 +98,8 @@ function App() {
           <Route path="/community" element={<Community loggedIn={loggedIn} userId={userId} dailyLanguages={dailyLanguages} setDailyLanguages={setDailyLanguages} setSelectedDailyLanguage={setSelectedDailyLanguage} userData={userData}/>} />
           <Route path="/feed" element={<News selectedDailyLanguage={selectedDailyLanguage}/>} />
           <Route path="/conversations" element= {<Conversations userId={userId}/>}/>
+          <Route path="/translate" element= {<Translate/>}/>
+
           <Route path="/userProfile/:id" element={<Viewprofile />} />
         </Routes>
       </Router>
