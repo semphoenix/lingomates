@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import jwtDecode from "jwt-decode"
 import axios from "axios"
 
-export default function Login({setUserId, setLoggedIn, setLoginError}) {
+export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
   //states
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,9 +28,12 @@ export default function Login({setUserId, setLoggedIn, setLoginError}) {
       const {token} = response.data
       localStorage.setItem("token", token); //adds token to localStorage by creating a "dictionary" where "token" = key and token = value
       const decodedToken = jwtDecode(token) //decodes token to human readable informtation where payload/data in token can be accessed
-      setUserId(decodedToken.userId)  
 
-      window.location.href = "/home"
+      console.log("decodedToken info: ", decodedToken)
+      setUserId(decodedToken.userId)  
+      
+      
+      window.location.href = "/community"
     }else{
       console.log("error cought")
       console.log(response.data.message); //optional - display error message
@@ -42,6 +45,7 @@ export default function Login({setUserId, setLoggedIn, setLoginError}) {
     handleLogin(email, password);
   };
 
+  
   return (
     <div className="login">
       <Link to="/">

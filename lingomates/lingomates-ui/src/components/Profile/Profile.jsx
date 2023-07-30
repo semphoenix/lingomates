@@ -22,7 +22,7 @@ function Profile({ userId }) {
       {profileData && profileData.length > 0 ? ( // Check if 'userData' exists and has elements
         <div>
           <div>
-          <img src = {profileData[0].profilepicture}></img>
+          <img src = {profileData[0].profilepicture} width="50px" height="50"></img>
           <h1>
             
             {profileData[0].first_name}{" "}

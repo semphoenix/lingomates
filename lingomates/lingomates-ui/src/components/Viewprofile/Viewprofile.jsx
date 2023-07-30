@@ -35,15 +35,15 @@ export default function Viewprofile() {
       <Grid container justifyContent="center" alignItems="center" sx={{minHeight:"100vh"}}>
           <Grid item sx={{width: 450}}>
               <Card sx={{minHeight: 600}}>
-                  <CardMedia 
+                  {/* <CardMedia 
                     sx={{ height: 180 }}
                     image={selectedUser.profilepicture}
-                  />
+                  /> */}
 
-          {/* <Avatar 
+          <Avatar 
               alt={selectedUser.username} 
               src={selectedUser.profilepicture} 
-              sx={{margin:'auto', width: 160, height: 160}}/> */}
+              sx={{margin:'auto', width: 160, height: 160}}/>
 
                 <CardContent>
                     <Typography align="center" sx={{paddingTop:2, fontSize:'2.5rem'}}>{selectedUser.first_name}<span className="last-name">{selectedUser.last_name}</span></Typography>
