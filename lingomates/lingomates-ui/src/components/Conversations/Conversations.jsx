@@ -1,45 +1,70 @@
 import "./Conversations.css"
 import io from "socket.io-client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Chat from "../Chat/Chat";
-
+import axios from "axios";
 const socket = io.connect("http://localhost:3001");
 
-function Conversation() {
-  const [username, setUsername] = useState("");
-  const [room, setRoom] = useState("");
-  const [showChat, setShowChat] = useState(false);
+function Conversation({userId}) {
+  //create a state for conversations so far by the user
 
-  const joinRoom = () => {
-    if (username !== "" && room !== "") {
-      socket.emit("join_room", room);
-      setShowChat(true);
-    }
-  };
+  const[userConvos, setUserConvos]=useState(null)
+  const [roomData, setRoomData] = useState(null)
+  const [showChat, setShowChat] = useState(false)
+  const [receiverData, setReceiverData]=useState([])
+  const[receiverFetchId,setReceiverFetchId]=useState(null)
+
+console.log(userId)
+  useEffect(()=>{
+    console.log('component did mount')
+
+    if (userId) {
+    axios.get(`http://localhost:3001/conversationRoutes/userConversations/${userId}`)
+    .then((response)=>{
+      setUserConvos(response.data)
+      
+    })}
+
+  },[userId])
+
+
+  useEffect(()=>{
+ 
+
+    if (receiverFetchId) {
+    axios.get(`http://localhost:3001/conversationRoutes/${receiverFetchId}`)
+    .then((response)=>{
+      setReceiverData(response.data)
+      console.log(receiverData)
+    })}
+
+  },[receiverFetchId])
+
 
   return (
-    <div className="App">
+    <div className="conversation">
       {!showChat ? (
-        <div className="joinChatContainer">
-          <h3>Join A Chat</h3>
-          <input
-            type="text"
-            placeholder="John..."
-            onChange={(event) => {
-              setUsername(event.target.value);
-            }}
-          />
-          <input
-            type="text"
-            placeholder="Room ID..."
-            onChange={(event) => {
-              setRoom(event.target.value);
-            }}
-          />
-          <button onClick={joinRoom}>Join A Room</button>
-        </div>
+        <div className="rooms">
+           {userConvos ? (userConvos.userData.map((convo, index) => (
+              <button key={index} onClick={() => {
+                let roomObject = {
+                  room: convo.roomconvo,
+                  senderId: userId,
+                  receiverId: convo.senderid === userId ? convo.receiverid : convo.senderid
+                  }
+
+                  socket.emit("join_room", convo.roomconvo)
+                  setReceiverFetchId(convo.receiverid)
+                  setShowChat(true)
+                  setRoomData(roomObject)
+
+              }}>Room with USER {convo.senderid} and USER {convo.receiverid} and roomID {convo.roomconvo}
+            </button>
+            ))): ""} 
+        
+          </div>
       ) : (
-        <Chat socket={socket} username={username} room={room} />
+        <Chat socket={socket} room={roomData.room} senderId={roomData.senderId} receiverId={roomData.receiverId} receiverData={receiverData}/>
       )}
     </div>
   );

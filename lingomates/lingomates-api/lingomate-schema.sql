@@ -33,30 +33,27 @@ CREATE TABLE friends(
 
 CREATE TABLE conversation(
     id SERIAL PRIMARY KEY,
-    senderId INTEGER NOT NULL,
-    receiverId INTEGER NOT NULL,
-    messagedAt TIMESTAMP DEFAULT NOW(),
-    FOREIGN KEY (senderId) REFERENCES users(id),
-    FOREIGN KEY (receiverId) REFERENCES users(id)
+    roomConvo VARCHAR NOT NULL UNIQUE 
 );
 
 CREATE TABLE userConversation(
     id SERIAL PRIMARY KEY,
-    conversationId INTEGER NOT NULL,
+    room VARCHAR NOT NULL,
     user1 INTEGER NOT NULL,
     user2 INTEGER NOT NULL,
     FOREIGN KEY (user1) REFERENCES users(id),
     FOREIGN KEY (user2) REFERENCES users(id),
-    FOREIGN KEY (conversationId) REFERENCES conversation(id)
+    FOREIGN KEY (room) REFERENCES conversation(roomConvo)
 );
 
 CREATE TABLE directMessage(
     id SERIAL PRIMARY KEY,
-    conversationId INTEGER NOT NULL,
+    room VARCHAR NOT NULL,
     senderId INTEGER NOT NULL,
     receiverId INTEGER NOT NULL,
     messageText TEXT NOT NULL, 
-    FOREIGN KEY (conversationId) REFERENCES conversation(id),
+    messaged_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY (room) REFERENCES conversation(roomConvo),
     FOREIGN KEY (senderId) REFERENCES users(id),
     FOREIGN KEY (receiverId) REFERENCES users(id)
 );

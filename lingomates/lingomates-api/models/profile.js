@@ -6,7 +6,7 @@ class Profile {
   static async user_Language_prof(userIdRequested) {
     const result = await db.query(
       `
-        SELECT u.first_name, u.last_name,u.profilePicture, u.email, u.nativeLanguage, l.linguaName, l.countryFlag, 
+        SELECT u.first_name, u.id, u.last_name,u.profilePicture, u.email, u.nativeLanguage, l.linguaName, l.countryFlag, 
         l.imageUrl, ul.proficiencyLevel
         FROM users u
         INNER JOIN userLingua ul ON u.id = ul.userId
