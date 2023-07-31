@@ -29,14 +29,8 @@ function App() {
   const [dailyLanguages, setDailyLanguages] = useState([])
   const [selectedDailyLanguage, setSelectedDailyLanguage] = useState("")
   const [userData, setUserData] = useState({})
-
-
-  const sendMessage=()=>{
-    socket.emit("send_message",  
-    //this only emits data to the backend and the backend will emit that event to the front end using another event we listening to in the front end
-    {message: document.getElementById('input_message').value,
-  userId: 3 } )
-  }
+  
+ 
 
   const checkLoggedIn = () =>{
     const token = localStorage.getItem("token") //uses key "token" to get token value

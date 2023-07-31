@@ -8,9 +8,11 @@ const linguaRoutes = require("./routes/linguaRoutes")
 const userLinguaRoutes = require("./routes/userLinguaRoutes")
 const profileRoutes=require("./routes/profileRoutes")
 const communityRoutes = require("./routes/communityRoutes")
+const conversationRoutes=require("./routes/conversationRoutes")
 const app = express()
 const { createServer } = require("http");
 const { Server } = require("socket.io");
+const DirectMessege=require("./models/directMessage")
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, { 
@@ -24,23 +26,34 @@ io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
   socket.on("join_room", (data) => {
-    socket.join(data);
+    socket.join('1,2');
     console.log(`User with ID: ${socket.id} joined room: ${data}`);
   });
 
   socket.on("send_message", (data) => {
+    const {message, sender, receiver, time} = data 
+    // const messageText= (data.message)
+    // const author=data.author
+    // let room=[user1,user2]
+    //     room=room.sort()
+    //     room=room.toString()
+    const room=[sender, receiver].sort().toString()
+    console.log(room)
+    console.log("Data in Send Message: ")
     console.log(data)
-    socket.to(data.room).emit("receive_message", data);
+
+    socket.to(room).emit("receive_message", data);
+
+    DirectMessege.createMessage(room, sender, receiver, message)
+
+    
+    
+
   });
 
   socket.on("disconnect", () => {
     console.log("User Disconnected", socket.id);
   });
-});
-
-
-httpServer.listen(3001, ()=> {
-  console.log("Server listening on port 3001")
 });
 
 app.use(cors())
@@ -55,6 +68,7 @@ app.use("/lingua", linguaRoutes)
 app.use("/userLingua", userLinguaRoutes)
 app.use("/profile", profileRoutes)
 app.use("/community", communityRoutes)
+app.use("/conversationRoutes",conversationRoutes)
 
 app.get("/", function (req, res) {
     return res.status(200).json({
