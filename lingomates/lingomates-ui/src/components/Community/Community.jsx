@@ -8,7 +8,7 @@ import {Link} from "react-router-dom"
 import {TypeAnimation} from "react-type-animation"
 import Viewprofile from "../Viewprofile/Viewprofile";
 
-export default function Community({loggedIn, userId, dailyLanguages, setDailyLanguages, setSelectedDailyLanguage, userData}){
+export default function Community({loggedIn, userId, dailyLanguages, setDailyLanguages, setSelectedDailyLanguage, userData, handleLogout}){
 
     // const [userData, setUserData] = useState({})
     const [recommendedUsers, setRecommendedUsers] = useState(null)
@@ -64,26 +64,25 @@ export default function Community({loggedIn, userId, dailyLanguages, setDailyLan
 
         const handleSelectOnChange = async(event) => {
             const languageId = event.target.value; 
-
-                 axios.get(`http://localhost:3001/community/recommended/${userId}/${languageId}`).then((recUsers)=>{
-                    console.log("recommended users: ", recUsers.data.users)       
-                    setRecommendedUsers(recUsers.data.users)
-                    setSelectedDailyLanguage(languageId)
-                    setDisplayedUsers(recUsers.data.users.slice(0,loadNumber*3))
-    
-                    // once user changes to different language for recommended users need to reset the load number and display only the inital
-                    //deisred value of users
-                    if(loadNumber > 1){
-                        setLoadNumber(1)
-                        setDisplayedUsers(recUsers.data.users.slice(0,3))
-                    }
-                    
-                })
             
-              
-            
+                if(languageId !== "Select a language"){
 
-             
+                    axios.get(`http://localhost:3001/community/recommended/${userId}/${languageId}`).then((recUsers)=>{
+                        console.log("recommended users: ", recUsers.data.users)       
+                        setRecommendedUsers(recUsers.data.users)
+                        setSelectedDailyLanguage(languageId)
+                        setDisplayedUsers(recUsers.data.users.slice(0,loadNumber*3))
+        
+                        // once user changes to different language for recommended users need to reset the load number and display only the inital
+                        //deisred value of users
+                        if(loadNumber > 1){
+                            setLoadNumber(1)
+                            setDisplayedUsers(recUsers.data.users.slice(0,3))
+                        }
+                        
+                    })
+                }
+                
         }
 
     console.log("userData: ", userData)
@@ -96,7 +95,7 @@ export default function Community({loggedIn, userId, dailyLanguages, setDailyLan
 
         <>
             <div>
-                <Navbar userId={userId} />  
+                <Navbar userId={userId} handleLogout={handleLogout} />  
                 
             </div>
 
@@ -109,19 +108,20 @@ export default function Community({loggedIn, userId, dailyLanguages, setDailyLan
                 <input className="search-input" type="text" name="search" placeholder="Search users" onChange={(event)=> setSearchUsername(event.target.value)} />
             </form> 
 
-        <div className="select-lang">
-            <label className="selected-lang-text">Select Language  </label>
-            <select className="select-btn" onChange={handleSelectOnChange}>
-
+            <div className="select-lang">
+                <label className="selected-lang-text">Select Language  </label>
+                <select className="select-btn" onChange={handleSelectOnChange}>
+                <option value={null}>Select a language</option>
+                
             {/* Map over dailyLanguages and create an option for each language  */}
-            {dailyLanguages?.map((language) => (
-                <option key={language.linguaid} value={language.linguaid}>
-                    {language.linguaname}
+                {dailyLanguages?.map((language) => (
+                    <option key={language.linguaid} value={language.linguaid}>
+                        {language.linguaname}
                     
-                </option>
+                    </option>
 
-            ))}
-            </select>
+                ))}
+                </select>
 
 
         </div>
@@ -153,7 +153,7 @@ export default function Community({loggedIn, userId, dailyLanguages, setDailyLan
                                             </Typography>
 
                                             <CardActions style={{justifyContent: 'center', padding:0}}>
-                                                <Link to="/conversations">
+                                                <Link to="/chats">
                                                     <Button variant="outlined" size="small">Message</Button>
                                                 </Link>
                                                 <br/>

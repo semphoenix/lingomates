@@ -3,14 +3,17 @@ import axios from "axios"
 import {useEffect, useState} from "react"
 import Navbar from "../Navbar/Navbar"
 import "./News.css";
-export default function News({selectedDailyLanguage, userId}){
+import {Paper, CardContent, Typography, Avatar, Grid, Button, CardActions}from '@mui/material';
+const apiKey = import.meta.env.VITE_NEWS_API; // should be in environment file
 
+export default function News({selectedDailyLanguage, userId, handleLogout, dailyLanguages,setSelectedDailyLanguage}){
+// console.log("news.jsx", import.meta.env.VITE_TEST)
     const [newsArticles, setNewsArticles] = useState([])
     const [loadNum, setLoadNum]  = useState(1) // manages page data
     const [displayedArticles, setDisplayArticles] = useState([])
-    const [dailyNews, setDailyNews] = useState("")
+    const [usersLanguages, setUsersLanguages] = useState([])
 
-    let apiKey = "a4a95cd2bef74346ad4624f072866046"; // should be in environment file
+    // console.log("apiKey value: ", apiKey)
 
     let countryLanguage = ""; 
 
@@ -45,6 +48,15 @@ export default function News({selectedDailyLanguage, userId}){
         setDisplayArticles(newsArticles.slice(0, (newNum*10)))
     }
 
+    const handleLanguageChange =(event) =>{
+
+        let selectedLang = event.target.value
+        console.log("selectedLang value: ", selectedLang)
+        setSelectedDailyLanguage(selectedLang)
+        console.log("selectedDailyLang value: ", selectedDailyLanguage)
+
+    }
+    //will run whenever selectedDailyLanguage is updated
     useEffect(()=>{
             try{
                 axios.get(`https://newsapi.org/v2/top-headlines?country=${countryLanguage}&apiKey=${apiKey}`).then((response)=>{
@@ -52,7 +64,7 @@ export default function News({selectedDailyLanguage, userId}){
                     setDisplayArticles(response.data.articles.slice(0, loadNum*10))
                     // setDisplayArticles(newsArticles.slice(0, (loadNum*10)))
 
-                    // console.log("news data articles: ", response.data.articles)
+                     console.log("news data articles: ", response.data.articles)
                     // setNewsArticles(response.data.articles)
                     // console.log("news article data: ", newsArticles)         
                 })
@@ -61,24 +73,56 @@ export default function News({selectedDailyLanguage, userId}){
                 console.error(error)
             }
           
-    },[])
+    },[selectedDailyLanguage])
 
-    console.log("dailyNews value: ", dailyNews)
+    console.log("users languages: ", dailyLanguages)
 
     return(
         <>
              <div>
-                <Navbar userId={userId}/>
+                <Navbar userId={userId} handleLogout={handleLogout} />
                 <div className="daily-news-container">News</div>
+                <div className="border">-</div>
+
+            <div className="articles-grid">
                 {displayedArticles?.map((articles)=>{
+
                     return(
-                        <ul>
+                        <>
+                       
+                            <Grid>
+                                <Grid item>
+                                    <Paper elevation={3} square style={{textAlign: 'center', padding: 20, marginTop: 5}}>
+                                        <Typography>{articles.title}</Typography>
+                                    </Paper>
+                                </Grid>
+                            </Grid>
+                        
+                            
+                        {/* <ul>
                             <li>{articles.title}</li>
-                        </ul>
+                        </ul> */}
+                        </>
+                       
                     )
                     
                 })}
+            </div>
+
                 <button onClick={handleLoadMore}>Load More</button>
+
+                {/* drop down menu for user to change language to get news articles in different languages */}
+                <label>Change Language </label>
+                <select onChange={handleLanguageChange}>
+                    <option value={null}>Select a language</option>
+
+                    {dailyLanguages?.map((languages)=>(
+                        
+                        <option key={languages.linguaid} value={languages.linguaid}>{languages.linguaname}</option>
+                        
+                    ))}
+
+                </select>
             </div>
         </>
     )
