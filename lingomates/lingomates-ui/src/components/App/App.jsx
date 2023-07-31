@@ -29,7 +29,8 @@ function App() {
   const [dailyLanguages, setDailyLanguages] = useState([])
   const [selectedDailyLanguage, setSelectedDailyLanguage] = useState("")
   const [userData, setUserData] = useState({})
-  
+
+
   const sendMessage=()=>{
     socket.emit("send_message",  
     //this only emits data to the backend and the backend will emit that event to the front end using another event we listening to in the front end
@@ -83,6 +84,7 @@ function App() {
   console.log("what is selectedDailyLanguage value: ", selectedDailyLanguage)
   console.log("retrieved user id: ", userId)
   console.log("Date now data: ", Date.now())
+ 
   return (
     <div>    
 
@@ -96,7 +98,7 @@ function App() {
           <Route path="/login" element={<Login setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError}/>} />
           <Route path="/register" element={<Register setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError} />} />
           <Route path="/community" element={<Community loggedIn={loggedIn} userId={userId} dailyLanguages={dailyLanguages} setDailyLanguages={setDailyLanguages} setSelectedDailyLanguage={setSelectedDailyLanguage} userData={userData}/>} />
-          <Route path="/feed" element={<News selectedDailyLanguage={selectedDailyLanguage}/>} />
+          <Route path="/feed" element={<News selectedDailyLanguage={selectedDailyLanguage} userId={userId}/>} />
           <Route path="/conversations" element= {<Conversations userId={userId}/>}/>
           <Route path="/translate" element= {<Translate/>}/>
 

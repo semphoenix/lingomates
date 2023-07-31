@@ -65,7 +65,7 @@ export default function Community({loggedIn, userId, dailyLanguages, setDailyLan
         const handleSelectOnChange = async(event) => {
             const languageId = event.target.value; 
 
-                axios.get(`http://localhost:3001/community/recommended/${userId}/${languageId}`).then((recUsers)=>{
+                 axios.get(`http://localhost:3001/community/recommended/${userId}/${languageId}`).then((recUsers)=>{
                     console.log("recommended users: ", recUsers.data.users)       
                     setRecommendedUsers(recUsers.data.users)
                     setSelectedDailyLanguage(languageId)
@@ -102,20 +102,7 @@ export default function Community({loggedIn, userId, dailyLanguages, setDailyLan
 
         <div className="recommended-container">
 
-            {/* come back to implementing this feature-would have to move current user call to App */}
-            {/* <TypeAnimation 
-        
-                sequence={[
-                   `Welcome, ${userData.first_name}!`
-                ]}
-            
-                wrapper="div"
-                speed={40}
-                cursor={false}
-                style={{ fontSize: '3em', textAlign:"center", paddingTop: 80}}
-            /> */}
-
-
+    
             <div className="welcome"> Welcome {userData.first_name}</div>
 
             <form onSubmit={searchForm} className="search-form">
@@ -123,7 +110,7 @@ export default function Community({loggedIn, userId, dailyLanguages, setDailyLan
             </form> 
 
         <div className="select-lang">
-            <label className="selected-lang-text">Select Daily Language  </label>
+            <label className="selected-lang-text">Select Language  </label>
             <select className="select-btn" onChange={handleSelectOnChange}>
 
             {/* Map over dailyLanguages and create an option for each language  */}

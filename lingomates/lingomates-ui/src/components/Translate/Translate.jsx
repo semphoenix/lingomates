@@ -16,6 +16,7 @@ export default function Translate() {
             {
               q: text,
               target: targetLanguage,
+
             }
           );
     
