@@ -1,104 +1,130 @@
 import React from "react";
 import "./Community.css";
 import Navbar from "../Navbar/Navbar";
-import {useState, useEffect} from "react"
+import {useState, useEffect} from "react";
 import axios from "axios";
+import {Card, CardContent, Typography, Avatar, Grid, Button, CardActions}from '@mui/material';
+import {Link} from "react-router-dom"
+import {TypeAnimation} from "react-type-animation"
+import Viewprofile from "../Viewprofile/Viewprofile";
 
-export default function Community({loggedIn, userId, dailyLanguages, setDailyLanguages, setSelectedDailyLanguage}){
+export default function Community({loggedIn, userId, dailyLanguages, setDailyLanguages, setSelectedDailyLanguage, userData}){
 
-    const [userData, setUserData] = useState({})
-    const [recommendedUsers, setRecommendedUsers] = useState([])
-    const [filteredLang, setFilteredLang] = useState([])
-    const [userList, setUserList] = useState([])
-    const [usersLanguageData, setUsersLanguageData] = useState([])
+    // const [userData, setUserData] = useState({})
+    const [recommendedUsers, setRecommendedUsers] = useState(null)
     const [searchUsername, setSearchUsername] = useState("")
+    // const [userData, setUserData] = useState({})
+    const [loadNumber, setLoadNumber] = useState(1)
+    const [displayedUsers, setDisplayedUsers] = useState([])
+    // const [searchUserId, setSearchUserId] = useState("")
 
     console.log("userId value in community: ", userId)
+    // console.log("test datas data in community: ", testData)
 
-     const searchForm = (event) =>{
+
+     const searchForm = async (event) =>{
         event.preventDefault()
         console.log("inside searchForm")
+        
+         const response = await axios.get(`http://localhost:3001/community/viewUser/${searchUsername}`)
+            
+         
+            console.log("what's in search form response: ", response.data.userInfo.id)
+            const searchValue = response.data.userInfo.id
+             console.log("searchUserId value: ", searchValue)
+        
+            window.location.href  = `/userProfile/${searchValue}`;
      }
+
+
     useEffect(()=>{
+            console.log("hit community useEffect")
+        // if current user id exists then do an  axios call that returns current user selected languages
         if(userId){
             try{
 
-                // axios.get(`/recommended/${userId}`).then((response)=>{
-                //     console.log("who is recommended: ", response.data)
-                //     setRecommendedUsers(response.data)
-
-                //gets current user that is logged in based on userId-comes from user id from token
-                axios.get(`http://localhost:3001/community/${userId}`).then((response)=>{
-                    console.log("what is this: ", response.data.userData[0])
-                    setUserData(response.data.userData[0])})
-
-                // axios.get(`http://localhost:3001/community/usersLinga`).then((langData)=>{
-                //     console.log("what's in lingData: ", langData.data.lingaData)
-                //     setUsersLanguageData(langData.data.lingaData)
-                // })
-
-                // //gets list of users in database
-                // axios.get(`http://localhost:3001/community/users`).then((users)=>{
-                //     console.log("what's in user: ", users.data.userData)
-                //     setUserList(users.data.userData)
-                // })
-                
-
-                axios.get(`http://localhost:3001/community/linguas/${userId}`).then((languages)=>{
-                    console.log("what's in user selected language(s): ", languages.data.lingasData)
-                     setDailyLanguages(languages.data.lingasData)
-                })
-
-                
-                // })
-
-            }catch{(error)=>{
-                console.log(error);
-            }}
+                 axios.get(`http://localhost:3001/community/linguas/${userId}`).then((languages)=>{
+                     console.log("what's in user selected language(s): ", languages.data.lingasData)
+                      setDailyLanguages(languages.data.lingasData)
+                 })
+ 
+             }catch{(error)=>{
+                 console.log(error);
+             }}
         }
+           
+        
     },[userId])
 
+        const loadMoreUsers = () =>{
+                let newNum = loadNumber + 1;
+                setDisplayedUsers(recommendedUsers.slice(0,newNum*3))
+                setLoadNumber(newNum)
+        }
 
         const handleSelectOnChange = async(event) => {
             const languageId = event.target.value; 
-            const response =  await axios.get(`http://localhost:3001/community/recommended/${userId}/${languageId}`).then((recUsers)=>{
-                console.log("recommended users: ", recUsers.data.users)
-                setRecommendedUsers(recUsers.data.users)
-                setSelectedDailyLanguage(languageId)
-            })
-            // console.log(event.target.value)
+
+                axios.get(`http://localhost:3001/community/recommended/${userId}/${languageId}`).then((recUsers)=>{
+                    console.log("recommended users: ", recUsers.data.users)       
+                    setRecommendedUsers(recUsers.data.users)
+                    setSelectedDailyLanguage(languageId)
+                    setDisplayedUsers(recUsers.data.users.slice(0,loadNumber*3))
+    
+                    // once user changes to different language for recommended users need to reset the load number and display only the inital
+                    //deisred value of users
+                    if(loadNumber > 1){
+                        setLoadNumber(1)
+                        setDisplayedUsers(recUsers.data.users.slice(0,3))
+                    }
+                    
+                })
+            
+              
+            
+
+             
         }
 
-      
-
-    //langObj.linguaid
-    // console.log("langData: ", languageData)
-     console.log("userData: ", userData)
-    // console.log("current user id: ", userId)
-    // console.log("recommended users: ", recommendedUsers)
-
+    console.log("userData: ", userData)
+    console.log("userData first name: ", userData.first_name)
     console.log("searched username: ", searchUsername)
     console.log("current users' selected language: ", dailyLanguages)
+    console.log("display users: ", displayedUsers)
 
     return(
 
         <>
             <div>
-                <Navbar />     
+                <Navbar userId={userId} />  
+                
             </div>
 
         <div className="recommended-container">
 
-            <div className="welcome"> Welcome {userData.first_name}</div>
-            <form onSubmit={searchForm} className="search-form">
-                <label>Search:</label>
-                <input type="text" name="search" placeholder="Search users" onChange={(event)=> setSearchUsername(event.target.value)} />
+            {/* come back to implementing this feature-would have to move current user call to App */}
+            {/* <TypeAnimation 
+        
+                sequence={[
+                   `Welcome, ${userData.first_name}!`
+                ]}
+            
+                wrapper="div"
+                speed={40}
+                cursor={false}
+                style={{ fontSize: '3em', textAlign:"center", paddingTop: 80}}
+            /> */}
 
+
+            <div className="welcome"> Welcome {userData.first_name}</div>
+
+            <form onSubmit={searchForm} className="search-form">
+                <input className="search-input" type="text" name="search" placeholder="Search users" onChange={(event)=> setSearchUsername(event.target.value)} />
             </form> 
 
         <div className="select-lang">
-            <label>Select Daily Language</label>
-            <select onChange={handleSelectOnChange}>
+            <label className="selected-lang-text">Select Daily Language  </label>
+            <select className="select-btn" onChange={handleSelectOnChange}>
 
             {/* Map over dailyLanguages and create an option for each language  */}
             {dailyLanguages?.map((language) => (
@@ -106,36 +132,77 @@ export default function Community({loggedIn, userId, dailyLanguages, setDailyLan
                     {language.linguaname}
                     
                 </option>
+
             ))}
             </select>
 
+
         </div>
-            <div>
-                Recommended
-                {/* recommended users */}
-                    {recommendedUsers?.map((recUsers, index)=>{
+
+        {recommendedUsers && 
+
+        (     
+            
+            <div className="recommendedUsers-contianer">
+                         <div className="recommended-word"> Recommended Users </div>
+               
+                    {displayedUsers?.map((recUsers, index)=>{
                         console.log("what's in recUser: ", recUsers)
 
                         return(
                                 <>
-                                <div className="recommendedUsers-contianer">
-                                    <span>{recUsers.first_name}</span>
-                                </div>
-                                </> 
-                            )      
+                                <Grid>
+                                    <Grid item>
+                                    <Card sx={{ minWidth: 200, minHeight: 150 }}>
+                                        <CardContent>
+                                       
+                                            <Avatar 
+                                            alt={recUsers.username} 
+                                            src={recUsers.profilepicture} 
+                                            sx={{margin:'auto', width: 80, height: 80}}/>
+
+                                            <Typography sx={{paddingBottom:2}} align="center">
+                                                {recUsers.first_name}
+                                            </Typography>
+
+                                            <CardActions style={{justifyContent: 'center', padding:0}}>
+                                                <Link to="/conversations">
+                                                    <Button variant="outlined" size="small">Message</Button>
+                                                </Link>
+                                                <br/>
+                                                
+                                            </CardActions>
+
+                                            <br/>
+                                            <CardActions style={{justifyContent: 'center',padding:0}}>
+                                                <Link to={"/userProfile/"+ recUsers.id}>View Profile</Link>
+                                            </CardActions>
+
+                                        </CardContent>
+                                    </Card>
+                                    </Grid>
+
+                                  
+                                </Grid>
+                                  
+                                </>  
+                            ) 
+                           
                     })} 
+
+                    <br/>
+                   
+                    <Grid container style={{justifyContent:'center'}}>
+                       <Grid item style={{display:"inline-block"}}>
+                            <Button variant="outlined" onClick={loadMoreUsers}>Load More</Button>
+                       </Grid>
+                    </Grid>
+                    
             </div>
+            )}
+
         </div>
         </>
-          
-
-        // <div  className="background-img">
-        //     <Navbar />
-        //     {/* <div>
-        //         <h1 className="text">Hello</h1>
-        //     </div> */}
                 
-        // </div>
-     
     )
 }

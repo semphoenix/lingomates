@@ -35,6 +35,7 @@
 } */
 
 .welcome{
+    margin-top: 100px;
     text-align: center;
     font-size: 32px;
 }
@@ -46,10 +47,64 @@
 
 .recommendedUsers-contianer{
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    height: 100%;
+   
 }
-
+.recommended-users{
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    white-space: nowrap;
+}
 Community .span{
     display: flex;
     flex-direction: row;
+}
+
+.recommended-word{
+    width:100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.search-form{
+    margin-top: 20px;
+}
+
+.search-input{
+    width: 80%;
+    height: 30px;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    font-size: 24px;
+}
+
+.select-lang{
+  text-align: center;
+  padding-top: 80px;
+}
+
+.selected-lang-text{
+    font-size: 24px;
+}
+
+.select-btn{
+    width:  120px;
+    height: 30px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.recommended-word{
+    margin-top: 80px;
+    font-size: 24px;
+}
+
+.search-label{
+    font-size: 24px;
 }

@@ -55,9 +55,6 @@ io.on("connection", (socket) => {
     console.log("User Disconnected", socket.id);
   });
 });
-httpServer.listen(3001, ()=> {
-  console.log("Server listening on port 3001")
-});
 
 app.use(cors())
 // parse incoming requests with JSON payloads
@@ -69,7 +66,7 @@ app.use(morgan("tiny"))
 app.use("/auth", authRoutes)
 app.use("/lingua", linguaRoutes)
 app.use("/userLingua", userLinguaRoutes)
-app.use("/profileRoutes", profileRoutes)
+app.use("/profile", profileRoutes)
 app.use("/community", communityRoutes)
 app.use("/conversationRoutes",conversationRoutes)
 
