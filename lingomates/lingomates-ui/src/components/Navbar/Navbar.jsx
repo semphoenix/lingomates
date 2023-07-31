@@ -71,7 +71,7 @@ export default function Navbar({userId}){
                                 
                             <Grid item xs={3} style={{margin:'auto'}}>
                                 <Link to="/chats">
-                                    <Button variant="outlined" size='large' style={{ color: 'black', borderColor:'black'}}>Chats</Button>
+                                    <Button variant="outlined" size='large' style={{ color: 'black', borderColor:'black'}}>Conversations</Button>
                                 </Link>
                             </Grid>
                                 
