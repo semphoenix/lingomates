@@ -14,7 +14,7 @@ function Conversation({userId}) {
   const [receiverData, setReceiverData]=useState([])
   const[receiverFetchId,setReceiverFetchId]=useState(null)
 
-
+console.log(userId)
   useEffect(()=>{
     console.log('component did mount')
 
@@ -44,7 +44,7 @@ function Conversation({userId}) {
   return (
     <div className="conversation">
       {!showChat ? (
-        <div>
+        <div className="rooms">
            {userConvos ? (userConvos.userData.map((convo, index) => (
               <button key={index} onClick={() => {
                 let roomObject = {
@@ -58,7 +58,7 @@ function Conversation({userId}) {
                   setShowChat(true)
                   setRoomData(roomObject)
 
-              }}>Room with Sender {convo.senderid} and Receiver {convo.receiverid} and roomID {convo.roomconvo}
+              }}>Room with USER {convo.senderid} and USER {convo.receiverid} and roomID {convo.roomconvo}
             </button>
             ))): ""} 
         
