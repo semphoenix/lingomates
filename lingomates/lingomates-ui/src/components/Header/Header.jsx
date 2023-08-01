@@ -1,5 +1,6 @@
 import React from 'react';
 import "./Header.css"
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
 import AppBar from '@mui/material/AppBar';
 import IconButton from '@mui/material/IconButton';
@@ -35,11 +36,17 @@ export default function Header() {
       <Slide direction="down">
     
           <nav className={`w-full md:h-24 h-20 ${navBarColor ? "bg-white" : "bg-transparent"} lg:px-24 md:px-12 px-8 flex justify-between items-center`}>
+            <Link to ="/" className="link-button">
             <h1 className='poppin'>Lingo<span className='mates'>mates🐒</span></h1>
+            </Link>
             <div class="lg:flex hidden items-center gap-20">
             <ul class="flex items-center justify-center gap-6">
+                  <Link to="/login" className="link-button">
                   <li class="w-full"><button type="button" class="before:bottom-0 border-b-2 border-transparent hover:border-gray-950 py-2 px-8 relative z-10 before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:bg-color2 before:-z-10 hover:before:h-full before:transition-all before:duration-300 before:ease-in text-base">Login</button></li>
+                  </Link>
+                  <Link to="/register" className="link-button">
                   <li class="w-full"><button type="button" class="border-2 border-gray-950 before:top-0 py-2 px-8 relative z-10 before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:bg-color2 before:-z-10 hover:before:h-full before:transition-all before:duration-300 before:ease-in text-base">Signup</button></li>
+                  </Link>
                   <li class="text-gray-950">
             {/* <select class="border-none font-light text-base outline-none bg-transparent">
               <option value="EN">EN</option>

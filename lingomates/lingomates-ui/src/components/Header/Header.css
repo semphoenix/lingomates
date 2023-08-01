@@ -349,6 +349,12 @@ button, input, optgroup, select, textarea {
   .text-gray-950 {
     color: #777;
   }
+
+  .link-button {
+    text-decoration: none;
+    color: inherit;
+  }
+
   
   /* select {
     border: none;
