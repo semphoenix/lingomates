@@ -134,7 +134,7 @@ export default function Community({loggedIn,userId,dailyLanguages,setDailyLangua
         {!chatView ? (
           <div className="communityView">
             <div className="communityNavbar">
-              <Navbar userId={userId} />
+              <Navbar userId={userId} handleLogout={handleLogout} />
             </div>
 
             <div className="recommended-container">
