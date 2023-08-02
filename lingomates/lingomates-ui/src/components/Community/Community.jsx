@@ -21,15 +21,9 @@ import Viewprofile from "../Viewprofile/Viewprofile";
 import io from "socket.io-client";
 const socket = io.connect("http://localhost:3001");
 
-export default function Community({
-  loggedIn,
-  userId,
-  dailyLanguages,
-  setDailyLanguages,
-  setSelectedDailyLanguage,
-  userData,
-}) {
-  // const [userData, setUserData] = useState({})
+export default function Community({loggedIn, userId, dailyLanguages, setDailyLanguages, setSelectedDailyLanguage, userData, handleLogout}){
+
+   // const [userData, setUserData] = useState({})
   const [recommendedUsers, setRecommendedUsers] = useState(null);
   const [searchUsername, setSearchUsername] = useState("");
   // const [userData, setUserData] = useState({})
@@ -86,8 +80,10 @@ export default function Community({
     setLoadNumber(newNum);
   };
 
-  const handleSelectOnChange = async (event) => {
-    const languageId = event.target.value;
+        const handleSelectOnChange = async(event) => {
+            const languageId = event.target.value; 
+            
+                if(languageId !== "Select a language"){
 
     axios
       .get(
@@ -153,16 +149,22 @@ export default function Community({
             </form>
 
             <div className="select-lang">
-              <label className="selected-lang-text">Select Language </label>
-              <select className="select-btn" onChange={handleSelectOnChange}>
-                {/* Map over dailyLanguages and create an option for each language  */}
+                <label className="selected-lang-text">Select Language  </label>
+                <select className="select-btn" onChange={handleSelectOnChange}>
+                <option value={null}>Select a language</option>
+                
+            {/* Map over dailyLanguages and create an option for each language  */}
                 {dailyLanguages?.map((language) => (
-                  <option key={language.linguaid} value={language.linguaid}>
-                    {language.linguaname}
-                  </option>
+                    <option key={language.linguaid} value={language.linguaid}>
+                        {language.linguaname}
+                    
+                    </option>
+
                 ))}
-              </select>
-            </div>
+                </select>
+
+
+        </div>
 
             {recommendedUsers && (
               <div className="recommendedUsers-contianer">

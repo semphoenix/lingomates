@@ -27,8 +27,7 @@ const useStyles = makeStyles((theme) => ({
   
 
   
-  
-export default function Navbar({userId}){
+export default function Navbar({userId, handleLogout}){
     const classes = useStyles();
 
     const getUserProfile = () =>{
@@ -64,22 +63,27 @@ export default function Navbar({userId}){
                                 </Link>
                             </Grid> */}
                                 
-                            <Grid item xs={3} style={{margin:'auto', borderWidth:5}}>
+                            <Grid item xs={2} style={{margin:'auto', borderWidth:5}}>
                                 <Link to="/community">
                                     <Button variant="outlined" size='large' style={{ color: 'black', borderColor:'black'}}>Community</Button>
                                 </Link> 
                             </Grid>
                                 
-                            <Grid item xs={3} style={{margin:'auto'}}>
+
+                            <Grid item xs={2} style={{margin:'auto'}}>
                                 <Link to="/conversations">
                                     <Button variant="outlined" size='large' style={{ color: 'black', borderColor:'black'}}>Conversations</Button>
                                 </Link>
                             </Grid>
                                 
-                            <Grid item xs={3} style={{margin:'auto'}}>
+                            <Grid item xs={1} style={{margin:'auto'}}>
                                 <Link to="/feed">
                                     <Button variant="outlined" size='large' style={{ color: 'black', borderColor:'black'}}>Feed</Button>
                                 </Link>
+                            </Grid>
+
+                             <Grid item xs={2} style={{margin:'auto'}}> 
+                                <Button variant="outlined" size='large' style={{ color: 'black', borderColor:'black'}} onClick={handleLogout}>Log Out</Button>  
                             </Grid>
                                 
                     </Grid>

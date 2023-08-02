@@ -35,7 +35,7 @@ function App() {
 
   const checkLoggedIn = () =>{
     const token = localStorage.getItem("token") //uses key "token" to get token value
-
+    console.log("app.jsx", import.meta.env.VITE_TEST)
     if(token){
       const decodedToken = jwtDecode(token)
       setUserId(decodedToken.userId)
@@ -92,8 +92,8 @@ function App() {
           <Route path="/profprompt/:languages" element={<ProfPrompt languages={languages} profLevels={profLevels} setProfLevels={setProfLevels} userId={userId}/>}/>
           <Route path="/login" element={<Login setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError}/>} />
           <Route path="/register" element={<Register setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError} />} />
-          <Route path="/community" element={<Community loggedIn={loggedIn} userId={userId} dailyLanguages={dailyLanguages} setDailyLanguages={setDailyLanguages} setSelectedDailyLanguage={setSelectedDailyLanguage} userData={userData}/>} />
-          <Route path="/feed" element={<News selectedDailyLanguage={selectedDailyLanguage} userId={userId}/>} />
+          <Route path="/community" element={<Community loggedIn={loggedIn} userId={userId} dailyLanguages={dailyLanguages} setDailyLanguages={setDailyLanguages} setSelectedDailyLanguage={setSelectedDailyLanguage} userData={userData} handleLogout={handleLogout}/>} />
+          <Route path="/feed" element={<News selectedDailyLanguage={selectedDailyLanguage} userId={userId} handleLogout={handleLogout} dailyLanguages={dailyLanguages} setSelectedDailyLanguage={setSelectedDailyLanguage}/>} />
           <Route path="/conversations" element= {<Conversations userId={userId}/>}/>
           <Route path="/translate" element= {<Translate/>}/>
 

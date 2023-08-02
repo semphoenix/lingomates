@@ -10,6 +10,16 @@ export default function Translate() {
     //     try {
     //       const apiKey = 'AIzaSyAKtF_T0kYOb7G6sMd_R9BPxPJm5PesNqI';
     //       const targetLanguage = 'en';  //Target code for english
+
+  
+  const apiKey = import.meta.env.VITE_TRANSLATE_API;
+    const [text, setText] = useState('');
+    const [translatedText, setTranslatedText] = useState('')
+
+    const handleTranslate = async () => {
+        try {
+          // const apiKey = 'AIzaSyAKtF_T0kYOb7G6sMd_R9BPxPJm5PesNqI';
+          const targetLanguage = 'en';  //Target code for english
     
     //       const response = await axios.post(
     //         `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`,
