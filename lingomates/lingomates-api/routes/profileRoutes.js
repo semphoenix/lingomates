@@ -10,7 +10,6 @@ router.get("/:id",async function (request, response, next) {
     console.log("requested ID for profile is: ", userIdRequested);
     try {
       const userData = await Profile.user_Language_prof(userIdRequested);
-      console.log("whats in userData: ", userData);
       return response.status(200).json({ userData: userData });
     } catch (err) {
       next(err);
