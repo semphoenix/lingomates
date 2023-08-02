@@ -4,25 +4,24 @@ const { BCRYPT_WORK_FACTOR } = require("../config");
 const Conversations = require("./conversations");
 
 class DirectMessage {
-  static async createMessage(roomId, sender, receiver, message) {
+  static async createMessage(roomId, sender, receiver, message, translatedText) {
     const existingChat = await Conversations.fetchConvoByRoom(roomId);
-    console.log("existingChat: ")
-    console.log(existingChat)
-
+    
 
     if (existingChat) {
         console.log("-----IN IF!-----")
-      const result = await db.query(
+      const result = await db.query( 
         `
             INSERT INTO directMessage(
                 room, 
                 senderId,
                 receiverId,
-                messageText)
-                VALUES($1,$2,$3,$4)
+                messageText,
+                translatedText)
+                VALUES($1,$2,$3,$4,$5)
                 RETURNING id, room ,senderId,receiverId,messageText,messaged_at
             `,
-        [roomId, sender, receiver, message]
+        [roomId, sender, receiver, message,translatedText]
       );
 
       const userMessage = result.rows[0];
