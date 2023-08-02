@@ -25,7 +25,7 @@ function Chat({ socket, room, senderId, receiverId }) {
     //console.log('in handleTranslate');
 
     try {
-      const apiKey = 'AIzaSyAKtF_T0kYOb7G6sMd_R9BPxPJm5PesNqI';
+      const apiKey = import.meta.env.VITE_TRANSLATE_API;
       const targetLanguage = 'en';  //Target code for english
 
       const response = await axios.post(
