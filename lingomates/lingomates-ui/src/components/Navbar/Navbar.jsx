@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundImage: `url(${background})`,
     },
   }));
+  
 
   
   
@@ -70,7 +71,7 @@ export default function Navbar({userId}){
                             </Grid>
                                 
                             <Grid item xs={3} style={{margin:'auto'}}>
-                                <Link to="/chats">
+                                <Link to="/conversations">
                                     <Button variant="outlined" size='large' style={{ color: 'black', borderColor:'black'}}>Conversations</Button>
                                 </Link>
                             </Grid>

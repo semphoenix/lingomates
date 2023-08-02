@@ -12,7 +12,8 @@ const conversationRoutes=require("./routes/conversationRoutes")
 const app = express()
 const { createServer } = require("http");
 const { Server } = require("socket.io");
-const DirectMessege=require("./models/directMessage")
+const DirectMessage=require("./models/directMessage")
+const axios = require('axios')
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, { 
@@ -26,17 +27,50 @@ io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
   socket.on("join_room", (data) => {
-    socket.join('1,2');
+    console.log(" ----THE ROOM TO BE JOINED IS----- THE RESPONSE FOR JOIN_ROOM EVENT FROM FRONT END IS")
+    console.log(data)
+    
+    socket.join(data);
     console.log(`User with ID: ${socket.id} joined room: ${data}`);
   });
 
-  socket.on("send_message", (data) => {
+  const handleTranslate = async (text) => {
+
+    console.log('in handleTranslate');
+
+    try {
+      const apiKey = 'AIzaSyAKtF_T0kYOb7G6sMd_R9BPxPJm5PesNqI';
+      const targetLanguage = 'en';  //Target code for english
+
+      const response = await axios.post(
+        `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`,
+        {
+          q: text,
+          target: targetLanguage,
+
+        }
+      );
+
+      if (!response.data || !response.data.data.translations || !response.data.data.translations[0]) {
+        throw new Error('Translation API failed');
+      }
+      
+      const translatedText = await response.data.data.translations[0].translatedText;
+      return translatedText;
+
+    } catch (error) {
+      console.error('Error translating:', error);
+    }
+  };
+ console.log("I want to see the translated text" ,handleTranslate("adios"))
+  socket.on("send_message",async (data) => {
     const {message, sender, receiver, time} = data 
-    // const messageText= (data.message)
-    // const author=data.author
-    // let room=[user1,user2]
-    //     room=room.sort()
-    //     room=room.toString()
+    let translatedText = await handleTranslate(message);
+    console.log(`translatedText is`, translatedText);
+    data.translatedText = translatedText;
+    console.log(`data is...`)
+    console.log(data)
+
     const room=[sender, receiver].sort().toString()
     console.log(room)
     console.log("Data in Send Message: ")
@@ -44,10 +78,7 @@ io.on("connection", (socket) => {
 
     socket.to(room).emit("receive_message", data);
 
-    DirectMessege.createMessage(room, sender, receiver, message)
-
-    
-    
+    DirectMessage.createMessage(room, sender, receiver, message)    
 
   });
 

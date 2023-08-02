@@ -2,6 +2,7 @@ import Login from "../Login/Login";
 import Landing from "../Landing/Landing";
 import Register from "../Register/Register";
 import Profile from "../Profile/Profile";
+import Chat from "../Chat/Chat";
 import jwtDecode from "jwt-decode"
 import { useEffect, useState } from "react";
 import {
@@ -59,7 +60,7 @@ function App() {
           try{
             //gets current user that is logged in based on userId-comes from user id from token
             axios.get(`http://localhost:3001/community/${userId}`).then((response)=>{
-                console.log("what is this: ", response.data.userData[0])
+                // console.log("what is this: ", response.data.userData[0])
                 setUserData(response.data.userData[0])})
           
           }catch{(error)=>{
@@ -75,9 +76,9 @@ function App() {
     setLoggedIn(false);
     window.location.href = "/"
   }
-  console.log("what is selectedDailyLanguage value: ", selectedDailyLanguage)
-  console.log("retrieved user id: ", userId)
-  console.log("Date now data: ", Date.now())
+  // console.log("what is selectedDailyLanguage value: ", selectedDailyLanguage)
+  // console.log("retrieved user id: ", userId)
+  // console.log("Date now data: ", Date.now())
  
   return (
     <div>    

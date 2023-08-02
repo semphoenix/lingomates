@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useCallback } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import axios from "axios";
+import "./Chat.css"
 
 function Chat({ socket, room, senderId, receiverId }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const [previousMessages, setPreviousMessages] = useState([]);
 
-  
-  
   useEffect(() => {
     axios
       .post("http://localhost:3001/conversationRoutes/previousMessages", {
@@ -16,9 +15,10 @@ function Chat({ socket, room, senderId, receiverId }) {
       })
       .then((res) => {
         setPreviousMessages(res.data);
+        //console.log(previousMessages)
       });
   }, []);
-
+  
 
   //   This async function is going to take the current message that we input in the box and create an object that saves
   //   the message, the author, the room, and the time where the message is sent
@@ -29,6 +29,7 @@ function Chat({ socket, room, senderId, receiverId }) {
         sender: senderId,
         receiver: receiverId,
         message: currentMessage,
+
         time:
           new Date(Date.now()).getHours() +
           ":" +
@@ -58,7 +59,14 @@ function Chat({ socket, room, senderId, receiverId }) {
     };
   }, [socket, handleReceiveMessage]);
 
+  const handleTranslate = () =>{
+
+  }
+
+  console.log("whats in message list: ", messageList)
+  //console.log("wahts in previous messages: ", previousMessages)
   return (
+    <div className="chatContainer">
     <div className="chat-window">
       <div className="chat-header">
         <p>Lingomates Chat</p>
@@ -71,14 +79,19 @@ function Chat({ socket, room, senderId, receiverId }) {
           {previousMessages.previousConvo
             ? previousMessages.previousConvo.map((previousMessage, index) => {
                 return (
-                  <div key={index}
+                  <div
+                    key={index}
                     className="message"
-                    id={senderId === previousMessage.senderid ? "you" : "other"}
+                    id={senderId === previousMessage.senderid ? "you" : "other"} 
                   >
                     <div>
                       <div className="message-content">
-                        <p>{previousMessage.messagetext}</p> 
+                        <p>{previousMessage.messagetext}</p>
                       </div>
+                      <div className="tooltip" onHover={handleTranslate}>Translate
+                    <span className="translatedText tooltiptext">{previousMessage.messagetext}</span>
+                  </div>
+                
                     </div>
                   </div>
                 );
@@ -95,6 +108,10 @@ function Chat({ socket, room, senderId, receiverId }) {
                   <div className="message-content">
                     <p>{messageContent.message}</p>
                   </div>
+                  <div className="tooltip" onHover={handleTranslate}>Translate
+                    <span className="translatedText tooltiptext">{messageContent.translatedText}</span>
+                  </div>
+                
                   <div className="message-meta">
                     <p id="time">{messageContent.time}</p>
                     {/* <p id="author">{messageContent.author}</p> */}
@@ -120,6 +137,7 @@ function Chat({ socket, room, senderId, receiverId }) {
         <button onClick={sendMessage}>&#9658;</button>
       </div>
     </div>
+  </div>
   );
 }
 

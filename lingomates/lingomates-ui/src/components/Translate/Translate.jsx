@@ -35,7 +35,7 @@ export default function Translate() {
     return (
       <div>
         <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
-        <button onClick={handleTranslate}>Translate</button>
+        <div onHover={handleTranslate}>Translate</div>
         <div>
           <p>Original Text: {text}</p>
           <p>Translated Text: {translatedText}</p>

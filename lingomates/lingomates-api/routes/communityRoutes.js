@@ -85,7 +85,6 @@ router.get("/viewUser/:username", async function(req,res){
     console.log("requested id in community/id: ", requestedId)
     try{
       const userData = await User.fetchUserById(requestedId)
-      console.log("whats in userData: ", userData)
       return res.status(200).json({userData:userData})
 
     }catch(err){

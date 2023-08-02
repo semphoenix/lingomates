@@ -49,12 +49,27 @@ router.get("/:id", async function(req, res, next) {
     console.log("receiver id in community/id: ", requestedId)
     try{
       const userData = await User.fetchUserById(requestedId)
-      console.log("whats in userData: ", userData)
       return res.status(200).json({userData:userData})
 
     }catch(err){
       next(err)
     }
+})
+
+router.post("/communityJoinRoom", async function(request, response,next){
+  
+  const user1=request.body.userId
+  const user2=request.body.selectedUserId
+  console
+
+  try{
+    const roomJoined= await Conversations.RoomToJoin(user1, user2)
+    return response.status(200).json({room:roomJoined})
+  }
+  catch{
+    next(err)
+  }
+
 })
 
 
