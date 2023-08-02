@@ -34,40 +34,10 @@ io.on("connection", (socket) => {
     console.log(`User with ID: ${socket.id} joined room: ${data}`);
   });
 
-  const handleTranslate = async (text) => {
-
-    console.log('in handleTranslate');
-
-    try {
-      const apiKey = 'AIzaSyAKtF_T0kYOb7G6sMd_R9BPxPJm5PesNqI';
-      const targetLanguage = 'en';  //Target code for english
-
-      const response = await axios.post(
-        `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`,
-        {
-          q: text,
-          target: targetLanguage,
-
-        }
-      );
-
-      if (!response.data || !response.data.data.translations || !response.data.data.translations[0]) {
-        throw new Error('Translation API failed');
-      }
-      
-      const translatedText = await response.data.data.translations[0].translatedText;
-      return translatedText;
-
-    } catch (error) {
-      console.error('Error translating:', error);
-    }
-  };
- console.log("I want to see the translated text" ,handleTranslate("adios"))
+  
   socket.on("send_message",async (data) => {
-    const {message, sender, receiver, time} = data 
-    let translatedText = await handleTranslate(message);
-    console.log(`translatedText is`, translatedText);
-    data.translatedText = translatedText;
+    const {message, sender, receiver,translatedText, time} = data 
+  
     console.log(`data is...`)
     console.log(data)
 
@@ -78,7 +48,7 @@ io.on("connection", (socket) => {
 
     socket.to(room).emit("receive_message", data);
 
-    DirectMessage.createMessage(room, sender, receiver, message)    
+    DirectMessage.createMessage(room, sender, receiver,  message, translatedText)    
 
   });
 

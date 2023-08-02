@@ -6,9 +6,7 @@ const Conversations = require("./conversations");
 class DirectMessage {
   static async createMessage(roomId, sender, receiver, message, translatedText) {
     const existingChat = await Conversations.fetchConvoByRoom(roomId);
-    console.log("existingChat: ")
-    console.log(existingChat)
-
+    
 
     if (existingChat) {
         console.log("-----IN IF!-----")
