@@ -1,5 +1,6 @@
 import "./LangPrompt.css"
 import axios from "axios";
+import Header from "../Header/Header";
 export default function LangPrompt({languages, setLanguages}) {
 
     
@@ -14,7 +15,6 @@ export default function LangPrompt({languages, setLanguages}) {
         } else {
         setLanguages([...languages, language]);
         }
-        //do the window thing to make it go to the proficiency page! 
     }
 
     const handleContinue = (e) => {
@@ -37,7 +37,9 @@ export default function LangPrompt({languages, setLanguages}) {
 
     return (
       <div className="langprompt">
-        <h1>Which language(s) do you want to learn?</h1>
+        <Header/>
+        <div className="content">
+        <h1 className="question">Which language(s) do you want to learn?</h1>
         <div className="grid">
         <div>
             <button className ={`langbutton ${isSelected("English") ? "selected" : ""}`} onClick = {() => handleLangClick("English")} type ="submit">
@@ -76,7 +78,8 @@ export default function LangPrompt({languages, setLanguages}) {
             </button>   
         </div>
         </div>
-        <button onClick={handleContinue}>Continue</button>
+        <button className="myButton2" onClick={handleContinue}>Continue</button>
+        </div>
       </div>
     );
   }

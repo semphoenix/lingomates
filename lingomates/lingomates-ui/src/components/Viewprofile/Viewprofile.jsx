@@ -49,7 +49,7 @@ export default function Viewprofile() {
                     <Typography align="center" sx={{paddingTop:2, fontSize:'2.5rem'}}>{selectedUser.first_name}<span className="last-name">{selectedUser.last_name}</span></Typography>
                     <Typography align="center" sx={{paddingTop:2, fontSize:'1.5rem', borderBottom: 1, paddingBottom:"10px"}}>Native Language: {selectedUser.nativelanguage}</Typography>
                     {selectedUserLangs?.map((selectedLangs)=>{
-                        return(<Typography align="center" sx={{paddingTop:2.5, fontSize:'1.5rem'}}>{selectedLangs.linguaname}<span className="last-name">{selectedLangs.proficiencylevel}</span></Typography>)
+                        return(<Typography align="center" sx={{paddingTop: 2.5, fontSize:'1.5rem'}}>{selectedLangs.linguaname}<span className="last-name">{selectedLangs.proficiencylevel}</span></Typography>)
                     })}
                     
                     <CardActions style={{justifyContent: 'center', paddingTop:60}}>

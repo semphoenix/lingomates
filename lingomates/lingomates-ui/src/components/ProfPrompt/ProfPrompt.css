@@ -1,0 +1,54 @@
+
+.lang-info {
+display: flex;
+flex-direction: column;
+height: 250px;
+width: 350px;
+font-weight: bold;
+align-items: center;
+justify-content: center;
+border: 2px solid #ccc; 
+border-radius: 8px;
+padding: 10px;
+/* Add animation properties for the float-in effect */
+animation: floatInAnimation 0.5s ease forwards;
+opacity: 0; /* Start with opacity set to 0, so the buttons are hidden initially */
+}
+
+.selectWrapper{
+    margin-top: 20px;
+    border-radius:36px;
+    display:inline-block;
+    overflow:hidden;
+    background:#cccccc;
+    border:1px solid #cccccc;
+  }
+  .selectBox{
+    width:240px;
+    text-align: center;
+    height:40px;
+    border:0px;
+    outline:none;
+  }
+
+
+.profprompt {  
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Set the height to 100vh to center vertically */
+    text-align: center;
+    font-family: "Nunito";
+    padding: 20px;
+    background-image: url("");
+    background-color: rgba(143, 37, 37, 0.783);
+}
+
+.lang-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px; /* Adjust this value to control the vertical spacing between language boxes */
+  }
+  

@@ -194,14 +194,14 @@ export default function Register({setUserId, setLoggedIn}) {
         onChange={(event) => setNativeLanguage(event.target.value)}
       >
         <MenuItem value="">What is your native language?</MenuItem>
-        <MenuItem value="english">English</MenuItem>
-        <MenuItem value="spanish">Spanish</MenuItem>
-        <MenuItem value="portuguese">Portuguese</MenuItem>
-        <MenuItem value="swedish">Swedish</MenuItem>
-        <MenuItem value="french">French</MenuItem>
-        <MenuItem value="italian">Italian</MenuItem>
-        <MenuItem value="german">German</MenuItem>
-        <MenuItem value="other">Other</MenuItem>
+        <MenuItem value="English">English</MenuItem>
+        <MenuItem value="Spanish">Spanish</MenuItem>
+        <MenuItem value="Portuguese">Portuguese</MenuItem>
+        <MenuItem value="Swedish">Swedish</MenuItem>
+        <MenuItem value="French">French</MenuItem>
+        <MenuItem value="Italian">Italian</MenuItem>
+        <MenuItem value="German">German</MenuItem>
+        <MenuItem value="Other">Other</MenuItem>
       </Select>
     </Grid>
               <Grid item xs={12}>

@@ -8,7 +8,7 @@ const socket = io.connect("http://localhost:3001");
 function Conversation({userId}) {
   //create a state for conversations so far by the user
 
-  const[userConvos, setUserConvos]=useState(null)
+  const [userConvos, setUserConvos] = useState(null)
   const [roomData, setRoomData] = useState(null)
   const [showChat, setShowChat] = useState(false)
   const [receiverData, setReceiverData]=useState([])
