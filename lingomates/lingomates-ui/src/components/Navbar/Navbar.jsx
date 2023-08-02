@@ -40,22 +40,9 @@ export default function Navbar({userId, handleLogout}){
 
         <>       
             <AppBar className={classes.header} position="static">
-                <Toolbar style={{backgroundColor:`url(${background})`, minHeight: 120}} >
+                <Toolbar style={{backgroundColor:"brown", minHeight: 120}} >
                     <Grid container spacing={10}>
-                        <Grid item xs={2}>
-                            <IconButton
-                            size="large"
-                            edge="start"
-                            // color="inherit"
-                            aria-label="menu"
-                            sx={{ mr: 2}}
-                            style={{color: 'black'}}
-                            onClick={getUserProfile}
-                            >
-                                <AccountCircleIcon style={{fontSize:'4rem'}}/>
-                            </IconButton>  
                         
-                        </Grid >
 
                             {/* <Grid item xs={3}>
                                 <Link to="/home">
@@ -65,26 +52,42 @@ export default function Navbar({userId, handleLogout}){
                                 
                             <Grid item xs={2} style={{margin:'auto', borderWidth:5}}>
                                 <Link to="/community">
-                                    <Button variant="outlined" size='large' style={{ color: 'black', borderColor:'black'}}>Community</Button>
+                                    <Button size='large' style={{ color: 'white', borderColor:'white'}}>Logo</Button>
                                 </Link> 
                             </Grid>
                                 
 
                             <Grid item xs={2} style={{margin:'auto'}}>
                                 <Link to="/conversations">
-                                    <Button variant="outlined" size='large' style={{ color: 'black', borderColor:'black'}}>Conversations</Button>
+                                    <Button size='large' style={{ color: 'white'}}>Conversations</Button>
                                 </Link>
                             </Grid>
                                 
                             <Grid item xs={1} style={{margin:'auto'}}>
                                 <Link to="/feed">
-                                    <Button variant="outlined" size='large' style={{ color: 'black', borderColor:'black'}}>Feed</Button>
+                                    <Button size='large' style={{ color: 'white'}}>Feed</Button>
                                 </Link>
                             </Grid>
 
                              <Grid item xs={2} style={{margin:'auto'}}> 
-                                <Button variant="outlined" size='large' style={{ color: 'black', borderColor:'black'}} onClick={handleLogout}>Log Out</Button>  
+                                <Button size='large' style={{ color: 'white'}} onClick={handleLogout}>Log Out</Button>  
                             </Grid>
+
+
+                            <Grid item xs={2}>
+                            <IconButton
+                            size="large"
+                            edge="start"
+                            // color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2}}
+                            style={{color: 'white'}}
+                            onClick={getUserProfile}
+                            >
+                                <AccountCircleIcon style={{fontSize:'4rem'}}/>
+                            </IconButton>  
+                        
+                        </Grid >
                                 
                     </Grid>
                 </Toolbar>
