@@ -11,7 +11,9 @@ class Conversations{
             INNER JOIN directMessage dm ON c.roomConvo = dm.room
             WHERE dm.receiverId=$1 OR dm.senderId=$1;`, [user1]
         );
+
         const allChats=result.rows;
+       
         return allChats;
 
     } 
@@ -61,12 +63,25 @@ class Conversations{
             `SELECT * FROM directMessage
             WHERE room=$1`, [roomNum]
         )
-        console.log('this is the result...s')
-       console.log(result)
+      
         const previousChat=result.rows
         console.log("previous chat in fetchPreviousMessagesfromRoom", previousChat)
         return previousChat
 
+    }
+    static async RoomToJoin(user1,user2){
+        let room=[user1,user2]
+        room=room.sort()
+        room=room.toString()
+
+        const existingChat= await Conversations.fetchConvoByRoom(room)
+        if(existingChat){
+            return existingChat
+        }
+        else{
+            const newRoom=Conversations.conversationCreate(user1, user2)
+            return newRoom
+        }
 
     }
 

@@ -39,15 +39,15 @@ export default function Header() {
             <Link to ="/" className="link-button">
             <h1 className='poppin'>Lingo<span className='mates'>mates🐒</span></h1>
             </Link>
-            <div class="lg:flex hidden items-center gap-20">
-            <ul class="flex items-center justify-center gap-6">
+            <div className="lg:flex hidden items-center gap-20">
+            <ul className="flex items-center justify-center gap-6">
                   <Link to="/login" className="link-button">
-                  <li class="w-full"><button type="button" class="before:bottom-0 border-b-2 border-transparent hover:border-gray-950 py-2 px-8 relative z-10 before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:bg-color2 before:-z-10 hover:before:h-full before:transition-all before:duration-300 before:ease-in text-base">Login</button></li>
+                  <li className="w-full"><button type="button" className="before:bottom-0 border-b-2 border-transparent hover:border-gray-950 py-2 px-8 relative z-10 before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:bg-color2 before:-z-10 hover:before:h-full before:transition-all before:duration-300 before:ease-in text-base">Login</button></li>
                   </Link>
                   <Link to="/register" className="link-button">
-                  <li class="w-full"><button type="button" class="border-2 border-gray-950 before:top-0 py-2 px-8 relative z-10 before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:bg-color2 before:-z-10 hover:before:h-full before:transition-all before:duration-300 before:ease-in text-base">Signup</button></li>
+                  <li className="w-full"><button type="button" className="border-2 border-gray-950 before:top-0 py-2 px-8 relative z-10 before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:bg-color2 before:-z-10 hover:before:h-full before:transition-all before:duration-300 before:ease-in text-base">Signup</button></li>
                   </Link>
-                  <li class="text-gray-950">
+                  <li className="text-gray-950">
             {/* <select class="border-none font-light text-base outline-none bg-transparent">
               <option value="EN">EN</option>
               <option value="ITA">ITA</option>

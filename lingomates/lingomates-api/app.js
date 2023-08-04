@@ -12,7 +12,8 @@ const conversationRoutes=require("./routes/conversationRoutes")
 const app = express()
 const { createServer } = require("http");
 const { Server } = require("socket.io");
-const DirectMessege=require("./models/directMessage")
+const DirectMessage=require("./models/directMessage")
+const axios = require('axios')
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, { 
@@ -26,17 +27,20 @@ io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
   socket.on("join_room", (data) => {
-    socket.join('1,2');
+    console.log(" ----THE ROOM TO BE JOINED IS----- THE RESPONSE FOR JOIN_ROOM EVENT FROM FRONT END IS")
+    console.log(data)
+    
+    socket.join(data);
     console.log(`User with ID: ${socket.id} joined room: ${data}`);
   });
 
-  socket.on("send_message", (data) => {
-    const {message, sender, receiver, time} = data 
-    // const messageText= (data.message)
-    // const author=data.author
-    // let room=[user1,user2]
-    //     room=room.sort()
-    //     room=room.toString()
+  
+  socket.on("send_message",async (data) => {
+    const {message, sender, receiver,translatedText, time} = data 
+  
+    console.log(`data is...`)
+    console.log(data)
+
     const room=[sender, receiver].sort().toString()
     console.log(room)
     console.log("Data in Send Message: ")
@@ -44,10 +48,7 @@ io.on("connection", (socket) => {
 
     socket.to(room).emit("receive_message", data);
 
-    DirectMessege.createMessage(room, sender, receiver, message)
-
-    
-    
+    DirectMessage.createMessage(room, sender, receiver,  message, translatedText)    
 
   });
 

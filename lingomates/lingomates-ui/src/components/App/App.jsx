@@ -2,6 +2,7 @@ import Login from "../Login/Login";
 import Landing from "../Landing/Landing";
 import Register from "../Register/Register";
 import Profile from "../Profile/Profile";
+import Chat from "../Chat/Chat";
 import jwtDecode from "jwt-decode"
 import { useEffect, useState } from "react";
 import {
@@ -59,7 +60,7 @@ function App() {
           try{
             //gets current user that is logged in based on userId-comes from user id from token
             axios.get(`http://localhost:3001/community/${userId}`).then((response)=>{
-                console.log("what is this: ", response.data.userData[0])
+                // console.log("what is this: ", response.data.userData[0])
                 setUserData(response.data.userData[0])})
           
           }catch{(error)=>{
@@ -75,9 +76,9 @@ function App() {
     setLoggedIn(false);
     window.location.href = "/"
   }
-  console.log("what is selectedDailyLanguage value: ", selectedDailyLanguage)
-  console.log("retrieved user id: ", userId)
-  console.log("Date now data: ", Date.now())
+  // console.log("what is selectedDailyLanguage value: ", selectedDailyLanguage)
+  // console.log("retrieved user id: ", userId)
+  // console.log("Date now data: ", Date.now())
  
   return (
     <div>    
@@ -93,10 +94,10 @@ function App() {
           <Route path="/register" element={<Register setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError} />} />
           <Route path="/community" element={<Community loggedIn={loggedIn} userId={userId} dailyLanguages={dailyLanguages} setDailyLanguages={setDailyLanguages} setSelectedDailyLanguage={setSelectedDailyLanguage} userData={userData} handleLogout={handleLogout}/>} />
           <Route path="/feed" element={<News selectedDailyLanguage={selectedDailyLanguage} userId={userId} handleLogout={handleLogout} dailyLanguages={dailyLanguages} setSelectedDailyLanguage={setSelectedDailyLanguage}/>} />
-          <Route path="/conversations" element= {<Conversations userId={userId}/>}/>
+          <Route path="/conversations" element= {<Conversations userId={userId} handleLogout={handleLogout}/>}/>
           <Route path="/translate" element= {<Translate/>}/>
 
-          <Route path="/userProfile/:id" element={<Viewprofile />} />
+          <Route path="/userProfile/:id" element={<Viewprofile userId={userId}/>} />
         </Routes>
       </Router>
     </div>
