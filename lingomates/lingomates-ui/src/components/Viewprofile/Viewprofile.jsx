@@ -28,6 +28,7 @@ export default function Viewprofile() {
 
    console.log("selectedUser set to: ", selectedUser)
    console.log("selectedUser langas:",  selectedUserLangs)
+   
   return (
     <>
       {/*  paddingTop:10-use for avatar/  margin:'auto' */}

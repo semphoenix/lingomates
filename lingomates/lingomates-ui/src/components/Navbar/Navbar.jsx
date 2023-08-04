@@ -40,7 +40,7 @@ export default function Navbar({userId, handleLogout}){
 
         <>       
             <AppBar className={classes.header} position="static">
-                <Toolbar style={{backgroundColor:"brown", minHeight: 120}} >
+                <Toolbar style={{backgroundColor:"brown", minHeight: 70}} >
                     <Grid container spacing={10}>
                         
 
