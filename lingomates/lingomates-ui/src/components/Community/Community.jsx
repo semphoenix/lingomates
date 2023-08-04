@@ -21,9 +21,10 @@ import Viewprofile from "../Viewprofile/Viewprofile";
 import io from "socket.io-client";
 const socket = io.connect("http://localhost:3001");
 
-export default function Community({loggedIn,userId,dailyLanguages,setDailyLanguages,setSelectedDailyLanguage,userData,handleLogout,}) {
+export default function Community({loggedIn,userId,dailyLanguages,setDailyLanguages,setSelectedDailyLanguage,userData,handleLogout}) {
   // const [userData, setUserData] = useState({})
   const [recommendedUsers, setRecommendedUsers] = useState(null);
+  const [allUsers, setAllUsers] = useState([])
   const [searchUsername, setSearchUsername] = useState("");
   // const [userData, setUserData] = useState({})
   const [loadNumber, setLoadNumber] = useState(1);
@@ -56,15 +57,11 @@ export default function Community({loggedIn,userId,dailyLanguages,setDailyLangua
     // if current user id exists then do an  axios call that returns current user selected languages
     if (userId) {
       try {
-        axios
-          .get(`http://localhost:3001/community/linguas/${userId}`)
-          .then((languages) => {
-            // console.log(
-            //   "what's in user selected language(s): ",
-            //   languages.data.lingasData
-            // );
+        axios.get(`http://localhost:3001/community/linguas/${userId}`).then((languages) => {
             setDailyLanguages(languages.data.lingasData);
           });
+
+
       } catch {
         (error) => {
           //console.log(error);
@@ -81,6 +78,7 @@ export default function Community({loggedIn,userId,dailyLanguages,setDailyLangua
 
   const handleSelectOnChange = async (event) => {
     const languageId = event.target.value;
+    console.log(`the language value is ${languageId}`)
 
     if (languageId !== "Select a language") {
       axios
@@ -126,7 +124,7 @@ export default function Community({loggedIn,userId,dailyLanguages,setDailyLangua
     //   console.log("searched username: ", searchUsername);
     //   console.log("current users' selected language: ", dailyLanguages);
     //   console.log("display users: ", displayedUsers);
-
+    console.log("whats in recommended users: ", recommendedUsers)
     return (
       
     
@@ -138,30 +136,34 @@ export default function Community({loggedIn,userId,dailyLanguages,setDailyLangua
             </div>
 
             <div className="recommended-container">
-              <div className="welcome"> Welcome {userData.first_name}</div>
+              <div className="welcome"> Welcome, {userData.first_name}!</div>
 
               <form onSubmit={searchForm} className="search-form">
                 <input
                   className="search-input"
                   type="text"
                   name="search"
-                  placeholder="Search users"
+                  placeholder="Search Users"
                   onChange={(event) => setSearchUsername(event.target.value)}
                 />
               </form>
 
               <div className="select-lang">
-                <label className="selected-lang-text">Select Language </label>
-                <select className="select-btn" onChange={handleSelectOnChange}>
-                  <option value={null}>Select a language</option>
-
-                  {/* Map over dailyLanguages and create an option for each language  */}
-                  {dailyLanguages?.map((language) => (
-                    <option key={language.linguaid} value={language.linguaid}>
-                      {language.linguaname}
-                    </option>
-                  ))}
-                </select>
+                <label className="selected-lang-text">Click on Language to Show Recommended Users</label>
+                <div>
+                {dailyLanguages?.map((language) => {
+                    let imageName = `${language.linguaname.toLowerCase()}`
+                    let imageSrc = `../../src/assets/${imageName}.png`
+                    return <button className="btn-flag-image" 
+                        style={{backgroundImage: `url(${imageSrc})` }} 
+                        value={language.linguaid} 
+                        onClick={handleSelectOnChange} 
+                        key={language.linguaname}  
+                        alt={language.linguaname}>{language.linguaname}</button>
+                }
+                    
+                  )}                   
+                </div>
               </div>
 
               {recommendedUsers && (
@@ -187,7 +189,7 @@ export default function Community({loggedIn,userId,dailyLanguages,setDailyLangua
                                   sx={{ paddingBottom: 2 }}
                                   align="center"
                                 >
-                                  {recUsers.first_name}
+                                  {recUsers.username}
                                 </Typography>
 
                                 <CardActions

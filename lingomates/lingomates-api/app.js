@@ -40,6 +40,7 @@ io.on("connection", (socket) => {
   
     console.log(`data is...`)
     console.log(data)
+    console.log(translatedText)
 
     const room=[sender, receiver].sort().toString()
     console.log(room)
