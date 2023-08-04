@@ -5,34 +5,59 @@ import {useState, useEffect} from 'react';
 import axios from "axios";
 import {Card, CardContent, Typography, CardMedia, Avatar, Grid, Button, CardActions} from '@mui/material';
 import {Link} from "react-router-dom"
-export default function Viewprofile() {
+import io from "socket.io-client";
+const socket = io.connect("http://localhost:3001")
+import Chat from "../Chat/Chat";
+
+export default function Viewprofile({userId}) {
 
   const [selectedUser, setSelectedUser] = useState({})
   const [selectedUserLangs,setSelectedUserLangs] = useState([])
+  const [roomToJoin, setRoomToJoin] = useState([]);
+  const [viewChat, SetViewChat]=useState(false)
 
-  const usersId = useParams()
+  const chosenUserId = useParams()
   // console.log("what is usersId: ", usersId.id)
+  console.log(selectedUser)
+  
   useEffect(()=>{
 
-    axios.get(`http://localhost:3001/profile/${usersId.id}`).then((response)=>{
+    axios.get(`http://localhost:3001/profile/${chosenUserId.id}`).then((response)=>{
       // console.log("selected user info: ", response.data.userData[0])
       setSelectedUser(response.data.userData[0])
     })
 
-    axios.get(`http://localhost:3001/community/linguas/${usersId.id}`).then((response)=>{
+    axios.get(`http://localhost:3001/community/linguas/${chosenUserId.id}`).then((response)=>{
       // console.log("selected users languages: ", response.data.lingasData)
       setSelectedUserLangs(response.data.lingasData)
     })
 
   },[])
 
+  const handleSendMessage = (chosenUser) => {
+    //console.log("chosen user is", chosenUser);
+    
+    axios
+      .post("http://localhost:3001/conversationRoutes/communityJoinRoom", {
+        userId,
+        chosenUser,
+      })
+      .then((res) => {
+        setRoomToJoin(res.data);
+        socket.emit("join_room", roomToJoin);
+        SetViewChat(true);
+      });
+  };
+
+
    console.log("selectedUser set to: ", selectedUser)
    console.log("selectedUser langas:",  selectedUserLangs)
    
   return (
-    <>
-      {/*  paddingTop:10-use for avatar/  margin:'auto' */}
-      {/* sx={{maxWidth:600, minHeight: 600}} */}
+    <div className='profileview'>
+    {!viewChat ? (
+      /*  paddingTop:10-use for avatar/  margin:'auto' */
+      /* sx={{maxWidth:600, minHeight: 600}} */
       <Grid container justifyContent="center" alignItems="center" sx={{minHeight:"100vh"}}>
           <Grid item sx={{width: 450}}>
               <Card sx={{minHeight: 600}}>
@@ -54,16 +79,25 @@ export default function Viewprofile() {
                     })}
                     
                     <CardActions style={{justifyContent: 'center', paddingTop:60}}>
-                        <Link to="/conversations">
-                          <Button variant="outlined" size="medium">Message</Button>
-                        </Link>
+                        
+                          <Button onClick= {() => handleSendMessage(chosenUserId.id)} variant="outlined" size="medium">Message</Button>
+                        
                     </CardActions>
                     
                 </CardContent>
               </Card>
           </Grid>
-      </Grid>
-    </>
+      </Grid>)
+      
+      :(
+        <Chat socket={socket}
+        room={roomToJoin.room.roomconvo}
+        senderId={userId}
+        receiverId={chosenUserId.id}
+        receiverData={selectedUser}  />
+      )
+  }
+    </div>
     
   )
 }

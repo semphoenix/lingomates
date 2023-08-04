@@ -21,24 +21,31 @@ import Viewprofile from "../Viewprofile/Viewprofile";
 import io from "socket.io-client";
 const socket = io.connect("http://localhost:3001");
 
-export default function Community({loggedIn,userId,dailyLanguages,setDailyLanguages,setSelectedDailyLanguage,userData,handleLogout}) {
-  // const [userData, setUserData] = useState({})
+export default function Community({
+  loggedIn,
+  userId,
+  dailyLanguages,
+  setDailyLanguages,
+  setSelectedDailyLanguage,
+  userData,
+  handleLogout,
+}) {
+ 
   const [recommendedUsers, setRecommendedUsers] = useState(null);
   const [allUsers, setAllUsers] = useState([])
   const [searchUsername, setSearchUsername] = useState("");
-  // const [userData, setUserData] = useState({})
   const [loadNumber, setLoadNumber] = useState(1);
   const [displayedUsers, setDisplayedUsers] = useState([]);
-  // const [searchUserId, setSearchUserId] = useState("")
   const [chatView, setChatView] = useState(false);
   const [roomToJoin, setRoomToJoin] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(null);
+  const [selectedProfile, setSelectedProfile] = useState(null);
 
-  console.log("userId value in community: ", userId);
+  //console.log("userId value in community: ", userId);
   // console.log("test datas data in community: ", testData)
 
   const searchForm = async (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     //console.log("inside searchForm");
 
     const response = await axios.get(
@@ -48,12 +55,11 @@ export default function Community({loggedIn,userId,dailyLanguages,setDailyLangua
     //console.log("what's in search form response: ", response.data.userInfo.id);
     const searchValue = response.data.userInfo.id;
     //console.log("searchUserId value: ", searchValue);
-
+      setSearchUsername("")
     window.location.href = `/userProfile/${searchValue}`;
-  }
+  };
 
   useEffect(() => {
-    //console.log("hit community useEffect");
     // if current user id exists then do an  axios call that returns current user selected languages
     if (userId) {
       try {
@@ -64,7 +70,7 @@ export default function Community({loggedIn,userId,dailyLanguages,setDailyLangua
 
       } catch {
         (error) => {
-          //console.log(error);
+          console.log(error);
         };
       }
     }
@@ -99,25 +105,30 @@ export default function Community({loggedIn,userId,dailyLanguages,setDailyLangua
           }
         });
     }
-  }
+  };
 
-    const handleSendMessage = (chosenUser) => {
-      setSelectedUserId(chosenUser);
-      console.log(
-        "selected user id in handleMessage function: ",
-        selectedUserId
-      );
-      axios
-        .post("http://localhost:3001/conversationRoutes/communityJoinRoom", {
-          userId,
-          selectedUserId,
-        })
-        .then((res) => {
-          setRoomToJoin(res.data);
-          socket.emit("join_room", roomToJoin);
-          setChatView(true);
-        });
-    };
+  const handleSendMessage = (chosenUser) => {
+    //console.log("chosen user is", chosenUser);
+    axios
+      .get(`http://localhost:3001/conversationRoutes/${chosenUser}`)
+      .then((response) => {
+        setSelectedProfile(response.data.userData[0]);
+        //console.log("The selected profile is" , response.data.userData[0])
+       
+      });
+
+    setSelectedUserId(chosenUser);
+    axios
+      .post("http://localhost:3001/conversationRoutes/communityJoinRoom", {
+        userId,
+        chosenUser,
+      })
+      .then((res) => {
+        setRoomToJoin(res.data);
+        socket.emit("join_room", roomToJoin);
+        setChatView(true);
+      });
+  };
 
     //   console.log("userData: ", userData);
     //   console.log("userData first name: ", userData.first_name);
@@ -126,17 +137,15 @@ export default function Community({loggedIn,userId,dailyLanguages,setDailyLangua
     //   console.log("display users: ", displayedUsers);
     console.log("whats in recommended users: ", recommendedUsers)
     return (
-      
     
-      <div className="communityPage">
-        {!chatView ? (
-          <div className="communityView">
-            <div className="communityNavbar">
-              <Navbar userId={userId} handleLogout={handleLogout} />
-            </div>
-
-            <div className="recommended-container">
-              <div className="welcome"> Welcome, {userData.first_name}!</div>
+    <div className="communityPage">
+      <div className="communityNavbar">
+        <Navbar userId={userId} handleLogout={handleLogout} />
+      </div>
+      {!chatView ? (
+        <div className="communityView">
+          <div className="recommended-container">
+            <div className="welcome"> Welcome {userData.first_name}</div>
 
               <form onSubmit={searchForm} className="search-form">
                 <input
@@ -166,24 +175,24 @@ export default function Community({loggedIn,userId,dailyLanguages,setDailyLangua
                 </div>
               </div>
 
-              {recommendedUsers && (
-                <div className="recommendedUsers-contianer">
-                  <div className="recommended-word"> Recommended Users </div>
+            {recommendedUsers && (
+              <div className="recommendedUsers-contianer">
+                <div className="recommended-word"> Recommended Users </div>
 
-                  {displayedUsers?.map((recUsers, index) => {
-                    //   console.log("what's in recUser: ", recUsers);
+                {displayedUsers?.map((recUsers, index) => {
+                  //   console.log("what's in recUser: ", recUsers);
 
-                    return (
-                      <div className="cardContaineer" key={index}>
-                        <Grid>
-                          <Grid item>
-                            <Card sx={{ minWidth: 200, minHeight: 150 }}>
-                              <CardContent>
-                                <Avatar
-                                  alt={recUsers.username}
-                                  src={recUsers.profilepicture}
-                                  sx={{ margin: "auto", width: 80, height: 80 }}
-                                />
+                  return (
+                    <div className="cardContaineer" key={index}>
+                      <Grid>
+                        <Grid item>
+                          <Card sx={{ minWidth: 200, minHeight: 150 }}>
+                            <CardContent>
+                              <Avatar
+                                alt={recUsers.username}
+                                src={recUsers.profilepicture}
+                                sx={{ margin: "auto", width: 80, height: 80 }}
+                              />
 
                                 <Typography
                                   sx={{ paddingBottom: 2 }}
@@ -192,71 +201,66 @@ export default function Community({loggedIn,userId,dailyLanguages,setDailyLangua
                                   {recUsers.username}
                                 </Typography>
 
-                                <CardActions
-                                  style={{
-                                    justifyContent: "center",
-                                    padding: 0,
-                                  }}
+                              <CardActions
+                                style={{
+                                  justifyContent: "center",
+                                  padding: 0,
+                                }}
+                              >
+                                <Button
+                                  onClick={() => handleSendMessage(recUsers.id)}
+                                  variant="outlined"
+                                  size="small"
                                 >
-                                  <Button
-                                    onClick={() =>
-                                      handleSendMessage(recUsers.id)
-                                    }
-                                    variant="outlined"
-                                    size="small"
-                                  >
-                                    Message
-                                  </Button>
-
-                                  <br />
-                                </CardActions>
+                                  Message
+                                </Button>
 
                                 <br />
-                                <CardActions
-                                  style={{
-                                    justifyContent: "center",
-                                    padding: 0,
-                                  }}
-                                >
-                                  <Link to={"/userProfile/" + recUsers.id}>
-                                    View Profile
-                                  </Link>
-                                </CardActions>
-                              </CardContent>
-                            </Card>
-                          </Grid>
+                              </CardActions>
+
+                              <br />
+                              <CardActions
+                                style={{
+                                  justifyContent: "center",
+                                  padding: 0,
+                                }}
+                              >
+                                <Link to={"/userProfile/" + recUsers.id}>
+                                  View Profile
+                                </Link>
+                              </CardActions>
+                            </CardContent>
+                          </Card>
                         </Grid>
-                      </div>
-                    );
-                  })}
+                      </Grid>
+                    </div>
+                  );
+                })}
 
-                  <br />
+                <br />
 
-                  <Grid container style={{ justifyContent: "center" }}>
-                    <Grid item style={{ display: "inline-block" }}>
-                      <Button variant="outlined" onClick={loadMoreUsers}>
-                        Load More
-                      </Button>
-                    </Grid>
+                <Grid container style={{ justifyContent: "center" }}>
+                  <Grid item style={{ display: "inline-block" }}>
+                    <Button variant="outlined" onClick={loadMoreUsers}>
+                      Load More
+                    </Button>
                   </Grid>
-                </div>
-              )}
-            </div>
+                </Grid>
+              </div>
+            )}
           </div>
-        ) : (
-          <div>
-            <div className="communityNavbar">
-              <Navbar userId={userId} />
-            </div>
-            <Chat
-              socket={socket}
-              room={roomToJoin}
-              senderId={userId}
-              receiverId={selectedUserId}
-            />
-          </div>
-        )}
-      </div>
-    );
-  };
-
+        </div>
+      ) : (
+        <div>
+          <Chat
+            socket={socket}
+            room={roomToJoin.room.roomconvo}
+            senderId={userId}
+            receiverId={selectedUserId}
+            receiverData={selectedProfile}
+          />
+        </div>
+      )}
+    </div>
+  );
+}

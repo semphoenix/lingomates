@@ -1,90 +1,138 @@
 .conversation {
-    width: 100vw;
-    height: 100vh;
-    background: #fff;
-    color: #212121;
-    font-family: "Open Sans", sans-serif;
-    display: grid;
-    grid-template-rows: 1fr auto; /* Use grid-template-rows to create two rows, where the first row takes all remaining available space and the second row adjusts to its content (the footer) */
-    place-items: center;
-  }
-  body {
-    margin: 0%;
-    padding: 0%;
-  }
-  @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
-  
-  .joinChatContainer {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .joinChatContainer h3 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  .joinChatContainer input {
-    width: 210px;
-    height: 40px;
-    margin: 7px;
-    border: 2px solid #43a047;
-    border-radius: 5px;
-    padding: 5px;
-    font-size: 16px;
-  }
-  
-  .joinChatContainer button {
-    width: 225px;
-    height: 50px;
-    margin: 7px;
-    border: none;
-    border-radius: 5px;
-    padding: 5px;
-    font-size: 16px;
-    background: #43a047;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  .joinChatContainer button:hover {
-    background: #2e7d32;
-  }
-  
-  .hide {
-    opacity: 0 !important;
-  }
-  .conversation .rooms button{
-    display: flex;
-    flex-direction: column;
-    height:100px;
-    width:100%;
-  }
+  width: 10vw;
+  height: 100vh;
+  background: #fff;
+  color: #212121;
+  font-family: "Open Sans", sans-serif;
+  grid-template-rows: 1fr auto; /* Use grid-template-rows to create two rows, where the first row takes all remaining available space and the second row adjusts to its content (the footer) */
+  place-items: center;
+}
+body {
+  margin: 0%;
+  padding: 0%;
+}
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
 
-  ody, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-  }
+.conversation{
+  height: 80vh;
+}
+.convo-chat {
+  display: flex;
+  height:80vh;
+}
+.conversations-page .convo-chat .chat-section {
+  width: 50vw;
+  height: 80vh;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.conversation {
+  /* Set any necessary styles for the .conversation element */
+  width: 50vw;
+}
+
+.rooms {
+  /* Set any necessary styles for the .rooms element */
+  width: 50vw;
+}
+
+/* The button inside the .conversation .rooms element */
+.conversation .rooms button {
+  display: flex;
+  flex-direction: row;
+  align-items: right;
+  font-family: "Nunito";
+  height: max-content;
+  width: 40%;
+  font-size: 20px;
+  font-weight: normal;
+  padding-right: 30px;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+ .custom-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  border: none;
+  background-color: #a6b9c8; 
+  color: #fff; 
+  padding:10px;
+  margin-bottom:10px;
+  border-radius: 5px;
   
-  .conversation {
-    /* Set any necessary styles for the .conversation element */
-    width: 100%;
-  }
-  
-  .rooms {
-    /* Set any necessary styles for the .rooms element */
-    width: 100%;
-  }
-  
-  /* The button inside the .conversation .rooms element */
-  .conversation .rooms button {
-    display: flex;
-    flex-direction: column;
-    height: 100px;
-    width: 100%;
-    font-size: large;
-    font-style:initial;
-    padding:90px;
-  }
+}
+
+
+/* .custom-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  border: none;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  background: rgb(96,9,240);
+  background: linear-gradient(0deg, rgba(96,9,240,1) 0%, rgba(129,5,240,1) 100%);
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  outline: none;
+} */
+.custom-button:before {
+  height: 0%;
+  width: 2px;
+}
+.custom-button:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+
+/* Styles for the avatar container */
+.avatar-container {
+  margin-right: 10px; /* Add some right margin to separate the avatar from the button text */
+}
+
+/* Styles for the avatar image */
+.avatar {
+  width: 40px; /* Set your desired avatar width */
+  height: 40px; /* Set your desired avatar height */
+  border-radius: 50%; /* Make the avatar circular if it's not already */
+}
+.no-chat-selected{
+  display: flex;
+  flex-direction:column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color:rgba(255, 255, 255, 0.647);
+
+}
+.no-chat-selected h1{
+  align-items: center;
+  font-size: 60px;
+}
+.no-chat-selected img{
+width:70vh;
+padding: 10vh;
+
+}
+
