@@ -15,7 +15,8 @@ class User{
             lastName : user.last_name, 
             email : user.email, 
             profilePicture : user.profilePicture,
-            nativeLanguage : user.nativeLanguage
+            nativeLanguage : user.nativeLanguage,
+            description : user.description
             // location : user.location, 
             // date : user.date
         }
@@ -82,10 +83,11 @@ class User{
         last_name,
         username,
         profilePicture,
-        nativeLanguage)
-        VALUES($1, $2, $3, $4, $5, $6, $7)
-        RETURNING id, email, first_name, last_name, username, profilePicture, nativeLanguage
-       `, [lowerCasedEmail, hashedPassword, creds.firstName, creds.lastName, creds.username, creds.profilePicture, creds.nativeLanguage])
+        nativeLanguage,
+        description)
+        VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+        RETURNING id, email, first_name, last_name, username, profilePicture, nativeLanguage, description
+       `, [lowerCasedEmail, hashedPassword, creds.firstName, creds.lastName, creds.username, creds.profilePicture, creds.nativeLanguage, creds.description])
 
         const user = result.rows[0]; 
         return user; 
@@ -101,7 +103,8 @@ class User{
                 last_name,
                 username,
                 profilePicture,
-                nativeLanguage
+                nativeLanguage,
+                description
 
         FROM users WHERE email = $1`,[email.toLowerCase()]
         )
@@ -114,7 +117,7 @@ class User{
         console.log("this is the requested id in fetch by id: ", requestedId)
 
         const result = await db.query(
-            `SELECT username, first_name, last_name, email, username , profilePicture, nativeLanguage 
+            `SELECT username, first_name, last_name, email, username , profilePicture, nativeLanguage, description 
             FROM users WHERE id=$1`, [requestedId]
         )
 

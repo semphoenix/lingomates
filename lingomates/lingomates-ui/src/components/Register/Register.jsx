@@ -30,11 +30,12 @@ export default function Register({setUserId, setLoggedIn}) {
   const [confirmedPassword, setConfirmedPassword] = useState("");
   const [profilePicture, setProfilePicture] = useState("");
   const [nativeLanguage, setNativeLanguage] = useState("");
+  const [description, setDescription] = useState("");
 
   //handleRegistation
-  const  handleRegistration = async (email, password, firstName, lastName, username, profilePicture, nativeLanguage) =>{
+  const  handleRegistration = async (email, password, firstName, lastName, username, profilePicture, nativeLanguage, description) =>{
 
-      let response = await axios.post("http://localhost:3001/auth/register",{email, password, firstName, lastName, username, profilePicture, nativeLanguage})
+      let response = await axios.post("http://localhost:3001/auth/register",{email, password, firstName, lastName, username, profilePicture, nativeLanguage, description})
 
       if(response.status === 201){
         const {token} = response.data
@@ -54,7 +55,7 @@ export default function Register({setUserId, setLoggedIn}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleRegistration(email, password, firstName, lastName, username, profilePicture, nativeLanguage);
+    handleRegistration(email, password, firstName, lastName, username, profilePicture, nativeLanguage, description);
     console.log("firstName value: ", firstName);
   };
 
@@ -179,8 +180,10 @@ export default function Register({setUserId, setLoggedIn}) {
                   fullWidth
                   name="description"
                   label="Enter a short description about yourself"
-                  id="profilepicture"
-                  autoComplete="profile"
+                  id="description"
+                  autoComplete="description"
+                  value = {description}
+                  onChange={(event) => setDescription(event.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
