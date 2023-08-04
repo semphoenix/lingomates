@@ -42,7 +42,7 @@ function Conversation({ userId, handleLogout }) {
   }, [userId]);
 
   return (
-    <div >
+    <div className="conversations-page">
       <Navbar userId={userId} handleLogout={handleLogout} />
       <div className="convo-chat">
         <div className="conversation">

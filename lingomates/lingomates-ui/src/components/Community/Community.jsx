@@ -137,18 +137,7 @@ export default function Community({
     //   console.log("display users: ", displayedUsers);
     console.log("whats in recommended users: ", recommendedUsers)
     return (
-      
     
-      <div className="communityPage">
-        {!chatView ? (
-          <div className="communityView">
-            <div className="communityNavbar">
-              <Navbar userId={userId} handleLogout={handleLogout} />
-            </div>
-
-            <div className="recommended-container">
-              <div className="welcome"> Welcome, {userData.first_name}!</div>
-  return (
     <div className="communityPage">
       <div className="communityNavbar">
         <Navbar userId={userId} handleLogout={handleLogout} />
