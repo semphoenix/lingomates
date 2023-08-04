@@ -94,10 +94,10 @@ function App() {
           <Route path="/register" element={<Register setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError} />} />
           <Route path="/community" element={<Community loggedIn={loggedIn} userId={userId} dailyLanguages={dailyLanguages} setDailyLanguages={setDailyLanguages} setSelectedDailyLanguage={setSelectedDailyLanguage} userData={userData} handleLogout={handleLogout}/>} />
           <Route path="/feed" element={<News selectedDailyLanguage={selectedDailyLanguage} userId={userId} handleLogout={handleLogout} dailyLanguages={dailyLanguages} setSelectedDailyLanguage={setSelectedDailyLanguage}/>} />
-          <Route path="/conversations" element= {<Conversations userId={userId}/>}/>
+          <Route path="/conversations" element= {<Conversations userId={userId} handleLogout={handleLogout}/>}/>
           <Route path="/translate" element= {<Translate/>}/>
 
-          <Route path="/userProfile/:id" element={<Viewprofile />} />
+          <Route path="/userProfile/:id" element={<Viewprofile userId={userId}/>} />
         </Routes>
       </Router>
     </div>
