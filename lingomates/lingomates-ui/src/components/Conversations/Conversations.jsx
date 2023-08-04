@@ -3,6 +3,8 @@ import io from "socket.io-client";
 import { useEffect, useState } from "react";
 import Chat from "../Chat/Chat";
 import axios from "axios";
+import chatImage from "/Users/mkebede/capstone/Lingomates/lingomates/lingomates-ui/src/components/Conversations/Let's-chat-pic.png"
+
 const socket = io.connect("http://localhost:3001");
 import {
   Card,
@@ -40,7 +42,7 @@ function Conversation({ userId, handleLogout }) {
   }, [userId]);
 
   return (
-    <div>
+    <div >
       <Navbar userId={userId} handleLogout={handleLogout} />
       <div className="convo-chat">
         <div className="conversation">
@@ -71,14 +73,18 @@ function Conversation({ userId, handleLogout }) {
         src={ convo.otherProfile.profilepicture}
         sx={{ margin: "auto", width: 90, height: 90 }}
          />
-         </span> {convo.otherProfile.first_name}  </button>
+         </span> {convo.otherProfile.first_name} {" "}{convo.otherProfile.last_name} </button>
                 ))
               : ""}
           </div>
         </div>
         <div className="chat-section">
           {!showChat ? (
-            <h1>please select a chat</h1>
+            <div className="no-chat-selected">
+            <h1>Select Your Lingomate</h1>
+            <img src={chatImage} alt="This is the image of Fitness logo" />
+            </div>
+    
           ) : (
             <div>
               <Chat

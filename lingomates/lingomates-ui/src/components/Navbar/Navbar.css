@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: space-around;
     border-bottom: solid;
+    height:20vh;
    
 }
 
@@ -17,5 +18,9 @@
     background-color: transparent;
     color: black;
     font-size: 24px;
+}
+.navbar{
+    
+    width:100vw;
 }
 

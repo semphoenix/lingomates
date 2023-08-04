@@ -11,15 +11,15 @@ import {
   Button,
   CardActions,
 } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 
-function Chat({ socket, room, senderId, receiverId, receiverData}) {
+function Chat({ socket, room, senderId, receiverId, receiverData }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const [previousMessages, setPreviousMessages] = useState([]);
-  const[currentContact, setCurrentContact]=useState(null)
+  const [currentContact, setCurrentContact] = useState(null);
 
-  console.log("THE RECEIVER FETCHED FROM CHAT", receiverData)
-  
+  console.log("THE RECEIVER FETCHED FROM CHAT", receiverData);
 
   useEffect(() => {
     axios
@@ -29,31 +29,27 @@ function Chat({ socket, room, senderId, receiverId, receiverData}) {
       .then((res) => {
         setPreviousMessages(res.data);
       });
-    
   }, [receiverData]);
 
-  useEffect(()=>{
-    if(receiverData.userD){
-      setCurrentContact(receiverData.userData[0])
+  useEffect(() => {
+    if (receiverData.userD) {
+      setCurrentContact(receiverData.userData[0]);
       axios
-      .post("http://localhost:3001/conversationRoutes/previousMessages", {
-        room,
-      })
-      .then((res) => {
-        setPreviousMessages(res.data);
-      });
+        .post("http://localhost:3001/conversationRoutes/previousMessages", {
+          room,
+        })
+        .then((res) => {
+          setPreviousMessages(res.data);
+        });
     }
-    
-
-  }
-  ,[receiverData])
+  }, [receiverData]);
 
   const handleTranslate = async (text) => {
     //console.log('in handleTranslate');
 
     try {
       const apiKey = import.meta.env.VITE_TRANSLATE_API;
-      const targetLanguage = 'en';  //Target code for english
+      const targetLanguage = "en"; //Target code for english
 
       const response = await axios.post(
         `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`,
@@ -126,12 +122,14 @@ function Chat({ socket, room, senderId, receiverId, receiverData}) {
     <div className="chatContainer">
       <div className="chat-window">
         <div className="chat-header">
-        <Avatar
-        alt={receiverData.username}
-        src={ receiverData.profilepicture}
-        sx={{ margin: "auto", width: 90, height: 90 }}
-         />
-        <p>{receiverData.first_name}</p>
+          <Avatar
+            alt={receiverData.username}
+            src={receiverData.profilepicture}
+            sx={{ margin: "auto", width: 90, height: 90 }}
+          />
+          <p>
+            {receiverData.first_name} {receiverData.last_name}
+          </p>
         </div>
 
         <div className="chat-body">
@@ -145,12 +143,17 @@ function Chat({ socket, room, senderId, receiverId, receiverData}) {
                       id={
                         senderId === previousMessage.senderid ? "you" : "other"
                       }
-                    > 
-                    {/* <div className={`tooltip ${senderId === previousMessage.senderid ? "tooltip-right" : "tooltip-left"}`}> */}
-                      <div className="message-translate" data-tooltip={previousMessage.translatedtext}>
-                        <div className="message-content" >
-                          <p className="textMessage" >{previousMessage.messagetext}</p>
-                        </div>                       
+                    >
+                      {/* <div className={`tooltip ${senderId === previousMessage.senderid ? "tooltip-right" : "tooltip-left"}`}> */}
+                      <div
+                        className="message-translate"
+                        data-tooltip={previousMessage.translatedtext}
+                      >
+                        <div className="message-content">
+                          <p className="textMessage">
+                            {previousMessage.messagetext}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   );
@@ -164,10 +167,13 @@ function Chat({ socket, room, senderId, receiverId, receiverData}) {
                   id={senderId === messageContent.sender ? "you" : "other"}
                 >
                   <div>
-                  <div className="message-translate" data-tooltip={messageContent.translatedText}>
-                    <div className="message-content">
-                      <p>{messageContent.message}</p>
-                    </div>
+                    <div
+                      className="message-translate"
+                      data-tooltip={messageContent.translatedText}
+                    >
+                      <div className="message-content">
+                        <p>{messageContent.message}</p>
+                      </div>
                     </div>
 
                     <div className="message-meta">
@@ -192,7 +198,13 @@ function Chat({ socket, room, senderId, receiverId, receiverData}) {
               event.key === "Enter" && sendMessage();
             }}
           />
-          <button onClick={sendMessage}>&#9658;</button>
+          <Button
+            onClick={sendMessage}
+            variant="contained"
+            endIcon={<SendIcon />}
+          >
+            Send
+          </Button>
         </div>
       </div>
     </div>

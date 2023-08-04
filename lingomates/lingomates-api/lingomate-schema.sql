@@ -53,6 +53,7 @@ CREATE TABLE directMessage(
     senderId INTEGER NOT NULL,
     receiverId INTEGER NOT NULL,
     messageText TEXT NOT NULL, 
+    translatedText TEXT NOT NULL,
     messaged_at TIMESTAMP DEFAULT NOW(),
     FOREIGN KEY (room) REFERENCES conversation(roomConvo),
     FOREIGN KEY (senderId) REFERENCES users(id),

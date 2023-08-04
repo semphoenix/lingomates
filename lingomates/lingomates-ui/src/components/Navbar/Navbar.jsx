@@ -38,18 +38,10 @@ export default function Navbar({userId, handleLogout}){
     
     return(
 
-        <>       
+        <div className="navbar">       
             <AppBar className={classes.header} position="static">
                 <Toolbar style={{backgroundColor:"brown", minHeight: 120}} >
                     <Grid container spacing={10}>
-                        
-
-                            {/* <Grid item xs={3}>
-                                <Link to="/home">
-                                    <Button variant="outlined" style={{ color: 'black', borderColor:'white'}}>Logo</Button>
-                                </Link>
-                            </Grid> */}
-                                
                             <Grid item xs={2} style={{margin:'auto', borderWidth:5}}>
                                 <Link to="/community">
                                     <Button size='large' style={{ color: 'white', borderColor:'white'}}>Logo</Button>
@@ -93,7 +85,7 @@ export default function Navbar({userId, handleLogout}){
                 </Toolbar>
             </AppBar>
 
-        </>
+        </div>
         
     )
 }
