@@ -9,6 +9,12 @@ h2 {
  font-size: 40px;
 }
 
+.about-us1 p {
+  color: white;
+}
+.about-us1 h2 {
+  color: white;
+}
 .opacity {
   /* position: absolute; */
   top: 0;
@@ -68,7 +74,8 @@ p {
 }
 
 .mates {
-  color: brown
+  color: brown;
+  text-shadow: 1px 1px 2px black;
 }
 
 @keyframes change{
@@ -105,14 +112,6 @@ p {
   background-repeat: no-repeat;
 }
 
-.cardContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
-  /* justify-items: center;  */
-  align-items: center;
-}
 
 .facts, .fact2 {
   flex: 1;
@@ -125,12 +124,21 @@ p {
 
 .about-us {
   /* background-color: tan; */
-  background-color: white;
+  /* background-color: white; */
   display: flex;
   flex-direction: row;
-  margin-top: 2rem;
+  background-color: #FFFCF4;
   padding: 200px;
 }
+
+.about-us1 {
+  /* background-color: tan; */
+  background-color: brown;
+  display: flex;
+  flex-direction: row;
+  padding: 100px;
+}
+
 
 
 .white-back {
@@ -157,9 +165,16 @@ p {
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   padding: 2rem;
+  justify-items: center;
+  align-items: center;
+}
+.footer {
+  background-color: brown;
 }
 
+
 .myButton {
+  padding-right: 20px;
 	background-color:brown;
 	border-radius:28px;
 	border:1px solid brown;

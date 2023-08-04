@@ -43,8 +43,7 @@
 
 
 .myButton2 {
-    margin-top: 100px;
-    margin-bottom: 20px;
+  margin-top: 10px;
 	background-color:brown;
 	border-radius:28px;
 	border:1px solid brown;
@@ -73,8 +72,9 @@ height: 250px;
 width: 350px;
 align-items: center;
 justify-content: center;
-border: 2px solid #ccc; 
-border-radius: 8px;
+/* border: 2px solid #ccc; 
+border-radius: 8px; */
+background-color: transparent;
 padding: 10px;
 cursor: pointer;
 /* Add animation properties for the float-in effect */

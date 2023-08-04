@@ -28,7 +28,7 @@ export default function Hero() {
     <div className="opacity">
       <div className="background-img">
         <div className="white-back">
-          <h1 className="title">Lingo<span className="mates">mates👋🏽</span></h1>
+          <h1 className="title">Lingo<span className="mates">mates</span></h1>
           <p className="para">A fun and sociable way to learn a new language.</p>
           <Link to="/register">
             <button className="myButton">Get Started</button>
@@ -40,9 +40,9 @@ export default function Hero() {
       </div>
       </div>
 
-      <div className="about-us">
+      <div className="about-us1">
         <div className="about-us-left">
-          <h2>Who Are We?💭</h2>
+          <h2>Who Are We?</h2>
           <p>
             At Lingomates, we are a team of language enthusiasts who believe
             in the power of human connection and social learning. Our mission
@@ -74,13 +74,13 @@ export default function Hero() {
               <CardMedia
                 component="img"
                 height="200"
-                image="https://www.altalang.com/wp-content/uploads/2022/10/portrait-of-enthusiastic-business-people-in-circle-picture-id513439341.jpg"                alt="What's the Point"
+                image="https://media.istockphoto.com/id/1368965646/photo/multi-ethnic-guys-and-girls-taking-selfie-outdoors-with-backlight-happy-life-style-friendship.jpg?s=612x612&w=0&k=20&c=qYST1TAGoQGV_QnB_vMd4E8jdaQUUo95Sa2JaKSl_-4="                alt="What's the Point"
               />
             </CardActionArea>
           </Card>
         </div>
         <div className="about-us-right">
-          <h2>What Is the Point?☝🏽</h2>
+          <h2>What Is the Point?</h2>
           <p>
             Many language learning apps like Duolingo are excellent for
             individual learning, but they lack social interaction. This can be
@@ -98,9 +98,9 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="about-us">
+      <div className="about-us1">
         <div className="about-us-left">
-          <h2>Why Choose Lingomates?🙈</h2>
+          <h2>Why Choose Lingomates?</h2>
           <p>
             Unlike other language learning apps, Lingomates focuses on the
             power of human interaction. Our platform allows you to connect
@@ -131,7 +131,7 @@ export default function Hero() {
       <div className="cardContainer">
         {/* <h2>Did you know...</h2> */}
         <div className="facts">
-          <Card sx={{ maxWidth: 345, backgroundColor: "white" }}>
+          <Card sx={{ maxWidth: 345, backgroundColor: "brown" }}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -140,10 +140,10 @@ export default function Hero() {
                 alt="Language Learning"
               />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div" fontFamily={'Poppins'}>
+                <Typography gutterBottom variant="h5" component="div" fontFamily={'Poppins'}  color={"white"}>
                   Practicing Speaking Increases Fluency
                 </Typography>
-                <Typography variant="body2" color="text.secondary" fontFamily={'Poppins'}>
+                <Typography variant="body2" color="white" fontFamily={'Poppins'}>
                   Research has shown that active speaking and regular practice in a language play a crucial role in achieving fluency. Engaging in conversations, whether with native speakers or other language learners, helps reinforce vocabulary, improve pronunciation, and develop natural language usage. Regular speaking practice can significantly boost language proficiency and make learners more confident in using the language in various contexts.
                 </Typography>
               </CardContent>
@@ -151,7 +151,7 @@ export default function Hero() {
           </Card>
         </div>
         <div className="fact2">
-          <Card sx={{ maxWidth: 345,  backgroundColor: "white" }}>
+          <Card sx={{ maxWidth: 345,  backgroundColor: "brown" }}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -160,22 +160,25 @@ export default function Hero() {
                 alt="Language Learners Interaction"
               />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div" fontFamily={'Poppins'}>
+                <Typography gutterBottom variant="h5" component="div" fontFamily={'Poppins'} color={"white"}>
                   Multilingualism and Brain Health
                 </Typography>
-                <Typography variant="body2" color="text.secondary" fontFamily={'Poppins'}>
+                <Typography variant="body2" color="white" fontFamily={'Poppins'}>
                   Besides the obvious benefits of communication and cultural understanding, being multilingual can have positive effects on brain health. Studies have suggested that speaking multiple languages may delay the onset of dementia and Alzheimer's disease in older adults. The constant exercise of the brain while switching between languages seems to contribute to improved cognitive function, memory, and problem-solving abilities, offering long-term benefits beyond language skills.
                 </Typography>
               </CardContent>
             </CardActionArea>
           </Card>
         </div>
-        <Grid
+
+      </div>
+      <div className="footer">
+      <Grid
           container
           spacing={2}
           justifyContent="center"
           alignItems="center"
-          backgroundColor="white"
+          backgroundColor="brown"
         >
           {languageData.map((language, index) => (
             <Grid item key={index}>
@@ -185,10 +188,10 @@ export default function Hero() {
                 sx={{ width: 50, height: 50 }}
               />
               <p className="flag-font">{language.name}</p>
-            </Grid>
+            </Grid>           
           ))}
         </Grid>
-      </div>
+        </div>
     </div>
   );
 }
