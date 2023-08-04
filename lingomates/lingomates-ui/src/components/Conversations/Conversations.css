@@ -1,5 +1,5 @@
 .conversation {
-    width: 100vw;
+    width: 10vw;
     height: 100vh;
     background: #fff;
     color: #212121;
@@ -14,54 +14,23 @@
   }
   @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
   
-  .joinChatContainer {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
   
-  .joinChatContainer h3 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+  .convo-chat{
+    display:flex;
+    
   }
-  .joinChatContainer input {
-    width: 210px;
-    height: 40px;
-    margin: 7px;
-    border: 2px solid #43a047;
-    border-radius: 5px;
-    padding: 5px;
-    font-size: 16px;
-  }
-  
-  .joinChatContainer button {
-    width: 225px;
-    height: 50px;
-    margin: 7px;
-    border: none;
-    border-radius: 5px;
-    padding: 5px;
-    font-size: 16px;
-    background: #43a047;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  .joinChatContainer button:hover {
-    background: #2e7d32;
-  }
-  
-  .hide {
-    opacity: 0 !important;
+  .chat-section{
+    width:50vw;
+    height:100vh;
   }
   .conversation .rooms button{
     display: flex;
     flex-direction: column;
     height:100px;
-    width:100%;
+    width:50vw;
   }
 
-  ody, html {
+  body, html {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -70,12 +39,12 @@
   
   .conversation {
     /* Set any necessary styles for the .conversation element */
-    width: 100%;
+    width:50vw;
   }
   
   .rooms {
     /* Set any necessary styles for the .rooms element */
-    width: 100%;
+    width: 50vw;
   }
   
   /* The button inside the .conversation .rooms element */

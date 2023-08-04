@@ -11,7 +11,9 @@ class Conversations{
             INNER JOIN directMessage dm ON c.roomConvo = dm.room
             WHERE dm.receiverId=$1 OR dm.senderId=$1;`, [user1]
         );
+
         const allChats=result.rows;
+       
         return allChats;
 
     } 
