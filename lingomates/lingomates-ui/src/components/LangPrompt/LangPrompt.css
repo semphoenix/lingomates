@@ -8,6 +8,7 @@
 
 .question {
     justify-content: center;
+    color: white
 }
 
 .langbutton.selected {
@@ -19,13 +20,17 @@
     font-family: "Nunito";
     padding: 20px;
     background-image: url("");
-    background-color: rgba(143, 37, 37, 0.783);
-
+    background-color: #001427;
 }
 
 
 .content {
     margin-top: 100px;
+    height: 100vh;
+}
+
+.langprompt p {
+    color : white
 }
   
 .grid {

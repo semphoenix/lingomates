@@ -110,7 +110,7 @@ button {
 }
    
 .bg-transparent {
-    background-color: transparent;
+    background-color: white;
 }
    
 /* .border-none {
@@ -154,7 +154,7 @@ button, input, optgroup, select, textarea {
   }
   
   .bg-transparent {
-    background-color: transparent;
+    background-color: white;
   }
   
   .overflow-x-hidden {

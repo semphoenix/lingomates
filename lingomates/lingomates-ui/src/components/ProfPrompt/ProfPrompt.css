@@ -15,7 +15,7 @@ animation: floatInAnimation 0.5s ease forwards;
 opacity: 0; /* Start with opacity set to 0, so the buttons are hidden initially */
 }
 
-.selectWrapper{
+.selectWrapper {
     margin-top: 20px;
     border-radius:36px;
     display:inline-block;
@@ -23,7 +23,7 @@ opacity: 0; /* Start with opacity set to 0, so the buttons are hidden initially 
     background:#cccccc;
     border:1px solid #cccccc;
   }
-  .selectBox{
+  .selectBox {
     width:240px;
     text-align: center;
     height:40px;
@@ -37,13 +37,14 @@ opacity: 0; /* Start with opacity set to 0, so the buttons are hidden initially 
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Set the height to 100vh to center vertically */
+    height: 100%;
     text-align: center;
     font-family: "Nunito";
     padding: 20px;
     background-image: url("");
-    background-color: rgba(143, 37, 37, 0.783);
+    background-color: #001427
 }
+
 
 .lang-box {
     display: flex;

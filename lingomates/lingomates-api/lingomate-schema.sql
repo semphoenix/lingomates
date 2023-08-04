@@ -6,7 +6,8 @@ CREATE TABLE users(
     username       TEXT NOT NULL, 
     password       TEXT NOT NULL,
     profilePicture TEXT,
-    nativeLanguage TEXT NOT NULL
+    nativeLanguage TEXT NOT NULL,
+    description    TEXT
 );
 
 CREATE TABLE lingua(
