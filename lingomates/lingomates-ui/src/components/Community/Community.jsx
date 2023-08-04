@@ -38,7 +38,7 @@ export default function Community({
   const [chatView, setChatView] = useState(false);
   const [roomToJoin, setRoomToJoin] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(null);
-  const [selectedProfile, setSelectedProfie] = useState(null);
+  const [selectedProfile, setSelectedProfile] = useState(null);
 
   //console.log("userId value in community: ", userId);
   // console.log("test datas data in community: ", testData)
@@ -110,11 +110,12 @@ export default function Community({
   };
 
   const handleSendMessage = (chosenUser) => {
-    console.log("chosen user is", chosenUser);
+    //console.log("chosen user is", chosenUser);
     axios
       .get(`http://localhost:3001/conversationRoutes/${chosenUser}`)
       .then((response) => {
-        setSelectedProfie(response.data);
+        setSelectedProfile(response.data.userData[0]);
+        //console.log("The selected profile is" , response.data.userData[0])
        
       });
 

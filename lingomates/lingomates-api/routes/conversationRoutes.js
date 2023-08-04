@@ -10,6 +10,7 @@ router.get("/userConversations/:id",async function(request, response, next){
     const userId=request.params.id;
     
     console.log("user Id is", userId)
+    
     try{
         const userData=await Conversations.getAllChats(userId)
         // This array is going to be userData without the duplicate convoId chats

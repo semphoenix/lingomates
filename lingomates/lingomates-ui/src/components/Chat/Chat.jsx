@@ -127,11 +127,11 @@ function Chat({ socket, room, senderId, receiverId, receiverData}) {
       <div className="chat-window">
         <div className="chat-header">
         <Avatar
-        alt={currentContact ? currentContact.username : ""}
-        src={currentContact ? currentContact.profilepicture : ""}
-        sx={{ margin: "auto", width: 50, height: 50 }}
+        alt={receiverData.username}
+        src={ receiverData.profilepicture}
+        sx={{ margin: "auto", width: 90, height: 90 }}
          />
-        <p>{currentContact ? currentContact.first_name : ""}</p>
+        <p>{receiverData.first_name}</p>
         </div>
 
         <div className="chat-body">

@@ -4,6 +4,15 @@ import { useEffect, useState } from "react";
 import Chat from "../Chat/Chat";
 import axios from "axios";
 const socket = io.connect("http://localhost:3001");
+import {
+  Card,
+  CardContent,
+  Typography,
+  Avatar,
+  Grid,
+  Button,
+  CardActions,
+} from "@mui/material";
 
 import Navbar from "../Navbar/Navbar";
 
@@ -38,7 +47,7 @@ function Conversation({ userId, handleLogout }) {
           <div className="rooms">
             {userConvos
               ? userConvos.userData.map((convo, index) => (
-                  <button
+                  <button className="custom-button"
                     key={index}
                     onClick={() => {
                       let roomObject = {
@@ -56,8 +65,13 @@ function Conversation({ userId, handleLogout }) {
                       setRoomData(roomObject);
                     }}
                   >
-                    Room with {convo.otherProfile.first_name} 
-                  </button>
+                    <span className="avatar-container">
+                     <Avatar
+        alt={convo.otherProfile.username}
+        src={ convo.otherProfile.profilepicture}
+        sx={{ margin: "auto", width: 90, height: 90 }}
+         />
+         </span> {convo.otherProfile.first_name}  </button>
                 ))
               : ""}
           </div>

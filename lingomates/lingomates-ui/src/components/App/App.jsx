@@ -97,7 +97,7 @@ function App() {
           <Route path="/conversations" element= {<Conversations userId={userId} handleLogout={handleLogout}/>}/>
           <Route path="/translate" element= {<Translate/>}/>
 
-          <Route path="/userProfile/:id" element={<Viewprofile />} />
+          <Route path="/userProfile/:id" element={<Viewprofile userId={userId}/>} />
         </Routes>
       </Router>
     </div>
