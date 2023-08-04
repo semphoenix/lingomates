@@ -32,12 +32,12 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full h-auto bg-transparent overflow-x-hidden fixed z-50 top-0 left-0">
+    <header className="header w-full h-auto bg-transparent overflow-x-hidden fixed z-50 top-0 left-0">
       <Slide direction="down">
     
           <nav className={`w-full md:h-24 h-20 ${navBarColor ? "bg-white" : "bg-transparent"} lg:px-24 md:px-12 px-8 flex justify-between items-center`}>
             <Link to ="/" className="link-button">
-            <h1 className='poppin'>Lingo<span className='mates'>mates🐒</span></h1>
+            <h1 className='poppin'>Lingo<span className='matesHead'>mates</span></h1>
             </Link>
             <div className="lg:flex hidden items-center gap-20">
             <ul className="flex items-center justify-center gap-6">

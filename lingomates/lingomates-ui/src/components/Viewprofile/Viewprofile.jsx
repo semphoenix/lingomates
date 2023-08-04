@@ -52,7 +52,7 @@ export default function Viewprofile({userId}) {
 
    console.log("selectedUser set to: ", selectedUser)
    console.log("selectedUser langas:",  selectedUserLangs)
-
+   
   return (
     <div className='profileview'>
     {!viewChat ? (

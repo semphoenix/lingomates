@@ -36,7 +36,14 @@
 .welcome {
   margin-top: 100px;
   text-align: center;
-  font-size: 32px;
+  font-size: 40px;
+  font-family: "Nunito";
+
+.welcome{
+    margin-top: 100px;
+    text-align: center;
+    font-size: 40px;
+    font-family: "Nunito";
 }
 
 .search-form {
@@ -62,11 +69,30 @@ Community .span {
   flex-direction: row;
 }
 
-.recommended-word {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+
+.btn-flag-image {
+    width: 300px;
+    height: 215px;
+    margin-top: 30px;
+    margin-right: 20px;
+    background-size: cover;
+    color: black;
+    font-size: 20pt;
+    font-family: "Nunito";
+    text-shadow: 1px 1px 1px white;
+}
+
+.btn-flag-image:hover {
+    text-decoration: underline;
+}
+
+
+.recommended-word{
+    width:100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
 }
 
 .search-form {

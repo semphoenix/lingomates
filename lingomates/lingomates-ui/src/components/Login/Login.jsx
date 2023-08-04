@@ -75,9 +75,10 @@ export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
 
   
   return (
+    <div className="login">
     <ThemeProvider theme={defaultTheme}>
           <Header/>
-      <Grid container component="main" sx={{ height: '100vh' }}>
+      <Grid container component="main" sx={{ height: '100vh'}}>
         <CssBaseline />
         <Grid
           item
@@ -93,7 +94,7 @@ export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
             backgroundPosition: 'center',
           }}
         />
-        <Grid item xs={12} sm={80} md={5} component={Paper} elevation={8} square>
+        <Grid item xs={12} sm={80} md={5} component={Paper} elevation={8} square style={{}}>
           <Box
             sx={{
               my: 50,
@@ -105,10 +106,10 @@ export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
           >
             {/* <Avatar sx={{ m: 1, bgcolor: 'red' }}> */}
             <Typography component="h1" variant="h5" fontFamily={"Nunito"} fontWeight={"bold"}>
-              🐵
+              
               </Typography>
             {/* </Avatar> */}
-            <Typography component="h1" variant="h5" fontFamily={"Nunito"} fontWeight={"bold"}>
+            <Typography component="h1" variant="h5" fontFamily={"Nunito"} fontWeight={"bold"} style={{color: ""}}>
               Sign in
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
@@ -122,6 +123,7 @@ export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
                 autoComplete="email"
                 autoFocus
                 onChange={(e) => setEmail(e.target.value)}
+                style={{backgroundColor:"", borderStyle: "solid", borderRadius: 5, borderColor:"white"}}
               />
               <TextField
                 margin="normal"
@@ -133,6 +135,7 @@ export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
                 id="password"
                 autoComplete="current-password"
                 onChange={(e) => setPassword(e.target.value)}
+                style={{backgroundColor:"",  borderStyle: "solid", borderRadius: 5, borderColor:"white"}}
               />
               <Button
                 type="submit"
@@ -142,6 +145,7 @@ export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
               >
                 Sign In
               </Button>
+
               <Grid container>
                 <Grid item xs>
                 </Grid>
@@ -157,5 +161,6 @@ export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
         </Grid>
       </Grid>
     </ThemeProvider>
+    </div>
   );
 }

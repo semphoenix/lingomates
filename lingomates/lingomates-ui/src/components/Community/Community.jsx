@@ -32,6 +32,7 @@ export default function Community({
 }) {
  
   const [recommendedUsers, setRecommendedUsers] = useState(null);
+  const [allUsers, setAllUsers] = useState([])
   const [searchUsername, setSearchUsername] = useState("");
   const [loadNumber, setLoadNumber] = useState(1);
   const [displayedUsers, setDisplayedUsers] = useState([]);
@@ -62,15 +63,11 @@ export default function Community({
     // if current user id exists then do an  axios call that returns current user selected languages
     if (userId) {
       try {
-        axios
-          .get(`http://localhost:3001/community/linguas/${userId}`)
-          .then((languages) => {
-            // console.log(
-            //   "what's in user selected language(s): ",
-            //   languages.data.lingasData
-            // );
+        axios.get(`http://localhost:3001/community/linguas/${userId}`).then((languages) => {
             setDailyLanguages(languages.data.lingasData);
           });
+
+
       } catch {
         (error) => {
           console.log(error);
@@ -87,6 +84,7 @@ export default function Community({
 
   const handleSelectOnChange = async (event) => {
     const languageId = event.target.value;
+    console.log(`the language value is ${languageId}`)
 
     if (languageId !== "Select a language") {
       axios
@@ -132,6 +130,24 @@ export default function Community({
       });
   };
 
+    //   console.log("userData: ", userData);
+    //   console.log("userData first name: ", userData.first_name);
+    //   console.log("searched username: ", searchUsername);
+    //   console.log("current users' selected language: ", dailyLanguages);
+    //   console.log("display users: ", displayedUsers);
+    console.log("whats in recommended users: ", recommendedUsers)
+    return (
+      
+    
+      <div className="communityPage">
+        {!chatView ? (
+          <div className="communityView">
+            <div className="communityNavbar">
+              <Navbar userId={userId} handleLogout={handleLogout} />
+            </div>
+
+            <div className="recommended-container">
+              <div className="welcome"> Welcome, {userData.first_name}!</div>
   return (
     <div className="communityPage">
       <div className="communityNavbar">
@@ -142,30 +158,33 @@ export default function Community({
           <div className="recommended-container">
             <div className="welcome"> Welcome {userData.first_name}</div>
 
-            <form onSubmit={searchForm} className="search-form">
-              <input
-                className="search-input"
-                type="text"
-                name="search"
-                placeholder="Search users by username"
-                value={searchUsername}
-                onChange={(event) => setSearchUsername(event.target.value)}
-              />
-            </form>
+              <form onSubmit={searchForm} className="search-form">
+                <input
+                  className="search-input"
+                  type="text"
+                  name="search"
+                  placeholder="Search Users"
+                  onChange={(event) => setSearchUsername(event.target.value)}
+                />
+              </form>
 
-            <div className="select-lang">
-              <label className="selected-lang-text">Select Language </label>
-              <select className="select-btn" onChange={handleSelectOnChange}>
-                <option value={null}>Select a language</option>
-
-                {/* Map over dailyLanguages and create an option for each language  */}
-                {dailyLanguages?.map((language) => (
-                  <option key={language.linguaid} value={language.linguaid}>
-                    {language.linguaname}
-                  </option>
-                ))}
-              </select>
-            </div>
+              <div className="select-lang">
+                <label className="selected-lang-text">Click on Language to Show Recommended Users</label>
+                <div>
+                {dailyLanguages?.map((language) => {
+                    let imageName = `${language.linguaname.toLowerCase()}`
+                    let imageSrc = `../../src/assets/${imageName}.png`
+                    return <button className="btn-flag-image" 
+                        style={{backgroundImage: `url(${imageSrc})` }} 
+                        value={language.linguaid} 
+                        onClick={handleSelectOnChange} 
+                        key={language.linguaname}  
+                        alt={language.linguaname}>{language.linguaname}</button>
+                }
+                    
+                  )}                   
+                </div>
+              </div>
 
             {recommendedUsers && (
               <div className="recommendedUsers-contianer">
@@ -186,12 +205,12 @@ export default function Community({
                                 sx={{ margin: "auto", width: 80, height: 80 }}
                               />
 
-                              <Typography
-                                sx={{ paddingBottom: 2 }}
-                                align="center"
-                              >
-                                {recUsers.first_name}
-                              </Typography>
+                                <Typography
+                                  sx={{ paddingBottom: 2 }}
+                                  align="center"
+                                >
+                                  {recUsers.username}
+                                </Typography>
 
                               <CardActions
                                 style={{
