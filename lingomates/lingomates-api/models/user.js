@@ -22,7 +22,7 @@ class User{
         }
     }
 
-    //authentification function-authenticates givensss user credentials
+     //authentification function-authenticates givensss user credentials
     static async authenticate(creds){
         const {email, password} = creds
         console.log("authenticate info:", creds)
@@ -45,13 +45,19 @@ class User{
             //compares user given password to hashed password in db
             const isValid = await bcrypt.compare(password, user.password)
             console.log("isValid?", isValid)
+
             if(isValid == true){
                 return User.createPublicUser(user) //returns desired user information to frontend
+
+            }else{
+                //if user (that exists) password is not correct then throw this error
+                throw new UnauthorizedError("invalid username or password")
             }
         }else{
             //throw an error here
           console.log("user doesn't exist")
             throw new UnauthorizedError("invalid username or password")
+            // return new UnauthorizedError("invalid username or password")
         }
     }
 
@@ -67,12 +73,15 @@ class User{
         if (creds.email.indexOf("@")<=0){
             throw new BadRequestError("invalid email.")
         }
+
+       const hashedPassword =  await bcrypt.hash(creds.password,BCRYPT_WORK_FACTOR)
+       const lowerCasedEmail=creds.email.toLowerCase()
        const existingUser=await User.fetchUserByEmail(creds.email)
+
        if (existingUser){
         throw new BadRequestError(`Duplicate email: ${creds.email} `)
        }
-       const hashedPassword=await bcrypt.hash(creds.password,BCRYPT_WORK_FACTOR)
-       const lowerCasedEmail=creds.email.toLowerCase()
+      
 
        //adding user information into the database
        const result =  await db.query(`
@@ -95,21 +104,24 @@ class User{
 
     static async fetchUserByEmail(email){
 
-        const result = await db.query(
-        `SELECT id,
-                email,
-                password,
-                first_name,
-                last_name,
-                username,
-                profilePicture,
-                nativeLanguage,
-                description
-
-        FROM users WHERE email = $1`,[email.toLowerCase()]
-        )
-        const user = result.rows[0]
-        return user; 
+                console.log("inside if statement to check email")
+                const result = await db.query(
+                    `SELECT id,
+                            email,
+                            password,
+                            first_name,
+                            last_name,
+                            username,
+                            profilePicture,
+                            nativeLanguage,
+                            description
+            
+                    FROM users WHERE email = $1`,[email.toLowerCase()]
+                    )
+    
+                const user = result.rows[0]
+                return user; 
+                
     }
 
     static async fetchUserById(requestedId){
