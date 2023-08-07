@@ -97,7 +97,8 @@ function App() {
           <Route path="/feed" element={<News selectedDailyLanguage={selectedDailyLanguage} userId={userId} handleLogout={handleLogout} dailyLanguages={dailyLanguages} setSelectedDailyLanguage={setSelectedDailyLanguage} loggedIn={loggedIn}/>} />
           <Route path="/conversations" element= {<Conversations userId={userId} handleLogout={handleLogout} loggedIn={loggedIn}/>}/>
           <Route path="/translate" element= {<Translate/>}/>
-          <Route path="/userProfile/:id" element={<Viewprofile userId={userId}/>} />
+          <Route path="/userProfile/:id" element={<Viewprofile userId={userId} loggedIn={loggedIn} handleLogout={handleLogout}/>} />
+          <Route path="chats" element={<Chat />} />
         </Routes>
       </Router>
     </div>

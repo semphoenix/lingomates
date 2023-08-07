@@ -10,7 +10,8 @@ const socket = io.connect("http://localhost:3001")
 import Chat from "../Chat/Chat";
 import Navbar from '../Navbar/Navbar';
 
-export default function Viewprofile({userId}) {
+
+export default function Viewprofile({userId, loggedIn, handleLogout}) {
 
   const [selectedUser, setSelectedUser] = useState({})
   const [selectedUserLangs,setSelectedUserLangs] = useState([])
@@ -56,10 +57,12 @@ export default function Viewprofile({userId}) {
    
   return (
     <div className='profileview'>
-    <Navbar userId={userId}/>
+     <Navbar userId={userId} handleLogout={handleLogout} />
+    {!loggedIn? (<h1 className="please-login-header">Please log in to see this page</h1>): (<div className='profileview'>
     {!viewChat ? (
       /*  paddingTop:10-use for avatar/  margin:'auto' */
       /* sx={{maxWidth:600, minHeight: 600}} */
+
       <Grid container justifyContent="center" alignItems="center" sx={{minHeight:"100vh"}}>
           <Grid item sx={{width: 450}}>
               <Card sx={{minHeight: 600}}>
@@ -76,7 +79,6 @@ export default function Viewprofile({userId}) {
                 <CardContent>
                     <Typography align="center" sx={{paddingTop:2, fontSize:'2.5rem'}}>{selectedUser.first_name}<span className="last-name">{selectedUser.last_name}</span></Typography>
                     <Typography align="center" sx={{paddingTop:2, fontSize:'1.5rem', borderBottom: 1, paddingBottom:"10px"}}>Native Language: {selectedUser.nativelanguage}</Typography>
-                    <Typography align="center" sx={{paddingTop:2, fontSize:'1.5rem', borderBottom: 1, paddingBottom:"10px"}}>About Me: {selectedUser.description}</Typography>
                     {selectedUserLangs?.map((selectedLangs)=>{
                         return(<Typography align="center" sx={{paddingTop: 2.5, fontSize:'1.5rem'}}>{selectedLangs.linguaname}<span className="last-name">{selectedLangs.proficiencylevel}</span></Typography>)
                     })}
@@ -100,8 +102,12 @@ export default function Viewprofile({userId}) {
         receiverData={selectedUser}  />
       )
   }
-    </div>
+    </div>)}
+   
+
     
+    </>
+
   )
 }
 
