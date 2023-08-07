@@ -68,6 +68,7 @@ function Conversation({ userId, handleLogout }) {
                       setReceiverData(convo.otherProfile)
                       setShowChat(true);
                       setRoomData(roomObject);
+                      
                     }}
                   >
                     <span className="avatar-container">
@@ -92,6 +93,7 @@ function Conversation({ userId, handleLogout }) {
           ) : (
             <div>
               <Chat
+                key={roomData ? roomData.room : null}
                 socket={socket}
                 room={roomData.room}
                 senderId={userId}

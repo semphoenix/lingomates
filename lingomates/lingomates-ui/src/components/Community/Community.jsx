@@ -241,7 +241,7 @@ export default function Community({
 
                 <Grid container style={{ justifyContent: "center" }}>
                   <Grid item style={{ display: "inline-block" }}>
-                    <Button variant="outlined" onClick={loadMoreUsers}>
+                    <Button className="loadMore" variant="outlined" onClick={loadMoreUsers}>
                       Load More
                     </Button>
                   </Grid>

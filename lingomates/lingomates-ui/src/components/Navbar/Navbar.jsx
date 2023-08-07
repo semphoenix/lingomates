@@ -45,7 +45,7 @@ export default function Navbar({userId, handleLogout}){
                     <Grid container spacing={10}>
                             <Grid item xs={2} style={{margin:'auto', borderWidth:5}}>
                                 <Link to="/community">
-                                    <Button size='large' style={{ color: 'white', borderColor:'white'}}>Logo</Button>
+                                    <Button size='large' style={{ color: 'white', borderColor:'white'}}>Community</Button>
                                 </Link> 
                             </Grid>
                                 
