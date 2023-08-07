@@ -52,7 +52,7 @@ export default function Community({
       `http://localhost:3001/community/viewUser/${searchUsername}`
     );
 
-    //console.log("what's in search form response: ", response.data.userInfo.id);
+    console.log("what's in search form response: ", response.data);
     const searchValue = response.data.userInfo.id;
     //console.log("searchUserId value: ", searchValue);
       setSearchUsername("")
@@ -126,6 +126,7 @@ export default function Community({
       .then((res) => {
         setRoomToJoin(res.data);
         socket.emit("join_room", roomToJoin);
+        // window.location.href = `/chats`
         setChatView(true);
       });
   };
@@ -136,13 +137,25 @@ export default function Community({
     //   console.log("current users' selected language: ", dailyLanguages);
     //   console.log("display users: ", displayedUsers);
     console.log("whats in recommended users: ", recommendedUsers)
+    console.log("logged in value: ", loggedIn)
+    console.log("value fo chatView:", chatView)
     return (
     
     <div className="communityPage">
-      <div className="communityNavbar">
-        <Navbar userId={userId} handleLogout={handleLogout} />
-      </div>
       {!chatView ? (
+      {/* <div className="communityNavbar">
+        <Navbar userId={userId} handleLogout={handleLogout} />
+      </div> */}
+      
+      {!loggedIn? (<h1 className="please-login-header">Please log in to see this page</h1>) : (
+
+        <>
+             {!chatView? (
+
+        <>   
+          <div className="communityNavbar">
+            <Navbar userId={userId} handleLogout={handleLogout} loggedIn={loggedIn} />
+          </div>
         <div className="communityView">
           <div className="recommended-container">
             <div className="welcome"> Welcome {userData.first_name}</div>
@@ -180,13 +193,13 @@ export default function Community({
                 <div className="recommended-word"> Recommended Users </div>
 
                 {displayedUsers?.map((recUsers, index) => {
-                  //   console.log("what's in recUser: ", recUsers);
-
+            
                   return (
                     <div className="cardContaineer" key={index}>
                       <Grid>
                         <Grid item>
-                          <Card sx={{ minWidth: 200, minHeight: 150 }}>
+                          {/* #001427 */}
+                          <Card sx={{ minWidth: 250, maxWidth:250, minHeight: 300, maxHeight:300, backgroundColor:"#001427"}}>
                             <CardContent>
                               <Avatar
                                 alt={recUsers.username}
@@ -195,7 +208,7 @@ export default function Community({
                               />
 
                                 <Typography
-                                  sx={{ paddingBottom: 2 }}
+                                  sx={{ color:"white", fontSize:28, paddingTop: 3}}
                                   align="center"
                                 >
                                   {recUsers.username}
@@ -205,12 +218,14 @@ export default function Community({
                                 style={{
                                   justifyContent: "center",
                                   padding: 0,
+                                  paddingTop: 20
                                 }}
                               >
                                 <Button
                                   onClick={() => handleSendMessage(recUsers.id)}
-                                  variant="outlined"
-                                  size="small"
+                                  variant="contained"
+                                  size="large"
+                               
                                 >
                                   Message
                                 </Button>
@@ -225,7 +240,7 @@ export default function Community({
                                   padding: 0,
                                 }}
                               >
-                                <Link to={"/userProfile/" + recUsers.id}>
+                                <Link to={"/userProfile/" + recUsers.id} style={{fontSize: 24, paddingTop:15, textDecorationLine:"none"}} className="view-profile-link">
                                   View Profile
                                 </Link>
                               </CardActions>
@@ -241,7 +256,10 @@ export default function Community({
 
                 <Grid container style={{ justifyContent: "center" }}>
                   <Grid item style={{ display: "inline-block" }}>
-                    <Button className="loadMore" variant="outlined" onClick={loadMoreUsers}>
+
+                   
+
+                    <Button variant="outlined" size="large" onClick={loadMoreUsers} style={{margin: "auto"}}>
                       Load More
                     </Button>
                   </Grid>
@@ -250,7 +268,13 @@ export default function Community({
             )}
           </div>
         </div>
+        </>
       ) : (
+        <>
+        <div className="toggle-community-chat">
+            <Button variant="outlined" onClick={()=>setChatView(false)} style={{color:"brown", fontSize:18, borderColor: "brown"}} size="small">X</Button>
+        </div>
+        
         <div>
           <Chat
             socket={socket}
@@ -260,6 +284,9 @@ export default function Community({
             receiverData={selectedProfile}
           />
         </div>
+        </>
+      )}
+        </>
       )}
     </div>
   );

@@ -74,6 +74,12 @@ router.get("/viewUser/:username", async function(req,res){
 
   console.log("what is in info: ", info[0])
    const userInfo = info[0]
+
+  //  if(!info[0]){
+  //   console.log("inside if statement for user that doesn't exist")
+  //   return res.status(404).json({message: "user does not exist"})
+  //  }
+
   // console.log("what's in userInfo: ", userInfo)
   return res.status(200).json({userInfo:userInfo})
 
