@@ -43,9 +43,12 @@ function Conversation({ userId, handleLogout }) {
 
   return (
     <div className="conversations-page">
-      <Navbar userId={userId} handleLogout={handleLogout} />
+      <div className="navbar-convo">
+      <Navbar id="navID" userId={userId} handleLogout={handleLogout} />
+      </div>
       <div className="convo-chat">
         <div className="conversation">
+
           <div className="rooms">
             {userConvos
               ? userConvos.userData.map((convo, index) => (

@@ -1,42 +1,27 @@
-.conversation {
-  width: 10vw;
-  height: 100vh;
-  background: #fff;
-  color: #212121;
-  font-family: "Open Sans", sans-serif;
-  grid-template-rows: 1fr auto; /* Use grid-template-rows to create two rows, where the first row takes all remaining available space and the second row adjusts to its content (the footer) */
-  place-items: center;
-  border-style: solid;
-  border-color: black ;
-}
+
 body {
   margin: 0%;
   padding: 0%;
 }
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
 
-.conversation{
-  height: 80vh;
-  
-}
 .convo-chat {
   display: flex;
-  height:80vh;
+  height: 93vh;
 }
 .conversations-page .convo-chat .chat-section {
   width: 79vw;
   height: 80vh;
 }
 
-
-
 .conversation {
   /* Set any necessary styles for the .conversation element */
   width: 30vw;
-  height: 92vh;
+  height: 93vh;
   background-color: brown;
-  border-top: black;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-top: 3px black;
+  padding-top: 10px;
+ 
 }
 
 .rooms {
@@ -65,11 +50,11 @@ body {
   align-items: center;
   justify-content: space-evenly;
   border: none;
-  background-color: #669bbcea; 
+  background-color: #003049; 
   color: #fff; 
   padding:10px;
   margin-bottom:10px;
-  border-radius: 5px;
+  border-radius: 10%;
   
 }
 

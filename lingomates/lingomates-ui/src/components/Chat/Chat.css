@@ -27,19 +27,19 @@
   }
   .avatar-class{
     margin-right: 30px;
+    height:7.7vh;
   }
   .chat-window .chat-body {
-    height:76vh;
+    height:80vh;
     padding:0px;
-    border: 1px solid #263238;
+    border: 2px solid brown;
     background:white;
     position: relative;
-    
   }
   .chat-window .chat-body .message-container {
     
     width: 100%;
-    height: 70vh;
+    height: 79.7vh;
     overflow-y: scroll;
     overflow-x: hidden;
   }
@@ -49,17 +49,18 @@
   }
   .chat-window .chat-body .message {
     height: auto;
-    padding: 10px;
+    padding: 5px;
     display: flex;
+    
   }
   
   .chat-window .chat-body .message .message-content {
     width: auto;
     height: auto;
-    min-height: 70px;
-    max-width: 150px;
+    min-height:45px;
+    min-width: 50px;
     background-color:rgb(77, 7, 7);
-    border-radius: 12px;
+    border-radius:19px;
     color: white;
     display: flex;
     align-items: center;
@@ -73,6 +74,7 @@
   
   #you {
     justify-content: flex-end;
+    
   }
   
   #you .message-content {
@@ -115,9 +117,13 @@ html{
 
 .message-translate{
   position:relative;
-  
-
+  z-index: 100;
 }
+
+.message:first-child {
+  margin-top: 5%;
+}
+
 .message-translate::before,
 .message-translate::after{
   --scale:0;
@@ -127,18 +133,18 @@ html{
    transform:translateX(-50%) translateY(-100%) scale(var(--scale));
    transition:150ms transform;
    transform-origin:bottom center;
-
+  z-index: 5;
 }
 
 .message-translate::before{
   content:attr(data-tooltip);
   color:white;
-  padding:.5rem;
+  padding:.7rem;
   border-radius:.5rem;
   text-align: center;
   width:max-content;
   max-width: 100%;
-  background-color: rgba(0, 0, 0, 0.785);
+  background-color: rgba(0, 0, 0, 0.857);
 
 }
 
@@ -159,8 +165,7 @@ html{
   justify-content: space-between;
   align-items: center;
   align-content: center;
-  height: 6.5vh;
-  border: 1px solid #000000;
+  height: 5.6vh;
   background-color: #ffffff;
   padding:0px;
 
@@ -179,11 +184,19 @@ html{
 .message-input-form .message-input{
   width:55vw;
   height:40px;
+  font-size: 18px;
+  border-radius: 4%;
+  border-radius: 20px; /* Set the border-radius to half of the input's height */
+  border: 1px solid #ccc;
+  outline: none;
 }
-.send-button{
-  padding:5px;
-  width:10vw;
-  height:
+.send-button Button{
+  width:8vw;
+  height: 45px;
+  padding:10px;
+  margin-right:20px;
+  background-color: brown;
+  border-radius: 22.5px;
 
 }
 /* 

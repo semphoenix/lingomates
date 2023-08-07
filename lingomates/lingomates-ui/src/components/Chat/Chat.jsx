@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useCallback } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import axios from "axios";
+import Switcher from "react-switcher-rc";
+
 import "./Chat.css";
 import {
   Card,
@@ -18,8 +20,9 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
   const [messageList, setMessageList] = useState([]);
   const [previousMessages, setPreviousMessages] = useState([]);
   const [currentContact, setCurrentContact] = useState(null);
+  const [viewTranslate, setViewTranslate] = useState(false);
 
-  console.log("THE RECEIVER FETCHED FROM CHAT", receiverData);
+  //console.log("THE RECEIVER FETCHED FROM CHAT", receiverData);
 
   useEffect(() => {
     axios
@@ -43,6 +46,11 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
         });
     }
   }, [receiverData]);
+
+  const handleViewTranslate = () => {
+    setViewTranslate(!viewTranslate);
+    console.log("new toggle was clicked", viewTranslate);
+  };
 
   const handleTranslate = async (text) => {
     //console.log('in handleTranslate');
@@ -134,43 +142,88 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
               {receiverData.first_name} {receiverData.last_name}
             </p>
           </div>
+          <Switcher
+            name="my-switcher"
+            onChange={handleViewTranslate}
+            checked={viewTranslate}
+          />
         </div>
 
         <div className="chat-body">
           <ScrollToBottom className="message-container">
-            {previousMessages.previousConvo
-              ? previousMessages.previousConvo.map((previousMessage, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="message"
-                      id={
-                        senderId === previousMessage.senderid ? "you" : "other"
-                      }
-                    >
-                      {/* <div className={`tooltip ${senderId === previousMessage.senderid ? "tooltip-right" : "tooltip-left"}`}> */}
-                      <div
-                        className="message-translate"
-                        data-tooltip={previousMessage.translatedtext}
-                      >
-                        <div className="message-content">
-                          <p className="textMessage">
-                            {previousMessage.messagetext}
-                          </p>
+            {viewTranslate ? (
+              <div>
+                {previousMessages.previousConvo
+                  ? previousMessages.previousConvo.map(
+                      (previousMessage, index) => (
+                        <div
+                          key={index}
+                          className="message"
+                          id={
+                            senderId === previousMessage.senderid
+                              ? "you"
+                              : "other"
+                          }
+                        >
+                          <div className="message-translate">
+                            <div className="message-content">
+                              <p className="translatedTextMessage">
+                                {previousMessage.translatedtext}
+                              </p>
+                            </div>
+                          </div>
                         </div>
+                      )
+                    )
+                  : ""}
+               {messageList.map((messageContent, index) => (
+                  <div
+                    key={index}
+                    className="message"
+                    id={senderId === messageContent.sender ? "you" : "other"}
+                  >
+                    <div className="message-translate">
+                      <div className="message-content">
+                        <p>{messageContent.translatedText}</p>
                       </div>
                     </div>
-                  );
-                })
-              : ""}
-            {messageList.map((messageContent, index) => {
-              return (
-                <div
-                  key={index}
-                  className="message"
-                  id={senderId === messageContent.sender ? "you" : "other"}
-                >
-                  <div>
+                  </div>
+                ))} 
+              </div>
+            ) : (
+              <>
+                {previousMessages.previousConvo
+                  ? previousMessages.previousConvo.map(
+                      (previousMessage, index) => (
+                        <div
+                          key={index}
+                          className="message"
+                          id={
+                            senderId === previousMessage.senderid
+                              ? "you"
+                              : "other"
+                          }
+                        >
+                          <div
+                            className="message-translate"
+                            data-tooltip={previousMessage.translatedtext}
+                          >
+                            <div className="message-content">
+                              <p className="textMessage">
+                                {previousMessage.messagetext}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    )
+                  : ""}
+                {messageList.map((messageContent, index) => (
+                  <div
+                    key={index}
+                    className="message"
+                    id={senderId === messageContent.sender ? "you" : "other"}
+                  >
                     <div
                       className="message-translate"
                       data-tooltip={messageContent.translatedText}
@@ -179,39 +232,38 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
                         <p>{messageContent.message}</p>
                       </div>
                     </div>
-
                     <div className="message-meta">
-                      <p id="time">{messageContent.time}</p>
-                      {/* <p id="author">{messageContent.author}</p> */}
+                      {/* <p id="time">{messageContent.time}</p> */}
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                ))}
+              </>
+            )}
           </ScrollToBottom>
         </div>
         <div className="chat-footer">
-          <div className="message-input-form"> 
-          <input className="message-input"
-            type="text"
-            value={currentMessage}
-            placeholder="Type a message"
-            onChange={(event) => {
-              setCurrentMessage(event.target.value);
-            }}
-            onKeyPress={(event) => {
-              event.key === "Enter" && sendMessage();
-            }}
-          />
+          <div className="message-input-form">
+            <input
+              className="message-input"
+              type="text"
+              value={currentMessage}
+              placeholder="Type a message"
+              onChange={(event) => {
+                setCurrentMessage(event.target.value);
+              }}
+              onKeyPress={(event) => {
+                event.key === "Enter" && sendMessage();
+              }}
+            />
           </div>
           <div className="send-button">
-          <Button
-            onClick={sendMessage}
-            variant="contained"
-            endIcon={<SendIcon />}
-          >
-            Send
-          </Button>
+            <Button
+              onClick={sendMessage}
+              variant="contained"
+              endIcon={<SendIcon />}
+            >
+              Send
+            </Button>
           </div>
         </div>
       </div>
