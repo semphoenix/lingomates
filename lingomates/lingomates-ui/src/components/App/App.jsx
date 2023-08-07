@@ -72,6 +72,7 @@ function App() {
   
   
   const handleLogout = () => {
+    console.log("we made it")
     localStorage.removeItem("token");
     setLoggedIn(false);
     window.location.href = "/"

@@ -8,7 +8,8 @@ import {Link} from "react-router-dom"
 import io from "socket.io-client";
 const socket = io.connect("http://localhost:3001")
 import Chat from "../Chat/Chat";
-import Navbar from "../Navbar/Navbar";
+import Navbar from '../Navbar/Navbar';
+
 
 export default function Viewprofile({userId, loggedIn, handleLogout}) {
 
@@ -55,7 +56,7 @@ export default function Viewprofile({userId, loggedIn, handleLogout}) {
    console.log("selectedUser langas:",  selectedUserLangs)
    
   return (
-    <>
+    <div className='profileview'>
      <Navbar userId={userId} handleLogout={handleLogout} />
     {!loggedIn? (<h1 className="please-login-header">Please log in to see this page</h1>): (<div className='profileview'>
     {!viewChat ? (

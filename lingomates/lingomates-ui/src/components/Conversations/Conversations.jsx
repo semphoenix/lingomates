@@ -18,7 +18,8 @@ import {
 
 import Navbar from "../Navbar/Navbar";
 
-function Conversation({ userId, handleLogout, loggedIn}) {
+function Conversation({ userId, handleLogout, loggedIn }) {
+
   //create a state for conversations so far by the user
   
   const [userConvos, setUserConvos] = useState(null);
@@ -45,7 +46,7 @@ function Conversation({ userId, handleLogout, loggedIn}) {
     <>
     {!loggedIn ? 
         (<>
-            <div> <Navbar userId={userId} handleLogout={handleLogout} /></div>
+            <div> <Navbar userId={userId} handleLogout={handleLogout} loggedIn={loggedIn} /></div>
             <h1 className="please-login-header">Please log in to see this page</h1>
         </>): 
    

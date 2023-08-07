@@ -142,6 +142,7 @@ export default function Community({
     return (
     
     <div className="communityPage">
+      {!chatView ? (
       {/* <div className="communityNavbar">
         <Navbar userId={userId} handleLogout={handleLogout} />
       </div> */}
@@ -153,9 +154,8 @@ export default function Community({
 
         <>   
           <div className="communityNavbar">
-            <Navbar userId={userId} handleLogout={handleLogout} />
+            <Navbar userId={userId} handleLogout={handleLogout} loggedIn={loggedIn} />
           </div>
-      
         <div className="communityView">
           <div className="recommended-container">
             <div className="welcome"> Welcome {userData.first_name}</div>

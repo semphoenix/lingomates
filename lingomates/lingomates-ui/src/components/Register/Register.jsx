@@ -68,7 +68,7 @@ export default function Register({setUserId, setLoggedIn}) {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 30,
+            margin: 12,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -77,9 +77,6 @@ export default function Register({setUserId, setLoggedIn}) {
           {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar> */}
-          <Typography component="h1" variant="h5">
-            🙈
-          </Typography>
           <Typography component="h1" variant="h5" fontWeight={"bold"} fontFamily={"Nunito"}>
             Sign up
           </Typography>
@@ -224,7 +221,7 @@ export default function Register({setUserId, setLoggedIn}) {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link to="/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
