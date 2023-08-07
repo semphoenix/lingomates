@@ -14,7 +14,7 @@ header {
     align-items: center;
 }
 
-.matesHead {
+.matesHead1 {
   color: brown;
 }
 
@@ -124,10 +124,6 @@ ul {
     align-items: center;
 }
 
-
-
-
-
 /* Header.css */
 
 .w-full {
@@ -135,7 +131,7 @@ ul {
   }
   
   .h-auto {
-    height:70px;
+    height: 80px;
   }
   
   .bg-transparent {

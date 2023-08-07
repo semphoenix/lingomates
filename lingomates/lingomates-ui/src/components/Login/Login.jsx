@@ -97,7 +97,7 @@ export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
         <Grid item xs={12} sm={80} md={5} component={Paper} elevation={8} square style={{}}>
           <Box
             sx={{
-              my: 50,
+              my: 30,
               mx: 4,
               display: 'flex',
               flexDirection: 'column',
@@ -150,7 +150,7 @@ export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
                 <Grid item xs>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link to="/register" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

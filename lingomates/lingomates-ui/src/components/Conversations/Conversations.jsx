@@ -3,7 +3,7 @@ import io from "socket.io-client";
 import { useEffect, useState } from "react";
 import Chat from "../Chat/Chat";
 import axios from "axios";
-import chatImage from "/Users/mkebede/capstone/Lingomates/lingomates/lingomates-ui/src/components/Conversations/Let's-chat-pic.png"
+import chatImage from "/src/components/Conversations/Let's-chat-pic.png"
 
 const socket = io.connect("http://localhost:3001");
 import {
@@ -18,7 +18,7 @@ import {
 
 import Navbar from "../Navbar/Navbar";
 
-function Conversation({ userId, handleLogout }) {
+function Conversation({ userId, handleLogout, loggedIn }) {
   //create a state for conversations so far by the user
   
   const [userConvos, setUserConvos] = useState(null);
@@ -43,7 +43,7 @@ function Conversation({ userId, handleLogout }) {
 
   return (
     <div className="conversations-page">
-      <Navbar userId={userId} handleLogout={handleLogout} />
+      <Navbar userId={userId} handleLogout={handleLogout} loggedIn={loggedIn} />
       <div className="convo-chat">
         <div className="conversation">
           <div className="rooms">

@@ -35,4 +35,33 @@
     margin-left: -24px;
     -webkit-box-align: center;
     align-items: center;
+    /* height: 100vh; */
+}
+
+.name {
+    margin: 0px;
+    font-size: 1.25rem;
+    line-height: 1.375;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    letter-spacing: 0em;
+    opacity: 1;
+    text-transform: none;
+    vertical-align: unset;
+    text-decoration: none;
+    color: rgb(52, 71, 103);
+    font-weight: 600;
+}
+
+.username {
+    margin: 0px;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: 0.02857em;
+    opacity: 1;
+    text-transform: none;
+    vertical-align: unset;
+    text-decoration: none;
+    color: rgb(123, 128, 154);
+    font-weight: 400;
 }

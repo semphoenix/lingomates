@@ -10,7 +10,7 @@ import { newsApi } from "./newsData.js";
 
 const apiKey = import.meta.env.VITE_NEWS_API; // should be in environment file
 
-export default function News({selectedDailyLanguage, userId, handleLogout, dailyLanguages,setSelectedDailyLanguage}){
+export default function News({selectedDailyLanguage, userId, handleLogout, dailyLanguages,setSelectedDailyLanguage, loggedIn}){
 
     const [newsArticles, setNewsArticles] = useState(newsApi)
     const [loadNum, setLoadNum]  = useState(1) // manages page data
@@ -89,7 +89,7 @@ export default function News({selectedDailyLanguage, userId, handleLogout, daily
         <div id="newsComponent">
               
              <div>
-             <Navbar userId={userId} handleLogout={handleLogout} />
+             <Navbar userId={userId} handleLogout={handleLogout} loggedIn={loggedIn} />
                 <div className="daily-news-container">Daily News</div>
 
                 <div className="dropdown-lang-containter">

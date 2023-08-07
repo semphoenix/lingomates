@@ -72,6 +72,7 @@ function App() {
   
   
   const handleLogout = () => {
+    console.log("we made it")
     localStorage.removeItem("token");
     setLoggedIn(false);
     window.location.href = "/"
@@ -93,10 +94,9 @@ function App() {
           <Route path="/login" element={<Login setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError}/>} />
           <Route path="/register" element={<Register setUserId={setUserId} setLoggedIn={setLoggedIn} setLoginError={setLoginError} />} />
           <Route path="/community" element={<Community loggedIn={loggedIn} userId={userId} dailyLanguages={dailyLanguages} setDailyLanguages={setDailyLanguages} setSelectedDailyLanguage={setSelectedDailyLanguage} userData={userData} handleLogout={handleLogout}/>} />
-          <Route path="/feed" element={<News selectedDailyLanguage={selectedDailyLanguage} userId={userId} handleLogout={handleLogout} dailyLanguages={dailyLanguages} setSelectedDailyLanguage={setSelectedDailyLanguage}/>} />
-          <Route path="/conversations" element= {<Conversations userId={userId} handleLogout={handleLogout}/>}/>
+          <Route path="/feed" element={<News selectedDailyLanguage={selectedDailyLanguage} userId={userId} handleLogout={handleLogout} dailyLanguages={dailyLanguages} setSelectedDailyLanguage={setSelectedDailyLanguage} loggedIn={loggedIn}/>} />
+          <Route path="/conversations" element= {<Conversations userId={userId} handleLogout={handleLogout} loggedIn={loggedIn}/>}/>
           <Route path="/translate" element= {<Translate/>}/>
-
           <Route path="/userProfile/:id" element={<Viewprofile userId={userId}/>} />
         </Routes>
       </Router>

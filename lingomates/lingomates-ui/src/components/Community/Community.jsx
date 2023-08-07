@@ -140,7 +140,7 @@ export default function Community({
     
     <div className="communityPage">
       <div className="communityNavbar">
-        <Navbar userId={userId} handleLogout={handleLogout} />
+        <Navbar userId={userId} handleLogout={handleLogout} loggedIn={loggedIn} />
       </div>
       {!chatView ? (
         <div className="communityView">
