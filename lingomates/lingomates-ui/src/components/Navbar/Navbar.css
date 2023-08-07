@@ -26,6 +26,7 @@
 
 
 .navbar{
+    height:7vh;
     width:100vw;
     position: fixed;
     top: 0;

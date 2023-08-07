@@ -13,6 +13,7 @@ import "./Navbar.css"
 
 
 
+
 {/* style={{ color: 'black', backgroundColor: 'white'}} variant="contained" */}
 // const theme = createTheme({
 //     palette:{
@@ -40,10 +41,7 @@ const useStyles = makeStyles((theme) => ({
     }
 
     const [currentUser, setCurrentUser] = useState({});
-    const handleSubmitLogout = (e) => {
-        e.stopPropagation();
-        handleLogout();
-    }
+  
 
     useEffect(() => {
         if (loggedIn) {

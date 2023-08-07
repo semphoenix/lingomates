@@ -43,7 +43,6 @@ function Conversation({ userId, handleLogout, loggedIn }) {
   }, [userId]);
 
   return (
-    <>
     {!loggedIn ? 
         (<>
             <div> <Navbar userId={userId} handleLogout={handleLogout} loggedIn={loggedIn} /></div>

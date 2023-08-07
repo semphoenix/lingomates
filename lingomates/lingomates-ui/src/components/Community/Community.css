@@ -57,6 +57,9 @@ Community .span {
     justify-content: center;
 
 }
+.cardContaineer .loadMore{
+  margin: 30px;
+}
 
 .search-form {
   margin-top: 20px;
