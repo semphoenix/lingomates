@@ -81,7 +81,8 @@ function Conversation({ userId, handleLogout }) {
         <div className="chat-section">
           {!showChat ? (
             <div className="no-chat-selected">
-            <h1>Select Your Lingomate</h1>
+          
+            <h1>Select Your Lingomate </h1>
             <img src={chatImage} alt="This is the image of Fitness logo" />
             </div>
     

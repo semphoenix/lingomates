@@ -122,14 +122,18 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
     <div className="chatContainer">
       <div className="chat-window">
         <div className="chat-header">
-          <Avatar
-            alt={receiverData.username}
-            src={receiverData.profilepicture}
-            sx={{ margin: "auto", width: 90, height: 90 }}
-          />
-          <p>
-            {receiverData.first_name} {receiverData.last_name}
-          </p>
+          <div className="avatar-class">
+            <Avatar
+              alt={receiverData.username}
+              src={receiverData.profilepicture}
+              sx={{ margin: "auto", width: 90, height: 90 }}
+            />
+          </div>
+          <div className="current-lingomate">
+            <p>
+              {receiverData.first_name} {receiverData.last_name}
+            </p>
+          </div>
         </div>
 
         <div className="chat-body">
@@ -187,10 +191,11 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
           </ScrollToBottom>
         </div>
         <div className="chat-footer">
-          <input
+          <div className="message-input-form"> 
+          <input className="message-input"
             type="text"
             value={currentMessage}
-            placeholder="Hey..."
+            placeholder="Type a message"
             onChange={(event) => {
               setCurrentMessage(event.target.value);
             }}
@@ -198,6 +203,8 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
               event.key === "Enter" && sendMessage();
             }}
           />
+          </div>
+          <div className="send-button">
           <Button
             onClick={sendMessage}
             variant="contained"
@@ -205,6 +212,7 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
           >
             Send
           </Button>
+          </div>
         </div>
       </div>
     </div>

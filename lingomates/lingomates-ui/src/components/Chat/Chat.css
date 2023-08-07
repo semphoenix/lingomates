@@ -9,10 +9,11 @@
   }
   .chat-window .chat-header {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
     height: max-content;
     border-radius: 6px;
-    background: rgb(77, 7, 7);
+    background: #003049;
     position: relative;
     cursor: pointer;
   }
@@ -20,19 +21,25 @@
    
     padding: 0 1em 0 2em;
     color: #fff;
-    font-weight: 1000;
+    font-weight: 500;
+    font-size: 20px;
     line-height: 45px;
   }
-  
+  .avatar-class{
+    margin-right: 30px;
+  }
   .chat-window .chat-body {
-    height:80vh;
+    height:76vh;
+    padding:0px;
     border: 1px solid #263238;
-    background: white;
+    background:white;
     position: relative;
+    
   }
   .chat-window .chat-body .message-container {
+    
     width: 100%;
-    height: 80vh;
+    height: 70vh;
     overflow-y: scroll;
     overflow-x: hidden;
   }
@@ -49,10 +56,10 @@
   .chat-window .chat-body .message .message-content {
     width: auto;
     height: auto;
-    min-height: 40px;
-    max-width: 120px;
+    min-height: 70px;
+    max-width: 150px;
     background-color:rgb(77, 7, 7);
-    border-radius: 5px;
+    border-radius: 12px;
     color: white;
     display: flex;
     align-items: center;
@@ -97,64 +104,7 @@
     font-weight: bold;
   }
   
-  .chat-window .chat-body .message .message-meta {
-    display: flex;
-    font-size: 12px;
-  }
   
-  .chat-window .chat-footer {
-    height: 5vh;
-    border: 1px solid #6f8a97;
-    
-    display: flex;
-    background-color: #ffffff;
-    margin: 10px;
-    padding:10px
-  }
-  .chat-window .chat-footer Button{
-    border: 0;
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-    flex: 15%;
-    height: 100%;
-    background: transparent;
-    outline: none;
-    font-size: 25px;
-    color: rgb(169, 24, 24);
-  }
-  
-  .chat-window .chat-footer input {
-
-    height: 4vh;
-    flex: 85%;
-    border: 0;
-    font-size: 2vh;
-    border-right: 1px dotted #607d8b;
-    outline: none;
-    font-family: "Open Sans", sans-serif;
-  }
-  
-  .chat-window .chat-footer button {
-    border: 0;
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-    flex: 15%;
-    height: 100%;
-    background: transparent;
-    outline: none;
-    font-size: 25px;
-    color: lightgray;
-    
-  }
-  
-  .chat-window .chat-footer button:hover {
-    color: rgb(77, 7, 7);
-  }
-  .hide {
-    opacity: 0 !important;
-  }
   /* Tooltip container */
 
   body,
@@ -165,6 +115,8 @@ html{
 
 .message-translate{
   position:relative;
+  
+
 }
 .message-translate::before,
 .message-translate::after{
@@ -182,11 +134,11 @@ html{
   content:attr(data-tooltip);
   color:white;
   padding:.5rem;
-  border-radius:.3rem;
+  border-radius:.5rem;
   text-align: center;
   width:max-content;
   max-width: 100%;
-  background-color: rgba(0, 0, 0, 0.415);
+  background-color: rgba(0, 0, 0, 0.785);
 
 }
 
@@ -195,3 +147,75 @@ html{
   --scale:1;
 }
 
+/* experiment*/
+.chat-window .chat-body .message .message-meta {
+  display: flex;
+  font-size: 12px;
+}
+
+.chatContainer .chat-window .chat-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  height: 6.5vh;
+  border: 1px solid #000000;
+  background-color: #ffffff;
+  padding:0px;
+
+}
+.message-input-form {
+  width:80%;
+  margin:5px;
+  padding:5px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+
+}
+
+.message-input-form .message-input{
+  width:55vw;
+  height:40px;
+}
+.send-button{
+  padding:5px;
+  width:10vw;
+  height:
+
+}
+/* 
+.chat-window .chat-footer input {
+
+  height: 3vh;
+  flex: 85%;
+  border: 0;
+  font-size: 2vh;
+  border-right: 1px dotted #607d8b;
+  outline: none;
+  font-family: "Open Sans", sans-serif;
+  box-shadow: #607d8b;
+}
+
+.chat-window .chat-footer button {
+  border: 0;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  flex: 15%;
+  height: 100%;
+  background: transparent;
+  outline: none;
+  font-size: 25px;
+  color: lightgray;
+  
+}
+
+.chat-window .chat-footer button:hover {
+  color: rgb(77, 7, 7);
+}
+.hide {
+  opacity: 0 !important;
+} */
