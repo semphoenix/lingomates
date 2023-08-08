@@ -59,7 +59,7 @@ return (
         <div key={language} className="lang-box">
           <div className="lang-info">
           <img className="flag" src={`/src/assets/${language.toLowerCase()}.png`} alt={language} />
-          <p>{language}</p>
+          <p className="language-name">{language}</p>
           </div>
           <div className="selectWrapper">
           <select className="selectBox"

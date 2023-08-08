@@ -87,7 +87,8 @@ app.get("/", function (req, res) {
     if (!config.IS_TESTING) console.error(err.stack)
     const status = err.status || 500
     const message = err.message
-  
+    console.log("inside app error handler funciton")
+    console.log("error status inside app: ", status)
     return res.status(status).json({
       error: { message, status },
     })

@@ -142,11 +142,16 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
               {receiverData.first_name} {receiverData.last_name}
             </p>
           </div>
+          <div className="toggleSwitch">
+          
           <Switcher
+          
             name="my-switcher"
             onChange={handleViewTranslate}
             checked={viewTranslate}
           />
+          <label htmlFor="my-switcher">All Translated</label>
+          </div>
         </div>
 
         <div className="chat-body">
