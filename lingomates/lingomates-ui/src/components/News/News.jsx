@@ -101,7 +101,7 @@ export default function News({selectedDailyLanguage, userId, handleLogout, daily
         (
             <div id="newsComponent">  
             <div>
-            <Navbar userId={userId} handleLogout={handleLogout} />
+            <Navbar userId={userId} handleLogout={handleLogout} loggedIn={loggedIn}/>
                <div className="daily-news-container">Daily News</div>
 
                <div className="dropdown-lang-containter">
