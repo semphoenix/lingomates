@@ -143,9 +143,6 @@ export default function News({selectedDailyLanguage, userId, handleLogout, daily
                                        <CardContent>
                                            <Typography style={{color:'white', fontSize: 24, paddingTop:10, textAlign:"center"}}> {articles.description}</Typography>
                                        </CardContent>
-
-                                      
-                                       
                                    </Card>
                                </Grid>
                            </Grid>
