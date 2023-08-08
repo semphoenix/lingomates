@@ -101,7 +101,7 @@ export default function News({selectedDailyLanguage, userId, handleLogout, daily
         (
             <div id="newsComponent">  
             <div>
-            <Navbar userId={userId} handleLogout={handleLogout} />
+            <Navbar userId={userId} handleLogout={handleLogout} loggedIn={loggedIn}/>
                <div className="daily-news-container">Daily News</div>
 
                <div className="dropdown-lang-containter">
@@ -143,9 +143,6 @@ export default function News({selectedDailyLanguage, userId, handleLogout, daily
                                        <CardContent>
                                            <Typography style={{color:'white', fontSize: 24, paddingTop:10, textAlign:"center"}}> {articles.description}</Typography>
                                        </CardContent>
-
-                                      
-                                       
                                    </Card>
                                </Grid>
                            </Grid>
