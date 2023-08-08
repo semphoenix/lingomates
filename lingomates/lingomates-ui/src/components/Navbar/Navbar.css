@@ -20,7 +20,7 @@
 
 .navbar {
     height: 60px; /* Set the fixed height for the navbar */
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     right: 0;

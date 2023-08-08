@@ -1,15 +1,16 @@
-
-
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
-.conversations-page{
-  display: flex;
-  flex-direction: col;
+
+body {
+  margin: 0%;
+  padding: 0%;
+  height:100%;
 
 }
 
+
 .convo-chat {
   display: flex;
-  height: 80vh;
+  height: 93vh;
 }
 .conversations-page .convo-chat .chat-section {
   width: 79vw;
@@ -19,11 +20,12 @@
 .conversation {
   /* Set any necessary styles for the .conversation element */
   width: 30vw;
-  height: 93vh;
+  height: 100%;
   background-color: brown;
   border-top: 3px black;
-  padding-top: 10px;
- 
+  padding-top: 30px;
+  padding-left: 20px;
+  
 }
 
 .rooms {

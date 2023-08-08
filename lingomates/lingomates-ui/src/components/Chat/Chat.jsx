@@ -124,8 +124,7 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
     };
   }, [socket, handleReceiveMessage]);
 
-  //console.log("whats in message list: ", messageList);
-  //console.log("wahts in previous messages: ", previousMessages);
+  
   return (
     <div className="chatContainer">
       <div className="chat-window">
