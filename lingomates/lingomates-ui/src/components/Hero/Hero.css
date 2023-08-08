@@ -70,7 +70,7 @@ body{
   height: 920px;
   overflow: hidden;
   position: relative;
-  background-image: url("../images/img1.jpeg");
+  /* background-image: url("../images/img1.jpeg"); */
   background-color: rgba(0, 0, 0, 0.75);
   background-position: relative;
    background-repeat: no-repeat; 
@@ -117,7 +117,7 @@ p {
 
 @keyframes change{
   0%{
-      background-image: url("../images/img3.webp");
+      background-image: url("../images/countryImg10.jpg");
   }
   20%{
       background-image: url("../images/img2.webp");
@@ -129,10 +129,10 @@ p {
       background-image: url("../images/img1.jpeg");
   }
   80%{
-      background-image: url("../images/img6.webp");
+      background-image: url("../images/country_img7.jpg");
   }
   100%{
-      background-image: url("../images/italyImg.jpeg");
+      background-image: url("../images/countryImg8.jpg");
   }
 }
 .text{
