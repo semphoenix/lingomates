@@ -41,10 +41,7 @@ const useStyles = makeStyles((theme) => ({
     }
 
     const [currentUser, setCurrentUser] = useState({});
-    const handleSubmitLogout = (e) => {
-        e.stopPropagation();
-        handleLogout();
-    }
+  
 
     useEffect(() => {
         if (loggedIn) {

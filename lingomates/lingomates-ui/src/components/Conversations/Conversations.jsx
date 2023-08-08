@@ -44,6 +44,7 @@ function Conversation({ userId, handleLogout, loggedIn }) {
     <>
       {!loggedIn ? (
         <>
+
           <div>
             <Navbar
               userId={userId}
@@ -57,14 +58,14 @@ function Conversation({ userId, handleLogout, loggedIn }) {
         </>
       ) : (
         <div className="conversations-page">
-        //       <div className="navbar-convo">
-        //       <Navbar id="navID" userId={userId} handleLogout={handleLogout} />
-        //       </div>
-        //       <div className="convo-chat">
-        //         <div className="conversation">
+               <div className="navbar-convo">
+               <Navbar id="navID" userId={userId} handleLogout={handleLogout} />
+               </div>
+               <div className="convo-chat">
+               <div className="conversation">
         
-        //           <div className="rooms">
-        //             {userConvos
+                   <div className="rooms">
+                   {userConvos
                       ? userConvos.userData.map((convo, index) => (
                           <button className="custom-button"
                             key={index}
