@@ -45,18 +45,27 @@ export default function Community({
   // console.log("test datas data in community: ", testData)
 
   const searchForm = async (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     //console.log("inside searchForm");
 
+    try{
+      const response = await axios.get(
+        `http://localhost:3001/community/viewUser/${searchUsername}`
+      );
+      
+      if(response.status === 200){
+        const searchValue = response.data.userInfo.id;
+        setSearchUsername("")
+        window.location.href = `/userProfile/${searchValue}`;
+      }
+    }catch(err){
+        console.log("error: ", err.response.data.message)
+        alert(err.response.data.message)
+    }
     const response = await axios.get(
       `http://localhost:3001/community/viewUser/${searchUsername}`
     );
 
-    console.log("what's in search form response: ", response.data);
-    const searchValue = response.data.userInfo.id;
-    //console.log("searchUserId value: ", searchValue);
-      setSearchUsername("")
-    window.location.href = `/userProfile/${searchValue}`;
   };
 
   useEffect(() => {
@@ -169,7 +178,7 @@ export default function Community({
                   onChange={(event) => setSearchUsername(event.target.value)}
                 />
               </form>
-
+             
               <div className="select-lang">
                 <label className="selected-lang-text">Click on Language to Show Recommended Users</label>
                 <div>
