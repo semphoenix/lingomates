@@ -124,8 +124,7 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
     };
   }, [socket, handleReceiveMessage]);
 
-  //console.log("whats in message list: ", messageList);
-  //console.log("wahts in previous messages: ", previousMessages);
+  
   return (
     <div className="chatContainer">
       <div className="chat-window">
@@ -142,11 +141,16 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
               {receiverData.first_name} {receiverData.last_name}
             </p>
           </div>
+          <div className="toggleSwitch">
+          
           <Switcher
+          
             name="my-switcher"
             onChange={handleViewTranslate}
             checked={viewTranslate}
           />
+          <label htmlFor="my-switcher">All Translated</label>
+          </div>
         </div>
 
         <div className="chat-body">

@@ -2,37 +2,8 @@
     font-family: Arial, Helvetica, sans-serif
 }
 
-.navbar-container{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    border-bottom: solid;
-    height:20vh;
-   
-}
-
-.navbar-container div{
-    border-style: solid;
-    border: 3px;
-    border-color: black;
-}
-
-.navbar-container button {
-    background-color: transparent;
-    color: black;
-    font-size: 24px;
-}
 
 
-.navbar{
-    height:7vh;
-    width:100vw;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-}
 
 .bg-red {
     background-color: brown;
@@ -49,7 +20,7 @@
 
 .navbar {
     height: 60px; /* Set the fixed height for the navbar */
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     right: 0;

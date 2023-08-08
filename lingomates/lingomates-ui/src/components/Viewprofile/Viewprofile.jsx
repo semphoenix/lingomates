@@ -56,9 +56,20 @@ export default function Viewprofile({userId, loggedIn, handleLogout}) {
    console.log("selectedUser langas:",  selectedUserLangs)
    
   return (
-    <div className='profileview'>
+  
+     <div>
+
      <Navbar userId={userId} handleLogout={handleLogout} />
-    {!loggedIn? (<h1 className="please-login-header">Please log in to see this page</h1>): (<div className='profileview'>
+
+    {!loggedIn? 
+    
+    (<h1 className="please-login-header">Please log in to see this page</h1>)
+    
+    : 
+    (
+    
+    <div className='profileview'>
+    
     {!viewChat ? (
       /*  paddingTop:10-use for avatar/  margin:'auto' */
       /* sx={{maxWidth:600, minHeight: 600}} */
@@ -101,13 +112,15 @@ export default function Viewprofile({userId, loggedIn, handleLogout}) {
         receiverId={chosenUserId.id}
         receiverData={selectedUser}  />
       )
-  }
-    </div>)}
-   
-
+    }
     
-    </>
+  
+  
 
+    </div>
+    )
+  }
+  </div>
   )
 }
 

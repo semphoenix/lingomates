@@ -151,10 +151,6 @@ export default function Community({
     return (
     
     <div className="communityPage">
-      {!chatView ? (
-      {/* <div className="communityNavbar">
-        <Navbar userId={userId} handleLogout={handleLogout} />
-      </div> */}
       
       {!loggedIn? (<h1 className="please-login-header">Please log in to see this page</h1>) : (
 
@@ -265,9 +261,6 @@ export default function Community({
 
                 <Grid container style={{ justifyContent: "center" }}>
                   <Grid item style={{ display: "inline-block" }}>
-
-                   
-
                     <Button variant="outlined" size="large" onClick={loadMoreUsers} style={{margin: "auto"}}>
                       Load More
                     </Button>

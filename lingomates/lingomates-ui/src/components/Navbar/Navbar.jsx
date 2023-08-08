@@ -14,20 +14,11 @@ import "./Navbar.css"
 
 
 
-{/* style={{ color: 'black', backgroundColor: 'white'}} variant="contained" */}
-// const theme = createTheme({
-//     palette:{
-//         primary: orange,
-//         secondary: lime,
-//     },
-// });
+
 
 const background = "https://media.istockphoto.com/id/1362607569/vector/watercolor-cute-art-background-in-nude-or-powder-colour.jpg?s=612x612&w=0&k=20&c=JIlFLWImCjR5s-TtPxaBIjsk_5P0nocFpSR7-GblX7w=";
 
 const useStyles = makeStyles((theme) => ({
-    // header: {
-    //   backgroundImage: `url(${background})`,
-    // },
   }));
   
 
