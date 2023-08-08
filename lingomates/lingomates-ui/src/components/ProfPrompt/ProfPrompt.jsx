@@ -1,19 +1,14 @@
+import "./ProfPrompt.css"
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Header from "../Header/Header";
+
 
 export default function ProfPrompt({ profLevels, setProfLevels, userId }) {
 
   const { languages } = useParams();
   const selectedLanguages = languages ? languages.split("_") : [];
-
-  // useEffect(() => {
-  //   // Split the languages parameter into an array of selected languages
-
-
-  //   console.log("Selected languages from URL:", selectedLanguages);
-  //   // Perform any further actions with the selected languages
-  // }, [languages]);
 
 
   const handleProfChange = (language, proficiency) => {
@@ -46,26 +41,35 @@ const handleLanguageProfs = async (userId, profLevels) => {
   }
 }
 
-  return (
-    <div>
-      <h1>Select Proficiency Levels</h1>
-      <form onSubmit={handleSubmit}>
-        {selectedLanguages.map((language) => (
-          <div key={language}>
-            <h2>{language}</h2>
-            <select
-              value={profLevels[language] || ""}
-              onChange={(e) => handleProfChange(language, e.target.value)}
-            >
-              <option value="">Select proficiency level</option>
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intermediate</option>
-              <option value="Advanced">Advanced</option>
-            </select>
+return (
+  <div className="profprompt">
+    <Header/>
+    <div className="content">
+    <h1 className="question">Select Proficiency Levels</h1>
+    <div className="grid">
+      {selectedLanguages.map((language) => (
+        <div key={language} className="lang-box">
+          <div className="lang-info">
+          <img className="flag" src={`/public/assets/${language.toLowerCase()}.png`} alt={language} />
+          <p className="language-name">{language}</p>
           </div>
-        ))}
-        <button type="submit">Continue</button>
-      </form>
+          <div className="selectWrapper">
+          <select className="selectBox"
+            value={profLevels[language] || ''}
+            onChange={(e) => handleProfChange(language, e.target.value)}
+          >
+            <option value="">Select proficiency level</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          </select>
+          </div>
+        </div>
+      ))}
     </div>
-  );
-}
+    </div>
+    <button className="myButton2" onClick={handleSubmit}>Continue</button>
+  </div>
+);
+
+        }

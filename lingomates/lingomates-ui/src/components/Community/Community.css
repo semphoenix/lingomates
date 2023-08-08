@@ -1,42 +1,12 @@
-/* .background-img{
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-    background-image: url("../images/img1.jpeg");
-    background-position: center;
-     background-repeat: no-repeat; 
-     background-size: cover;
-     animation: change 10s infinite ease-in-out;
-} */
-
-/* @keyframes change{
-    0%{
-        background-image: url("../images/img3.webp");
-    }
-    20%{
-        background-image: url("../images/img2.webp");
-    }
-    40%{
-        background-image: url("../images/countryImg1.jpg");
-    }
-    60%{
-        background-image: url("../images/img1.jpeg");
-    }
-    80%{
-        background-image: url("../images/img6.webp");
-    }
-    100%{
-        background-image: url("../images/italyImg.jpeg");
-    }
-} */
-
-.welcome {
-  margin-top: 100px;
+.please-login-header{
   text-align: center;
-  font-size: 32px;
+  padding: auto; 
+}
+.welcome{
+    margin-top: 100px;
+    text-align: center;
+    font-size: 40px;
+    font-family: "Nunito";
 }
 
 .search-form {
@@ -62,11 +32,33 @@ Community .span {
   flex-direction: row;
 }
 
-.recommended-word {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+
+.btn-flag-image {
+    width: 300px;
+    height: 215px;
+    margin-top: 30px;
+    margin-right: 20px;
+    background-size: cover;
+    color: black;
+    font-size: 20pt;
+    font-family: "Nunito";
+    text-shadow: 1px 1px 1px white;
+}
+
+.btn-flag-image:hover {
+    text-decoration: underline;
+}
+
+
+.recommended-word{
+    width:100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+.cardContaineer .loadMore{
+  margin: 30px;
 }
 
 .search-form {
@@ -98,6 +90,23 @@ Community .span {
   font-size: 16px;
 }
 
+.view-profile-link:hover{
+  text-decoration:underline;
+  text-decoration:solid;
+ 
+  
+}
+.view-profile-link:visited{
+  color: white;
+ 
+}
+
+.toggle-community-chat{
+  text-align: right;
+  padding-right: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 .recommended-word {
   margin-top: 80px;
   font-size: 24px;
@@ -106,6 +115,5 @@ Community .span {
 .search-label {
   font-size: 24px;
 }
-
 
 /* for chat feature */

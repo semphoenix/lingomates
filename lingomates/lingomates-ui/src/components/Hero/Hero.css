@@ -4,11 +4,54 @@ body{
   width: 100%;
   height: 100vh;
 }
-h2 {
+/* h2 {
  font-family:'DM Serif Display';
  font-size: 40px;
+} */
+
+.who-description{
+  font-family:'DM Serif Display';
+  font-size: 60px;
+  color: white; 
 }
 
+.who-para-desc{
+  font-family:'DM Serif Display';
+  font-size: 32px;
+  color: white; 
+}
+
+.point-of-webapp{
+  font-family:'DM Serif Display';
+  font-size: 60px;
+  color: black;
+  margin-top: -20px; 
+}
+
+.point-of-webapp-description{
+  font-family:'DM Serif Display';
+  font-size: 32px;
+  color: black; 
+}
+
+.choose-us{
+  font-family:'DM Serif Display';
+  font-size: 60px;
+  color: white; 
+}
+
+.choose-us-description{
+  font-family:'DM Serif Display';
+  font-size: 32px;
+  color: white; 
+}
+
+.about-us1 p {
+  color: white;
+}
+.about-us1 h2 {
+  color: white;
+}
 .opacity {
   /* position: absolute; */
   top: 0;
@@ -17,6 +60,9 @@ h2 {
   height: 100%; /* Change the opacity value as needed (0.5 is 50% opacity) */
 }
 
+.para{
+  padding-left: 40px;
+}
 .background-img{
   margin:0;
   padding: 0;
@@ -24,7 +70,7 @@ h2 {
   height: 920px;
   overflow: hidden;
   position: relative;
-  background-image: url("../images/img1.jpeg");
+  /* background-image: url("../images/img1.jpeg"); */
   background-color: rgba(0, 0, 0, 0.75);
   background-position: relative;
    background-repeat: no-repeat; 
@@ -44,14 +90,11 @@ h2 {
   z-index: 1; /* Make sure the overlay appears below the text but above the image */
 }
 
-
-
-
-
 .title {
   color: white;
   font-family:'Nunito';
   font-size: 130px;
+  margin-left: 40px;
 }
 
 p {
@@ -68,12 +111,13 @@ p {
 }
 
 .mates {
-  color: brown
+  color: brown;
+  text-shadow: 1px 1px 2px black;
 }
 
 @keyframes change{
   0%{
-      background-image: url("../images/img3.webp");
+      background-image: url("../images/countryImg10.jpg");
   }
   20%{
       background-image: url("../images/img2.webp");
@@ -85,10 +129,10 @@ p {
       background-image: url("../images/img1.jpeg");
   }
   80%{
-      background-image: url("../images/img6.webp");
+      background-image: url("../images/country_img7.jpg");
   }
   100%{
-      background-image: url("../images/italyImg.jpeg");
+      background-image: url("../images/countryImg8.jpg");
   }
 }
 .text{
@@ -105,14 +149,6 @@ p {
   background-repeat: no-repeat;
 }
 
-.cardContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
-  /* justify-items: center;  */
-  align-items: center;
-}
 
 .facts, .fact2 {
   flex: 1;
@@ -125,12 +161,21 @@ p {
 
 .about-us {
   /* background-color: tan; */
-  background-color: white;
+  /* background-color: white; */
   display: flex;
   flex-direction: row;
-  margin-top: 2rem;
+  background-color: #FFFCF4;
   padding: 200px;
 }
+
+.about-us1 {
+  /* background-color: tan; */
+  background-color: brown;
+  display: flex;
+  flex-direction: row;
+  padding: 100px;
+}
+
 
 
 .white-back {
@@ -145,6 +190,7 @@ p {
 .about-us-left {
   flex: 1;
   padding: 1rem;
+  padding-right: 40px;
 }
 
 .about-us-right {
@@ -156,10 +202,20 @@ p {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  padding: 2rem;
+  padding: 8rem;
+  justify-items: center;
+  align-items: center;
+  background-color: #FFFCF4;
+}
+.footer {
+  background-color: brown;
 }
 
-.myButton {
+.get-started-btn{
+  /* padding-left: 20px; */
+  margin-top: 70px;
+  margin-left: 40px;
+  margin-right: 60px;
 	background-color:brown;
 	border-radius:28px;
 	border:1px solid brown;
@@ -173,15 +229,44 @@ p {
 	text-shadow:0px 1px 0px l;
 }
 
-.myButton:hover {
+.get-started-btn:hover {
 	background-color:red;
 }
-.myButton:active {
+
+.get-started-btn:active {
 	position:relative;
 	top:1px;
 }
 
+.have-account-btn{
+  margin-left: 40px;
+  margin-right: 60px;
+	background-color:brown;
+	border-radius:28px;
+	border:1px solid brown;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px; 
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px l;
+}
 
+.have-account-btn:hover{
+  background-color:red;
+}
+
+.have-account-btn:active{
+  position:relative;
+	top:1px;
+}
+
+.whats-the-pt-contianer{
+  
+  padding-left: 170px;
+}
 
 /* Existing styles for .hero and other classes */
 

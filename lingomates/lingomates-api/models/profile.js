@@ -7,7 +7,7 @@ class Profile {
     const result = await db.query(
       `
         SELECT u.first_name, u.id, u.last_name,u.profilePicture, u.email, u.nativeLanguage, l.linguaName, l.countryFlag, 
-        l.imageUrl, ul.proficiencyLevel
+        l.imageUrl, ul.proficiencyLevel, u.username
         FROM users u
         INNER JOIN userLingua ul ON u.id = ul.userId
         INNER JOIN lingua l ON ul.linguaId = l.id
@@ -16,7 +16,6 @@ class Profile {
     );
 
     const userLinguaProf = result.rows;
-    console.log("the profile of user is ", userLinguaProf);
     return userLinguaProf;
   }
 }

@@ -8,8 +8,10 @@ import {Link} from "react-router-dom"
 import io from "socket.io-client";
 const socket = io.connect("http://localhost:3001")
 import Chat from "../Chat/Chat";
+import Navbar from '../Navbar/Navbar';
 
-export default function Viewprofile({userId}) {
+
+export default function Viewprofile({userId, loggedIn, handleLogout}) {
 
   const [selectedUser, setSelectedUser] = useState({})
   const [selectedUserLangs,setSelectedUserLangs] = useState([])
@@ -52,12 +54,26 @@ export default function Viewprofile({userId}) {
 
    console.log("selectedUser set to: ", selectedUser)
    console.log("selectedUser langas:",  selectedUserLangs)
-
+   
   return (
+  
+     <div>
+
+     <Navbar userId={userId} handleLogout={handleLogout} />
+
+    {!loggedIn? 
+    
+    (<h1 className="please-login-header">Please log in to see this page</h1>)
+    
+    : 
+    (
+    
     <div className='profileview'>
+    
     {!viewChat ? (
       /*  paddingTop:10-use for avatar/  margin:'auto' */
       /* sx={{maxWidth:600, minHeight: 600}} */
+
       <Grid container justifyContent="center" alignItems="center" sx={{minHeight:"100vh"}}>
           <Grid item sx={{width: 450}}>
               <Card sx={{minHeight: 600}}>
@@ -75,7 +91,7 @@ export default function Viewprofile({userId}) {
                     <Typography align="center" sx={{paddingTop:2, fontSize:'2.5rem'}}>{selectedUser.first_name}<span className="last-name">{selectedUser.last_name}</span></Typography>
                     <Typography align="center" sx={{paddingTop:2, fontSize:'1.5rem', borderBottom: 1, paddingBottom:"10px"}}>Native Language: {selectedUser.nativelanguage}</Typography>
                     {selectedUserLangs?.map((selectedLangs)=>{
-                        return(<Typography align="center" sx={{paddingTop:2.5, fontSize:'1.5rem'}}>{selectedLangs.linguaname}<span className="last-name">{selectedLangs.proficiencylevel}</span></Typography>)
+                        return(<Typography align="center" sx={{paddingTop: 2.5, fontSize:'1.5rem'}}>{selectedLangs.linguaname}<span className="last-name">{selectedLangs.proficiencylevel}</span></Typography>)
                     })}
                     
                     <CardActions style={{justifyContent: 'center', paddingTop:60}}>
@@ -96,9 +112,15 @@ export default function Viewprofile({userId}) {
         receiverId={chosenUserId.id}
         receiverData={selectedUser}  />
       )
-  }
-    </div>
+    }
     
+  
+  
+
+    </div>
+    )
+  }
+  </div>
   )
 }
 

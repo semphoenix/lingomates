@@ -58,14 +58,13 @@ class Conversations{
     }
 
     static async fetchPreviousMessagesfromRoom(roomNum){
-        console.log(roomNum)
+       
         const result= await db.query(
             `SELECT * FROM directMessage
             WHERE room=$1`, [roomNum]
         )
       
         const previousChat=result.rows
-        console.log("previous chat in fetchPreviousMessagesfromRoom", previousChat)
         return previousChat
 
     }

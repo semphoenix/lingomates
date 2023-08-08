@@ -30,11 +30,12 @@ export default function Register({setUserId, setLoggedIn}) {
   const [confirmedPassword, setConfirmedPassword] = useState("");
   const [profilePicture, setProfilePicture] = useState("");
   const [nativeLanguage, setNativeLanguage] = useState("");
+  const [description, setDescription] = useState("");
 
   //handleRegistation
-  const  handleRegistration = async (email, password, firstName, lastName, username, profilePicture, nativeLanguage) =>{
+  const  handleRegistration = async (email, password, firstName, lastName, username, profilePicture, nativeLanguage, description) =>{
 
-      let response = await axios.post("http://localhost:3001/auth/register",{email, password, firstName, lastName, username, profilePicture, nativeLanguage})
+      let response = await axios.post("http://localhost:3001/auth/register",{email, password, firstName, lastName, username, profilePicture, nativeLanguage, description})
 
       if(response.status === 201){
         const {token} = response.data
@@ -54,7 +55,7 @@ export default function Register({setUserId, setLoggedIn}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleRegistration(email, password, firstName, lastName, username, profilePicture, nativeLanguage);
+    handleRegistration(email, password, firstName, lastName, username, profilePicture, nativeLanguage, description);
     console.log("firstName value: ", firstName);
   };
 
@@ -67,7 +68,7 @@ export default function Register({setUserId, setLoggedIn}) {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 30,
+            margin: 12,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -76,9 +77,6 @@ export default function Register({setUserId, setLoggedIn}) {
           {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar> */}
-          <Typography component="h1" variant="h5">
-            🙈
-          </Typography>
           <Typography component="h1" variant="h5" fontWeight={"bold"} fontFamily={"Nunito"}>
             Sign up
           </Typography>
@@ -179,8 +177,10 @@ export default function Register({setUserId, setLoggedIn}) {
                   fullWidth
                   name="description"
                   label="Enter a short description about yourself"
-                  id="profilepicture"
-                  autoComplete="profile"
+                  id="description"
+                  autoComplete="description"
+                  value = {description}
+                  onChange={(event) => setDescription(event.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -194,14 +194,14 @@ export default function Register({setUserId, setLoggedIn}) {
         onChange={(event) => setNativeLanguage(event.target.value)}
       >
         <MenuItem value="">What is your native language?</MenuItem>
-        <MenuItem value="english">English</MenuItem>
-        <MenuItem value="spanish">Spanish</MenuItem>
-        <MenuItem value="portuguese">Portuguese</MenuItem>
-        <MenuItem value="swedish">Swedish</MenuItem>
-        <MenuItem value="french">French</MenuItem>
-        <MenuItem value="italian">Italian</MenuItem>
-        <MenuItem value="german">German</MenuItem>
-        <MenuItem value="other">Other</MenuItem>
+        <MenuItem value="English">English</MenuItem>
+        <MenuItem value="Spanish">Spanish</MenuItem>
+        <MenuItem value="Portuguese">Portuguese</MenuItem>
+        <MenuItem value="Swedish">Swedish</MenuItem>
+        <MenuItem value="French">French</MenuItem>
+        <MenuItem value="Italian">Italian</MenuItem>
+        <MenuItem value="German">German</MenuItem>
+        <MenuItem value="Other">Other</MenuItem>
       </Select>
     </Grid>
               <Grid item xs={12}>
@@ -221,7 +221,7 @@ export default function Register({setUserId, setLoggedIn}) {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link to="/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

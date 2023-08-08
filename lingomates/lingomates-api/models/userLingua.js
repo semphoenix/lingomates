@@ -6,10 +6,8 @@ class UserLingua {
     static async userLinguaCreate(userLinguaData) {
         // Define the required fields for sleep data
     const requiredFields = ["userId", "linguaId", "proficiencyLevel"];
-    console.log(userLinguaData.userId)
-    console.log(userLinguaData.linguaId)
-    console.log(userLinguaData.profLevel)
-    // }
+    
+  
       const result =  await db.query(`
          INSERT INTO userLingua(
           userId,

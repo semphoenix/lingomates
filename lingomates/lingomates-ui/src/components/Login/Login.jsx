@@ -37,35 +37,81 @@ export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
   //states
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [userResponse, setUserResponse]  = useState({})
   //handleLogin
   const handleLogin = async (email, password) => {
-    console.log("Before call")
-    let response = await axios.post("http://localhost:3001/auth/login", {
-      email,
-      password,
-    });
     
-    console.log("after response")
-    console.log("What's in response: ", response)
+    console.log("Before call")
+  
+    try{
+      let response = await axios.post("http://localhost:3001/auth/login", {
+        email,
+        password
+      });
 
-    if(response.status === 200){
-      setLoggedIn(true)
-      setLoginError("") 
+      if(response.status === 200){
+        setLoggedIn(true)
+        setLoginError("") 
+  
+        const {token} = response.data
+        localStorage.setItem("token", token); //adds token to localStorage by creating a "dictionary" where "token" = key and token = value
+        const decodedToken = jwtDecode(token) //decodes token to human readable informtation where payload/data in token can be accessed
+  
+        console.log("decodedToken info: ", decodedToken)
+        setUserId(decodedToken.userId)  
+        
+        
+        window.location.href = "/community"
+      }
 
-      const {token} = response.data
-      localStorage.setItem("token", token); //adds token to localStorage by creating a "dictionary" where "token" = key and token = value
-      const decodedToken = jwtDecode(token) //decodes token to human readable informtation where payload/data in token can be accessed
-
-      console.log("decodedToken info: ", decodedToken)
-      setUserId(decodedToken.userId)  
-      
-      
-      window.location.href = "/community"
-    }else{
-      console.log("error cought")
-      console.log(response.data.message); //optional - display error message
+    }catch(error){
+      console.log("error:", error)
+      return alert(error.response.data.error.message)
     }
+    
+      // let response = await axios.post("http://localhost:3001/auth/login", {
+      //   email,
+      //   password
+      // });
+
+    // }catch(err){
+    //   console.log("error: ", err)
+    //   console.error("error inside login funtion: ", err)
+    //   // err.response.data.error.message
+    //   alert(err)
+    // }
+    
+
+    
+    // console.log("after response")
+    // console.log("What's in response: ", response.data)
+
+    
+    //   if(response.status === 200){
+    //     setLoggedIn(true)
+    //     setLoginError("") 
+  
+    //     const {token} = response.data
+    //     localStorage.setItem("token", token); //adds token to localStorage by creating a "dictionary" where "token" = key and token = value
+    //     const decodedToken = jwtDecode(token) //decodes token to human readable informtation where payload/data in token can be accessed
+  
+    //     console.log("decodedToken info: ", decodedToken)
+    //     setUserId(decodedToken.userId)  
+        
+        
+    //     window.location.href = "/community"
+    //   }
+      
+    //   else{
+    //     console.log("error caught")
+    //     console.log("info in response: ", response); //optional - display error message
+    //   }
+
+    // }catch(err){
+    //     console.error("inside err in login function")
+    // }
+    
+      
   };
 
   const handleSubmit = (e) => {
@@ -75,9 +121,10 @@ export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
 
   
   return (
+    <div className="login">
     <ThemeProvider theme={defaultTheme}>
           <Header/>
-      <Grid container component="main" sx={{ height: '100vh' }}>
+      <Grid container component="main" sx={{ height: '100vh'}}>
         <CssBaseline />
         <Grid
           item
@@ -93,10 +140,10 @@ export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
             backgroundPosition: 'center',
           }}
         />
-        <Grid item xs={12} sm={80} md={5} component={Paper} elevation={8} square>
+        <Grid item xs={12} sm={80} md={5} component={Paper} elevation={8} square style={{}}>
           <Box
             sx={{
-              my: 50,
+              my: 30,
               mx: 4,
               display: 'flex',
               flexDirection: 'column',
@@ -105,10 +152,10 @@ export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
           >
             {/* <Avatar sx={{ m: 1, bgcolor: 'red' }}> */}
             <Typography component="h1" variant="h5" fontFamily={"Nunito"} fontWeight={"bold"}>
-              🐵
+              
               </Typography>
             {/* </Avatar> */}
-            <Typography component="h1" variant="h5" fontFamily={"Nunito"} fontWeight={"bold"}>
+            <Typography component="h1" variant="h5" fontFamily={"Nunito"} fontWeight={"bold"} style={{color: ""}}>
               Sign in
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
@@ -122,6 +169,7 @@ export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
                 autoComplete="email"
                 autoFocus
                 onChange={(e) => setEmail(e.target.value)}
+                style={{backgroundColor:"", borderStyle: "solid", borderRadius: 5, borderColor:"white"}}
               />
               <TextField
                 margin="normal"
@@ -133,6 +181,7 @@ export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
                 id="password"
                 autoComplete="current-password"
                 onChange={(e) => setPassword(e.target.value)}
+                style={{backgroundColor:"",  borderStyle: "solid", borderRadius: 5, borderColor:"white"}}
               />
               <Button
                 type="submit"
@@ -142,11 +191,12 @@ export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
               >
                 Sign In
               </Button>
+
               <Grid container>
                 <Grid item xs>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link to="/register" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
@@ -157,5 +207,6 @@ export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
         </Grid>
       </Grid>
     </ThemeProvider>
+    </div>
   );
 }

@@ -32,12 +32,11 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full h-auto bg-transparent overflow-x-hidden fixed z-50 top-0 left-0">
+    <header className="header w-full h-auto bg-transparent overflow-x-hidden fixed z-50 top-0 left-0">
       <Slide direction="down">
-    
           <nav className={`w-full md:h-24 h-20 ${navBarColor ? "bg-white" : "bg-transparent"} lg:px-24 md:px-12 px-8 flex justify-between items-center`}>
             <Link to ="/" className="link-button">
-            <h1 className='poppin'>Lingo<span className='mates'>mates🐒</span></h1>
+            <h1 className='poppin'>Lingo<span className='matesHead1'>mates</span></h1>
             </Link>
             <div className="lg:flex hidden items-center gap-20">
             <ul className="flex items-center justify-center gap-6">
@@ -48,11 +47,6 @@ export default function Header() {
                   <li className="w-full"><button type="button" className="border-2 border-gray-950 before:top-0 py-2 px-8 relative z-10 before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:bg-color2 before:-z-10 hover:before:h-full before:transition-all before:duration-300 before:ease-in text-base">Signup</button></li>
                   </Link>
                   <li className="text-gray-950">
-            {/* <select class="border-none font-light text-base outline-none bg-transparent">
-              <option value="EN">EN</option>
-              <option value="ITA">ITA</option>
-              <option value="FRA">FRA</option>
-      </select> */}
    </li>
 </ul>
 </div>

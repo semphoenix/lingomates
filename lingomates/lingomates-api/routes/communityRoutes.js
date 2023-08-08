@@ -11,7 +11,6 @@ require("dotenv").config()
 router.get("/users", async function(req,res){
     const users = await db.query(`SELECT * FROM users`)
     const userData = users.rows
-    console.log("whats in users: ", userData)
     return res.status(200).json({userData:userData})
 })
 
@@ -19,8 +18,6 @@ router.get("/users", async function(req,res){
 router.get("/recommended/:id/:languageId", async function (req, res) {
     const userId = req.params.id;
     const langId = req.params.languageId; 
-    console.log("the user is", userId)
-    console.log("the language is ", langId)
 
     const recommendedUsers = await db.query(`SELECT 
     u.first_name,
@@ -36,7 +33,6 @@ router.get("/recommended/:id/:languageId", async function (req, res) {
     INNER JOIN lingua l ON ul.linguaId = l.id 
     WHERE linguaId=${langId} AND userId!=${userId};`)
 
-    console.log("whats in recommended users: ", recommendedUsers)
 
     const users = recommendedUsers.rows
     return(res.status(200).json({users:users}))
@@ -67,16 +63,37 @@ router.get("/usersLinga", async function(req,res){
     return res.status(200).json({lingaData:lingaData})
 })
 
-router.get("/viewUser/:username", async function(req,res){
+router.get("/viewUser/:username", async function(req,res, next){
+
+  // try{
+  //   const username = req.params.username; 
+  //   console.log("username value in get request: ", username)
+  //   const info = await Community.fetchUserByUsername(username)
+  
+  //   console.log("what is in info: ", info[0])
+  //    const userInfo = info[0]
+  //    return res.status(200).json({userInfo:userInfo})
+
+  // }catch(err){
+  //   console.log("what is error: ", err)
+  //   next(err)
+  // }
   const username = req.params.username; 
   console.log("username value in get request: ", username)
   const info = await Community.fetchUserByUsername(username)
 
   console.log("what is in info: ", info[0])
    const userInfo = info[0]
-  // console.log("what's in userInfo: ", userInfo)
-  return res.status(200).json({userInfo:userInfo})
 
+
+   if(!info[0]){
+    console.log("inside if statement for user that doesn't exist")
+    return res.status(404).json({message: "user does not exist"})
+    
+   }else{
+    console.log("what's in userInfo: ", userInfo)
+    return res.status(200).json({userInfo:userInfo})
+   }
 })
 
   //gets and returns specific user based on id passed down

@@ -6,7 +6,8 @@ CREATE TABLE users(
     username       TEXT NOT NULL, 
     password       TEXT NOT NULL,
     profilePicture TEXT,
-    nativeLanguage TEXT NOT NULL
+    nativeLanguage TEXT NOT NULL,
+    description    TEXT
 );
 
 CREATE TABLE lingua(
@@ -25,16 +26,6 @@ CREATE TABLE userLingua(
     FOREIGN KEY (linguaId) REFERENCES lingua(id)
 );
 
-CREATE TABLE friends(
-    id SERIAL PRIMARY KEY,
-    userId INTEGER NOT NULL,
-    FOREIGN KEY (userId) REFERENCES users(id)
-);
-
-CREATE TABLE conversation(
-    id SERIAL PRIMARY KEY,
-    roomConvo VARCHAR NOT NULL UNIQUE 
-);
 
 CREATE TABLE userConversation(
     id SERIAL PRIMARY KEY,
@@ -52,6 +43,7 @@ CREATE TABLE directMessage(
     senderId INTEGER NOT NULL,
     receiverId INTEGER NOT NULL,
     messageText TEXT NOT NULL, 
+    translatedText TEXT NOT NULL,
     messaged_at TIMESTAMP DEFAULT NOW(),
     FOREIGN KEY (room) REFERENCES conversation(roomConvo),
     FOREIGN KEY (senderId) REFERENCES users(id),

@@ -24,28 +24,21 @@ const io = new Server(httpServer, {
 });
 
 io.on("connection", (socket) => {
-  console.log(`User Connected: ${socket.id}`);
 
   socket.on("join_room", (data) => {
-    console.log(" ----THE ROOM TO BE JOINED IS----- THE RESPONSE FOR JOIN_ROOM EVENT FROM FRONT END IS")
-    console.log(data)
+   
     
     socket.join(data);
-    console.log(`User with ID: ${socket.id} joined room: ${data}`);
   });
 
   
   socket.on("send_message",async (data) => {
     const {message, sender, receiver,translatedText, time} = data 
   
-    console.log(`data is...`)
-    console.log(data)
+ 
 
     const room=[sender, receiver].sort().toString()
-    console.log(room)
-    console.log("Data in Send Message: ")
-    console.log(data)
-
+  
     socket.to(room).emit("receive_message", data);
 
     DirectMessage.createMessage(room, sender, receiver,  message, translatedText)    
@@ -53,11 +46,9 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    console.log("User Disconnected", socket.id);
   });
 });
 httpServer.listen(3001, ()=> {
-  console.log("Server listening on port 3001")
 });
 
 app.use(cors())
@@ -86,7 +77,6 @@ app.get("/", function (req, res) {
     if (!config.IS_TESTING) console.error(err.stack)
     const status = err.status || 500
     const message = err.message
-  
     return res.status(status).json({
       error: { message, status },
     })
