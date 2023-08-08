@@ -21,21 +21,19 @@ export default function ProfPrompt({ profLevels, setProfLevels, userId }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Process the proficiency levels, e.g., send them to the server or update local state
-    console.log("Selected proficiency levels:", profLevels);
+   
     handleLanguageProfs(userId, profLevels);
     // You can navigate to another page or perform any other actions here
-    console.log(languages)
+  
     window.location.href = "/community"
   };
 
 
 const handleLanguageProfs = async (userId, profLevels) => {
   try {
-    console.log("userId from frontend is", userId)
-    console.log(profLevels)
-
+    
     let response = await axios.post('http://localhost:3001/userLingua', {userId, profLevels})
-    console.log("Response output ", response)
+    
   } catch (error) {
     console.log(error)
   }

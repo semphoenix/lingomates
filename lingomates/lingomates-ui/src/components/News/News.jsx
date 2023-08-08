@@ -20,8 +20,6 @@ export default function News({selectedDailyLanguage, userId, handleLogout, daily
     const [usersLanguages, setUsersLanguages] = useState([])
    
 
-    // console.log("apiKey value: ", apiKey)
-
     let countryLanguage = ""; 
 
     if(selectedDailyLanguage === "1"){
@@ -50,7 +48,7 @@ export default function News({selectedDailyLanguage, userId, handleLogout, daily
     }
 
     const handleLoadMore = () => {
-        console.log("inside handleLoadMore function")
+        
         let newNum = loadNum + 1;
         setLoadNum(newNum);
         setDisplayArticles(newsArticles.slice(0, (newNum*5)))
@@ -59,9 +57,9 @@ export default function News({selectedDailyLanguage, userId, handleLogout, daily
     const handleLanguageChange =(event) =>{
 
         let selectedLang = event.target.value
-        console.log("selectedLang value: ", selectedLang)
+       
         setSelectedDailyLanguage(selectedLang)
-        console.log("selectedDailyLang value: ", selectedDailyLanguage)
+        
 
     }
 
@@ -83,10 +81,6 @@ export default function News({selectedDailyLanguage, userId, handleLogout, daily
         
     },[selectedDailyLanguage])
 
-    //selectedDailyLanguage
-    console.log("users languages: ", dailyLanguages)
-
-    // console.log("news articles Imageurl: ", newsArticles.imageUrl)
     return(
 
         <>
