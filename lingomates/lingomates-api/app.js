@@ -48,7 +48,7 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
   });
 });
-httpServer.listen(3001, ()=> {
+httpServer.listen( process.env.PORT || 3001, ()=> {
 });
 
 app.use(cors())
