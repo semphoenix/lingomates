@@ -8,15 +8,9 @@ router.post("/", async function (req, res, next) {
 
     try {
         const userId = req.body.userId;    
-        const profLevels = req.body.profLevels
-        // console.log(profLevels)
-        console.log("userID is,", userId)
-        console.log("req is", req.body)
+        const profLevels = req.body.profLevels       
         for (const language in profLevels) {
           const profLevel = profLevels[language];
-          console.log("Prof level is", profLevel)
-          console.log("userId is", userId)
-    
           // Retrieve linguaId from lingua table based on linguaName
           const linguaResult = await db.query('SELECT id FROM lingua WHERE linguaName = $1', [language]);
           const linguaId = linguaResult.rows[0]?.id;
@@ -39,7 +33,6 @@ router.post("/", async function (req, res, next) {
 
 router.get("/",async function (req, res, next) {
     const data = await db.query(`SELECT * FROM userLingua`)
-    console.log("userLingua info from data", data.rows)
     return res.status(200).json(data.rows)
 })
 

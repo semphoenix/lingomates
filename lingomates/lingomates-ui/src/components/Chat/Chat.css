@@ -11,8 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10vh;
-    border-radius: 6px;
+    height: 10%;
     background: #003049;
     position: relative;
     cursor: pointer;
@@ -35,7 +34,7 @@ height:30px;
   }
   
   .chat-window .chat-body {
-    height:77vh;
+    height:90%;
     padding:0px;
     border: 2px solid brown;
     background:white;
@@ -43,7 +42,7 @@ height:30px;
   }
   .chat-window .chat-body .message-container {
     
-    width: 100%;
+    height: calc(100vw - 600px);
     height: 77vh;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -174,7 +173,7 @@ html{
   align-items: center;
   align-content: center;
   height: 5.6vh;
-  background-color: #ffffff;
+  background-color: brown;
   padding:0px;
 
 }
@@ -193,8 +192,7 @@ html{
   width:55vw;
   height:40px;
   font-size: 18px;
-  border-radius: 4%;
-  border-radius: 20px; /* Set the border-radius to half of the input's height */
+
   border: 1px solid #ccc;
   outline: none;
 }
@@ -203,9 +201,8 @@ html{
   height: 45px;
   padding:10px;
   margin-right:20px;
-  background-color: brown;
-  border-radius: 22.5px;
-
+  background-color: #003049;
+  
 }
 /* 
 .chat-window .chat-footer input {

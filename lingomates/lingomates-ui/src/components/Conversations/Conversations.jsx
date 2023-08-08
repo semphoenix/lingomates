@@ -3,7 +3,7 @@ import io from "socket.io-client";
 import { useEffect, useState } from "react";
 import Chat from "../Chat/Chat";
 import axios from "axios";
-import chatImage from "/src/components/Conversations/Let's-chat-pic.png";
+import chatImage from "../../../public/assets/let_s-chat-pic_720.png";
 
 const socket = io.connect("http://localhost:3001");
 import {
@@ -99,7 +99,7 @@ function Conversation({ userId, handleLogout, loggedIn }) {
               </div>
             </div>
             <div className="chat-section">
-              * {!showChat ? (
+              {!showChat ? (
                 <div className="no-chat-selected">
                   <h1>Select Your Lingomate </h1>
                   <img

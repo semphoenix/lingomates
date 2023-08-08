@@ -91,15 +91,14 @@ Community .span {
 }
 
 .view-profile-link:hover{
-  text-decoration-color: white;
-  /* text-decoration: double; */
+  text-decoration:underline;
+  text-decoration:solid;
+ 
   
 }
 .view-profile-link:visited{
-  text-decoration-color: white;
-  /* text-decoration: white; */
-  /* text-decoration: double; */
-  
+  color: white;
+ 
 }
 
 .toggle-community-chat{

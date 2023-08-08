@@ -10,10 +10,10 @@ body {
 
 .convo-chat {
   display: flex;
-  height: 93vh;
+  height: 87vh;
+  margin-top: 30px;
 }
 .conversations-page .convo-chat .chat-section {
-  width: 79vw;
   height: 80vh;
 }
 
@@ -21,16 +21,12 @@ body {
   /* Set any necessary styles for the .conversation element */
   width: 30vw;
   height: 100%;
-  background-color: brown;
   border-top: 3px black;
-  padding-top: 30px;
-  padding-left: 20px;
-  
 }
 
 .rooms {
   /* Set any necessary styles for the .rooms element */
-  width: 50vw;
+  width: 100%;
 }
 
 /* The button inside the .conversation .rooms element */
@@ -40,12 +36,18 @@ body {
   align-items: right;
   font-family: "Nunito";
   height: max-content;
-  width: 40%;
+  width: 350px;
   font-size: 20px;
   font-weight: normal;
   padding-right: 30px;
   margin-left: 5px;
   margin-top: 5px;
+}
+.css-1pqm26d-MuiAvatar-img{
+ height: unset
+}
+.css-1pomzft-MuiAvatar-root{
+ height: 65px !important
 }
 
  .custom-button {
@@ -58,37 +60,13 @@ body {
   color: #fff; 
   padding:10px;
   margin-bottom:10px;
-  border-radius: 10%;
   
 }
 
 
-/* .custom-button {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  border: none;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  width: 130px;
-  height: 40px;
-  color: #fff;
-  background: rgb(96,9,240);
-  background: linear-gradient(0deg, rgba(96,9,240,1) 0%, rgba(129,5,240,1) 100%);
-  font-weight: 500;
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
-  outline: none;
-} */
 .custom-button:before {
   height: 0%;
-  width: 2px;
+  
 }
 .custom-button:hover {
   box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
@@ -117,10 +95,11 @@ body {
 
 }
 .no-chat-selected h1{
+  padding-top: 10px;
   align-items: center;
   font-size: 60px;
   font-family: "Nunito";
-  animation: jump 2s infinite;
+  animation: jump 3s infinite;
   
 }
 @keyframes jump {

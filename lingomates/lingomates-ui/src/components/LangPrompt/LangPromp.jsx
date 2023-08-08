@@ -43,37 +43,37 @@ export default function LangPrompt({ languages, setLanguages }) {
                 <div className="grid">
                     <div>
                         <button className={`langbutton ${isSelected("English") ? "selected" : ""}`} onClick={() => handleLangClick("English")} type="submit">
-                            <img className="flag" src="src/assets/english.png" />
+                            <img className="flag" src="public/assets/english.png" />
                             <p>English</p>
                         </button>
                     </div>
                     <div>
                         <button className={`langbutton ${isSelected("French") ? "selected" : ""}`} onClick={() => handleLangClick("French")} type="submit">
-                            <img className="flag" src="src/assets/french.png" />
+                            <img className="flag" src="public/assets/french.png" />
                             <p>French</p>
                         </button>
                     </div>
                     <div>
                         <button className={`langbutton ${isSelected("German") ? "selected" : ""}`} onClick={() => handleLangClick("German")} type="submit">
-                            <img className="flag" src="src/assets/german.png" />
+                            <img className="flag" src="public/assets/german.png" />
                             <p>German</p>
                         </button>
                     </div>
                     <div>
                         <button className={`langbutton ${isSelected("Italian") ? "selected" : ""}`} onClick={() => handleLangClick("Italian")} type="submit">
-                            <img className="flag" src="src/assets/italian.png" />
+                            <img className="flag" src="public/assets/italian.png" />
                             <p>Italian</p>
                         </button>
                     </div>
                     <div>
                         <button className={`langbutton ${isSelected("Spanish") ? "selected" : ""}`} onClick={() => handleLangClick("Spanish")} type="submit">
-                            <img className="flag" src="src/assets/spanish.png" />
+                            <img className="flag" src="public/assets/spanish.png" />
                             <p>Spanish</p>
                         </button>
                     </div>
                     <div>
                         <button className={`langbutton ${isSelected("Swedish") ? "selected" : ""}`} onClick={() => handleLangClick("Swedish")} type="submit">
-                            <img className="flag" src="src/assets/swedish.png" />
+                            <img className="flag" src="public/assets/swedish.png" />
                             <p>Swedish</p>
                         </button>
                     </div>

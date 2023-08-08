@@ -16,7 +16,6 @@ class Profile {
     );
 
     const userLinguaProf = result.rows;
-    console.log("the profile of user is ", userLinguaProf);
     return userLinguaProf;
   }
 }

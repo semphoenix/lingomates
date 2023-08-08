@@ -60,7 +60,6 @@ function App() {
           try{
             //gets current user that is logged in based on userId-comes from user id from token
             axios.get(`http://localhost:3001/community/${userId}`).then((response)=>{
-                // console.log("what is this: ", response.data.userData[0])
                 setUserData(response.data.userData[0])})
           
           }catch{(error)=>{
@@ -72,15 +71,11 @@ function App() {
   
   
   const handleLogout = () => {
-    console.log("we made it")
     localStorage.removeItem("token");
     setLoggedIn(false);
     window.location.href = "/"
   }
-  // console.log("what is selectedDailyLanguage value: ", selectedDailyLanguage)
-  // console.log("retrieved user id: ", userId)
-  // console.log("Date now data: ", Date.now())
- 
+
   return (
     <div>    
 

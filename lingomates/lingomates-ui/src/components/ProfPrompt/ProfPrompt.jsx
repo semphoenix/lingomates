@@ -10,14 +10,6 @@ export default function ProfPrompt({ profLevels, setProfLevels, userId }) {
   const { languages } = useParams();
   const selectedLanguages = languages ? languages.split("_") : [];
 
-  // useEffect(() => {
-  //   // Split the languages parameter into an array of selected languages
-
-
-  //   console.log("Selected languages from URL:", selectedLanguages);
-  //   // Perform any further actions with the selected languages
-  // }, [languages]);
-
 
   const handleProfChange = (language, proficiency) => {
     setProfLevels((prevLevels) => ({
@@ -58,7 +50,7 @@ return (
       {selectedLanguages.map((language) => (
         <div key={language} className="lang-box">
           <div className="lang-info">
-          <img className="flag" src={`/src/assets/${language.toLowerCase()}.png`} alt={language} />
+          <img className="flag" src={`/public/assets/${language.toLowerCase()}.png`} alt={language} />
           <p className="language-name">{language}</p>
           </div>
           <div className="selectWrapper">

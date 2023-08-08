@@ -14,12 +14,12 @@ import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar";
 
 const languageData = [
-  { name: "English", flagSrc: "src/assets/english.png" },
-  { name: "Spanish", flagSrc: "src/assets/spanish.png" },
-  { name: "French", flagSrc: "src/assets/french.png" },
-  { name: "Italian", flagSrc: "src/assets/italian.png" },
-  { name: "Swedish", flagSrc: "src/assets/swedish.png" },
-  { name: "German", flagSrc: "src/assets/german.png" },
+  { name: "English", flagSrc: "public/assets/english.png" },
+  { name: "Spanish", flagSrc: "public/assets/spanish.png" },
+  { name: "French", flagSrc: "public/assets/french.png" },
+  { name: "Italian", flagSrc: "public/assets/italian.png" },
+  { name: "Swedish", flagSrc: "public/assets/swedish.png" },
+  { name: "German", flagSrc: "public/assets/german.png" },
 ];
 
 export default function Hero() {

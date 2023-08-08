@@ -17,8 +17,6 @@ router.post("/login", async function(req,res, next){
     console.log("login reached")
     try{
       const user = await User.authenticate(req.body) //takes in user input from body of page as a paramater for authenticate method      
-        console.log("login user", user)
-        console.log("user status: ", user.status)
       //creates jsonwebtoken for user by taking in 2 paramters-payload(desired data) and SECRET KEY 
       const token = jwt.sign({userId: user.id, username: user.username}, process.env.SECRET_KEY, {
             expiresIn:'1h',

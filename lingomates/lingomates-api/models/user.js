@@ -25,8 +25,6 @@ class User{
      //authentification function-authenticates givensss user credentials
     static async authenticate(creds){
         const {email, password} = creds
-        console.log("authenticate info:", creds)
-        console.log("whats in email: ", email)
         const requiredCreds = ["email", "password"]
         //checking if user provided required credentials-email and password
         try{         
@@ -39,12 +37,10 @@ class User{
         //calls fetch function and if the email parameter matches an email
         //in the database then returns a user object
         const user = await User.fetchUserByEmail(email)
-            console.log("whats in user: ", user)
 
         if(user){
             //compares user given password to hashed password in db
             const isValid = await bcrypt.compare(password, user.password)
-            console.log("isValid?", isValid)
 
             if(isValid == true){
                 return User.createPublicUser(user) //returns desired user information to frontend
@@ -55,7 +51,6 @@ class User{
             }
         }else{
             //throw an error here
-          console.log("user doesn't exist")
             throw new UnauthorizedError("invalid username or password")
             // return new UnauthorizedError("invalid username or password")
         }
@@ -104,7 +99,6 @@ class User{
 
     static async fetchUserByEmail(email){
 
-                console.log("inside if statement to check email")
                 const result = await db.query(
                     `SELECT id,
                             email,
@@ -126,7 +120,6 @@ class User{
 
     static async fetchUserById(requestedId){
 
-        console.log("this is the requested id in fetch by id: ", requestedId)
 
         const result = await db.query(
             `SELECT username, first_name, last_name, email, username , profilePicture, nativeLanguage, description 

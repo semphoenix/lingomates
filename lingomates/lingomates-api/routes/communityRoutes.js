@@ -11,7 +11,6 @@ require("dotenv").config()
 router.get("/users", async function(req,res){
     const users = await db.query(`SELECT * FROM users`)
     const userData = users.rows
-    console.log("whats in users: ", userData)
     return res.status(200).json({userData:userData})
 })
 
@@ -19,8 +18,6 @@ router.get("/users", async function(req,res){
 router.get("/recommended/:id/:languageId", async function (req, res) {
     const userId = req.params.id;
     const langId = req.params.languageId; 
-    console.log("the user is", userId)
-    console.log("the language is ", langId)
 
     const recommendedUsers = await db.query(`SELECT 
     u.first_name,
@@ -36,7 +33,6 @@ router.get("/recommended/:id/:languageId", async function (req, res) {
     INNER JOIN lingua l ON ul.linguaId = l.id 
     WHERE linguaId=${langId} AND userId!=${userId};`)
 
-    console.log("whats in recommended users: ", recommendedUsers)
 
     const users = recommendedUsers.rows
     return(res.status(200).json({users:users}))
