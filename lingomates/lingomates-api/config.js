@@ -20,7 +20,6 @@ function getDatabaseUri(){
 const BCRYPT_WORK_FACTOR=13
 const SECRET_KEY="SOMETHING_SUPER_SECRET_GOES_HERE"
 
-console.log(getDatabaseUri())
 module.exports = {
     PORT,
     getDatabaseUri,

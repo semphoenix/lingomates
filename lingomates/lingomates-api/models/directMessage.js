@@ -9,7 +9,6 @@ class DirectMessage {
     
 
     if (existingChat) {
-        console.log("-----IN IF!-----")
       const result = await db.query( 
         `
             INSERT INTO directMessage(
@@ -28,10 +27,7 @@ class DirectMessage {
       return userMessage;
     } 
     else {
-        console.log("-----IN ELSE!-----")
         const convo= await Conversations.conversationCreate(sender,receiver)
-        console.log("convo in direct message: ")
-        console.log(convo)
         const result = await db.query(
             `INSERT INTO directMessage(
                     room, 

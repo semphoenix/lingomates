@@ -22,7 +22,6 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
   const [currentContact, setCurrentContact] = useState(null);
   const [viewTranslate, setViewTranslate] = useState(false);
 
-  //console.log("THE RECEIVER FETCHED FROM CHAT", receiverData);
 
   useEffect(() => {
     axios
@@ -49,11 +48,9 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
 
   const handleViewTranslate = () => {
     setViewTranslate(!viewTranslate);
-    console.log("new toggle was clicked", viewTranslate);
   };
 
   const handleTranslate = async (text) => {
-    //console.log('in handleTranslate');
 
     try {
       const apiKey = import.meta.env.VITE_TRANSLATE_API;
@@ -83,8 +80,6 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
     }
   };
 
-  //   This async function is going to take the current message that we input in the box and create an object that saves
-  //   the message, the author, the room, and the time where the message is sent
   const sendMessage = async () => {
     if (currentMessage !== "") {
       const messageData = {
@@ -99,7 +94,6 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
           ":" +
           new Date(Date.now()).getMinutes(),
       };
-      //console.log(messageData)
       //socket.emit creates an event "Send_message" which takes in the the object generated above and send it to the backend
       //and the messages state declared at the top is called and the new message object is added into it. The current message is cleared out
       await socket.emit("send_message", messageData);
@@ -149,7 +143,7 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
             onChange={handleViewTranslate}
             checked={viewTranslate}
           />
-          <label htmlFor="my-switcher">All Translated</label>
+          <label htmlFor="my-switcher"> Translate</label>
           </div>
         </div>
 

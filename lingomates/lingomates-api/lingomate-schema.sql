@@ -26,16 +26,6 @@ CREATE TABLE userLingua(
     FOREIGN KEY (linguaId) REFERENCES lingua(id)
 );
 
-CREATE TABLE friends(
-    id SERIAL PRIMARY KEY,
-    userId INTEGER NOT NULL,
-    FOREIGN KEY (userId) REFERENCES users(id)
-);
-
-CREATE TABLE conversation(
-    id SERIAL PRIMARY KEY,
-    roomConvo VARCHAR NOT NULL UNIQUE 
-);
 
 CREATE TABLE userConversation(
     id SERIAL PRIMARY KEY,

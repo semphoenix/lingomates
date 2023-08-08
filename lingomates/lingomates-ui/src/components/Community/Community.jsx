@@ -41,12 +41,11 @@ export default function Community({
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [selectedProfile, setSelectedProfile] = useState(null);
 
-  //console.log("userId value in community: ", userId);
-  // console.log("test datas data in community: ", testData)
+  
 
   const searchForm = async (event) => {
     event.preventDefault();
-    //console.log("inside searchForm");
+   
 
     try{
       const response = await axios.get(
@@ -69,7 +68,7 @@ export default function Community({
   };
 
   useEffect(() => {
-    // if current user id exists then do an  axios call that returns current user selected languages
+  
     if (userId) {
       try {
         axios.get(`http://localhost:3001/community/linguas/${userId}`).then((languages) => {
@@ -101,7 +100,7 @@ export default function Community({
           `http://localhost:3001/community/recommended/${userId}/${languageId}`
         )
         .then((recUsers) => {
-          //console.log("recommended users: ", recUsers.data.users);
+      
           setRecommendedUsers(recUsers.data.users);
           setSelectedDailyLanguage(languageId);
           setDisplayedUsers(recUsers.data.users.slice(0, loadNumber * 3));
@@ -117,12 +116,12 @@ export default function Community({
   };
 
   const handleSendMessage = (chosenUser) => {
-    //console.log("chosen user is", chosenUser);
+    
     axios
       .get(`http://localhost:3001/conversationRoutes/${chosenUser}`)
       .then((response) => {
         setSelectedProfile(response.data.userData[0]);
-        //console.log("The selected profile is" , response.data.userData[0])
+       
        
       });
 
@@ -180,7 +179,7 @@ export default function Community({
                 <div>
                 {dailyLanguages?.map((language) => {
                     let imageName = `${language.linguaname.toLowerCase()}`
-                    let imageSrc = `../../src/assets/${imageName}.png`
+                    let imageSrc = `../../public/assets/${imageName}.png`
                     return <button className="btn-flag-image" 
                         style={{backgroundImage: `url(${imageSrc})` }} 
                         value={language.linguaid} 
@@ -245,7 +244,7 @@ export default function Community({
                                   padding: 0,
                                 }}
                               >
-                                <Link to={"/userProfile/" + recUsers.id} style={{fontSize: 24, paddingTop:15, textDecorationLine:"none"}} className="view-profile-link">
+                                <Link to={"/userProfile/" + recUsers.id} style={{fontSize: 24, paddingTop:15, color:"white"}} className="view-profile-link">
                                   View Profile
                                 </Link>
                               </CardActions>
