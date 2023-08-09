@@ -92,7 +92,7 @@ export default function Community({
 
   const handleSelectOnChange = async (event) => {
     const languageId = event.target.value;
-    console.log(`the language value is ${languageId}`)
+    
 
     if (languageId !== "Select a language") {
       axios
@@ -139,14 +139,7 @@ export default function Community({
       });
   };
 
-    //   console.log("userData: ", userData);
-    //   console.log("userData first name: ", userData.first_name);
-    //   console.log("searched username: ", searchUsername);
-    //   console.log("current users' selected language: ", dailyLanguages);
-    //   console.log("display users: ", displayedUsers);
-    console.log("whats in recommended users: ", recommendedUsers)
-    console.log("logged in value: ", loggedIn)
-    console.log("value fo chatView:", chatView)
+   
     return (
     
     <div className="communityPage">
