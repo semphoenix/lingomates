@@ -4,6 +4,8 @@
 const { Client } = require("pg")
 const { getDatabaseUri } = require("./config")
 
+console.log(`the DB URI is: ${getDatabaseUri()}`)
+
 const db = new Client({ connectionString: getDatabaseUri() })
 
 db.connect((err) => {
