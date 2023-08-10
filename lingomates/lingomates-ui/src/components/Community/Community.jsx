@@ -16,8 +16,6 @@ import {
   CardActions,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { TypeAnimation } from "react-type-animation";
-import Viewprofile from "../Viewprofile/Viewprofile";
 import io from "socket.io-client";
 const socket = io.connect("http://localhost:3001");
 

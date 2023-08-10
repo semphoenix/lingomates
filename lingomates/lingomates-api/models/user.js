@@ -76,6 +76,8 @@ class User{
        if (existingUser){
         throw new BadRequestError(`Duplicate email: ${creds.email} `)
        }
+
+       console.log("I made it here! I'm here! Before the result!")
       
 
        //adding user information into the database
