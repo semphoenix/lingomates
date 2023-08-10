@@ -44,7 +44,7 @@ export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
     console.log("Before call")
   
     try{
-      let response = await axios.post("http://localhost:3001/auth/login", {
+      let response = await axios.post("https://lingomates-backend.onrender.com/auth/login", {
         email,
         password
       });

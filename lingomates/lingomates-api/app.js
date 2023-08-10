@@ -18,7 +18,7 @@ const axios = require('axios')
 const httpServer = createServer(app);
 const io = new Server(httpServer, { 
   cors:{
-    origin:"https://lingomates-81a18.web.app", //url for our front end
+    origin:"http://localhost:5173", //url for our front end
     methods:["GET", "POST"] //methods we are accepting   
   }
 });
