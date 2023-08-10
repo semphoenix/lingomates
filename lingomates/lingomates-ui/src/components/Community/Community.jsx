@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import io from "socket.io-client";
-const socket = io.connect("https://lingomates-backend.onrender.com");
+const socket = io.connect("https://lingomates.vercel.app");
 
 export default function Community({
   loggedIn,
