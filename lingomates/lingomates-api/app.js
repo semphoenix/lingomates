@@ -45,7 +45,8 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {});
 });
-httpServer.listen(process.env.PORT || 3001, () => {});
+// httpServer.listen(3001, () => {});
+// console.log("listening on port 3001");
 
 app.use(cors());
 // parse incoming requests with JSON payloads
