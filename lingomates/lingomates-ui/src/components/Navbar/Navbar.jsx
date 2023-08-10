@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
     useEffect(() => {
         if (loggedIn) {
-            axios.get(`http://localhost:3001/profile/${userId}`).then((response) => {
+            axios.get(`https://lingomatesbackend.onrender.com/profile/${userId}`).then((response) => {
                 setCurrentUser(response.data.userData[0])
             });
         }

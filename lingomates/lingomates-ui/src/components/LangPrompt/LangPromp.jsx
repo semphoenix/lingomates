@@ -28,7 +28,7 @@ export default function LangPrompt({ languages, setLanguages }) {
     //this will add the languages to the lingua table
     const handleLingua = async () => {
         try {
-            let response = await axios.post('http://localhost:3001/lingua')
+            let response = await axios.post('https://lingomatesbackend.onrender.com/lingua')
            
         } catch (error) {
             console.log(error)

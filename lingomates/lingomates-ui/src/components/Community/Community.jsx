@@ -47,7 +47,7 @@ export default function Community({
 
     try{
       const response = await axios.get(
-        `http://localhost:3001/community/viewUser/${searchUsername}`
+        `https://lingomatesbackend.onrender.com/community/viewUser/${searchUsername}`
       );
       
       if(response.status === 200){
@@ -60,7 +60,7 @@ export default function Community({
         alert(err.response.data.message)
     }
     const response = await axios.get(
-      `http://localhost:3001/community/viewUser/${searchUsername}`
+      `https://lingomatesbackend.onrender.com/community/viewUser/${searchUsername}`
     );
 
   };
@@ -69,7 +69,7 @@ export default function Community({
   
     if (userId) {
       try {
-        axios.get(`http://localhost:3001/community/linguas/${userId}`).then((languages) => {
+        axios.get(`https://lingomatesbackend.onrender.com/community/linguas/${userId}`).then((languages) => {
             setDailyLanguages(languages.data.lingasData);
           });
 
@@ -95,7 +95,7 @@ export default function Community({
     if (languageId !== "Select a language") {
       axios
         .get(
-          `http://localhost:3001/community/recommended/${userId}/${languageId}`
+          `https://lingomatesbackend.onrender.com/community/recommended/${userId}/${languageId}`
         )
         .then((recUsers) => {
       
@@ -116,7 +116,7 @@ export default function Community({
   const handleSendMessage = (chosenUser) => {
     
     axios
-      .get(`http://localhost:3001/conversationRoutes/${chosenUser}`)
+      .get(`https://lingomatesbackend.onrender.com/conversationRoutes/${chosenUser}`)
       .then((response) => {
         setSelectedProfile(response.data.userData[0]);
        
@@ -125,7 +125,7 @@ export default function Community({
 
     setSelectedUserId(chosenUser);
     axios
-      .post("http://localhost:3001/conversationRoutes/communityJoinRoom", {
+      .post("https://lingomatesbackend.onrender.com/conversationRoutes/communityJoinRoom", {
         userId,
         chosenUser,
       })

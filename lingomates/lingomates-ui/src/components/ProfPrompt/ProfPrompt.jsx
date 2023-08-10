@@ -32,7 +32,7 @@ export default function ProfPrompt({ profLevels, setProfLevels, userId }) {
 const handleLanguageProfs = async (userId, profLevels) => {
   try {
     
-    let response = await axios.post('http://localhost:3001/userLingua', {userId, profLevels})
+    let response = await axios.post('https://lingomatesbackend.onrender.com/userLingua', {userId, profLevels})
     
   } catch (error) {
     console.log(error)

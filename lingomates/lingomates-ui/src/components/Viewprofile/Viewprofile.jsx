@@ -6,7 +6,7 @@ import axios from "axios";
 import {Card, CardContent, Typography, CardMedia, Avatar, Grid, Button, CardActions} from '@mui/material';
 import {Link} from "react-router-dom"
 import io from "socket.io-client";
-const socket = io.connect("http://localhost:3001")
+const socket = io.connect("https://lingomatesbackend.onrender.com")
 import Chat from "../Chat/Chat";
 import Navbar from '../Navbar/Navbar';
 
@@ -24,12 +24,12 @@ export default function Viewprofile({userId, loggedIn, handleLogout}) {
   
   useEffect(()=>{
 
-    axios.get(`http://localhost:3001/profile/${chosenUserId.id}`).then((response)=>{
+    axios.get(`https://lingomatesbackend.onrender.com/profile/${chosenUserId.id}`).then((response)=>{
       // console.log("selected user info: ", response.data.userData[0])
       setSelectedUser(response.data.userData[0])
     })
 
-    axios.get(`http://localhost:3001/community/linguas/${chosenUserId.id}`).then((response)=>{
+    axios.get(`https://lingomatesbackend.onrender.com/community/linguas/${chosenUserId.id}`).then((response)=>{
       // console.log("selected users languages: ", response.data.lingasData)
       setSelectedUserLangs(response.data.lingasData)
     })
@@ -40,7 +40,7 @@ export default function Viewprofile({userId, loggedIn, handleLogout}) {
     //console.log("chosen user is", chosenUser);
     
     axios
-      .post("http://localhost:3001/conversationRoutes/communityJoinRoom", {
+      .post("https://lingomatesbackend.onrender.com1/conversationRoutes/communityJoinRoom", {
         userId,
         chosenUser,
       })

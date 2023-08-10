@@ -59,7 +59,7 @@ function App() {
         if(userId){
           try{
             //gets current user that is logged in based on userId-comes from user id from token
-            axios.get(`http://localhost:3001/community/${userId}`).then((response)=>{
+            axios.get(`https://lingomatesbackend.onrender.com/${userId}`).then((response)=>{
                 setUserData(response.data.userData[0])})
           
           }catch{(error)=>{
