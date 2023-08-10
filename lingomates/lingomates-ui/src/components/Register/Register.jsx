@@ -35,7 +35,7 @@ export default function Register({setUserId, setLoggedIn}) {
   //handleRegistation
   const  handleRegistration = async (email, password, firstName, lastName, username, profilePicture, nativeLanguage, description) =>{
 
-      let response = await axios.post("http://localhost:3001/auth/register",{email, password, firstName, lastName, username, profilePicture, nativeLanguage, description})
+      let response = await axios.post("https://lingomatesbackend.onrender.com/auth/register",{email, password, firstName, lastName, username, profilePicture, nativeLanguage, description})
 
       if(response.status === 201){
         const {token} = response.data

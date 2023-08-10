@@ -25,7 +25,7 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
 
   useEffect(() => {
     axios
-      .post("http://localhost:3001/conversationRoutes/previousMessages", {
+      .post("https://lingomatesbackend.onrender.com/conversationRoutes/previousMessages", {
         room,
       })
       .then((res) => {
@@ -37,7 +37,7 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
     if (receiverData.userD) {
       setCurrentContact(receiverData.userData[0]);
       axios
-        .post("http://localhost:3001/conversationRoutes/previousMessages", {
+        .post("https://lingomatesbackend.onrender.com/conversationRoutes/previousMessages", {
           room,
         })
         .then((res) => {

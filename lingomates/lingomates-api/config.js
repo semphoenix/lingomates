@@ -12,9 +12,10 @@ function getDatabaseUri(){
    const dbName = process.env.DATABASE_NAME || "lingomate"
    // DATABASE_TEST_NAME=lifetracker_test
 
-   const dbHostedURL = process.env.DATABASE_HOSTED_URL
+   const dbHostedURL = "postgres://lingomatedb_user:X2OGVfYglv6IUsN2ptDGDw8mK1KU9hF0@dpg-cja4ocq683bs739cmsog-a.oregon-postgres.render.com/lingomatedb?ssl=true"
+   //external = postgres://lingomatedb_user:X2OGVfYglv6IUsN2ptDGDw8mK1KU9hF0@dpg-cja4ocq683bs739cmsog-a.oregon-postgres.render.com/lingomatedb
    //if user supplies database url use that else make it yourself
-  return process.env.DATABASE_URL || `postgresql://${dbUser}:${dbPass}@${dbHost}:${dbPort}/${dbName}?ssl=true` //full database connection string
+  return  dbHostedURL || `postgresql://${dbUser}:${dbPass}@${dbHost}:${dbPort}/${dbName}?ssl=true` //full database connection string
 
 }
 const BCRYPT_WORK_FACTOR=13

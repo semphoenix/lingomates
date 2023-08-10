@@ -10,7 +10,7 @@ function Profile({ userId }) {
   useEffect(() => {
     if (userId !== undefined) {
       axios
-        .get(`http://localhost:3001/profile/${userId}`)
+        .get(`https://lingomatesbackend.onrender.com/profile/${userId}`)
         .then((response) => {
           //   console.log("what's in response: ", response.data);
           setProfileData(response.data.userData);

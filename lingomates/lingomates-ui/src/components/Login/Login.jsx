@@ -69,48 +69,7 @@ export default function Login({setUserId, setLoggedIn, setLoginError, userId}) {
       return alert(error.response.data.error.message)
     }
     
-      // let response = await axios.post("http://localhost:3001/auth/login", {
-      //   email,
-      //   password
-      // });
-
-    // }catch(err){
-    //   console.log("error: ", err)
-    //   console.error("error inside login funtion: ", err)
-    //   // err.response.data.error.message
-    //   alert(err)
-    // }
-    
-
-    
-    // console.log("after response")
-    // console.log("What's in response: ", response.data)
-
-    
-    //   if(response.status === 200){
-    //     setLoggedIn(true)
-    //     setLoginError("") 
-  
-    //     const {token} = response.data
-    //     localStorage.setItem("token", token); //adds token to localStorage by creating a "dictionary" where "token" = key and token = value
-    //     const decodedToken = jwtDecode(token) //decodes token to human readable informtation where payload/data in token can be accessed
-  
-    //     console.log("decodedToken info: ", decodedToken)
-    //     setUserId(decodedToken.userId)  
-        
-        
-    //     window.location.href = "/community"
-    //   }
-      
-    //   else{
-    //     console.log("error caught")
-    //     console.log("info in response: ", response); //optional - display error message
-    //   }
-
-    // }catch(err){
-    //     console.error("inside err in login function")
-    // }
-    
+     
       
   };
 
