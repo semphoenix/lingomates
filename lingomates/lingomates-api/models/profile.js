@@ -8,6 +8,8 @@ class Profile {
     console.log(userIdRequested);
     const allUsers = await db.query(`
     SELECT * from users;`);
+    const allUserLingua = await db.query(`SELECT * FROM userLingua;`);
+    const allLingua = await db.query(`SELECT * FROM lingua;`);
     const result = await db.query(
       `
         SELECT u.first_name, u.id, u.last_name,u.profilePicture, u.email, u.nativeLanguage, l.linguaName, l.countryFlag,
@@ -19,6 +21,8 @@ class Profile {
       [userIdRequested]
     );
     console.log(allUsers);
+    console.log("All User Lingua", allUserLingua);
+    console.log("All Lingua", allLingua);
     const userLinguaProf = result.rows;
     return userLinguaProf;
   }
