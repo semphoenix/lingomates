@@ -28,7 +28,7 @@ export default function ProfPrompt({ profLevels, setProfLevels, userId }) {
   const handleLanguageProfs = async (userId, profLevels) => {
     try {
       let response = await axios.post(
-        "https://lingomates.vercel.app/userLingua",
+        "https://lingomates-backend-copy.onrender.com/userLingua",
         { userId, profLevels }
       );
     } catch (error) {

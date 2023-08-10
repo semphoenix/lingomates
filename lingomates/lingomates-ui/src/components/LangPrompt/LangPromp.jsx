@@ -29,7 +29,9 @@ export default function LangPrompt({ languages, setLanguages }) {
   //this will add the languages to the lingua table
   const handleLingua = async () => {
     try {
-      let response = await axios.post("https://lingomates.vercel.app/lingua");
+      let response = await axios.post(
+        "https://lingomates-backend-copy.onrender.com/lingua"
+      );
     } catch (error) {
       console.log(error);
     }

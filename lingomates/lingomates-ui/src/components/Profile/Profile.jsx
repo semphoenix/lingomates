@@ -9,7 +9,7 @@ function Profile({ userId }) {
   useEffect(() => {
     if (userId !== undefined) {
       axios
-        .get(`https://lingomates.vercel.app/profile/${userId}`)
+        .get(`https://lingomates-backend-copy.onrender.com/profile/${userId}`)
         .then((response) => {
           //   console.log("what's in response: ", response.data);
           setProfileData(response.data.userData);

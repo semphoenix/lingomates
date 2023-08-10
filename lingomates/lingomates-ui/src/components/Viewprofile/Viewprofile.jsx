@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import io from "socket.io-client";
-const socket = io.connect("https://lingomates.vercel.app");
+const socket = io.connect("https://lingomates-backend-copy.onrender.com");
 import Chat from "../Chat/Chat";
 import Navbar from "../Navbar/Navbar";
 
@@ -31,14 +31,18 @@ export default function Viewprofile({ userId, loggedIn, handleLogout }) {
 
   useEffect(() => {
     axios
-      .get(`https://lingomates.vercel.app/profile/${chosenUserId.id}`)
+      .get(
+        `https://lingomates-backend-copy.onrender.com/profile/${chosenUserId.id}`
+      )
       .then((response) => {
         // console.log("selected user info: ", response.data.userData[0])
         setSelectedUser(response.data.userData[0]);
       });
 
     axios
-      .get(`https://lingomates.vercel.app/community/linguas/${chosenUserId.id}`)
+      .get(
+        `https://lingomates-backend-copy.onrender.com/community/linguas/${chosenUserId.id}`
+      )
       .then((response) => {
         // console.log("selected users languages: ", response.data.lingasData)
         setSelectedUserLangs(response.data.lingasData);
@@ -51,7 +55,7 @@ export default function Viewprofile({ userId, loggedIn, handleLogout }) {
 
     axios
       .post(
-        "https://lingomates.vercel.app/conversationRoutes/communityJoinRoom",
+        "https://lingomates-backend-copy.onrender.com/conversationRoutes/communityJoinRoom",
         {
           userId,
           chosenUser,

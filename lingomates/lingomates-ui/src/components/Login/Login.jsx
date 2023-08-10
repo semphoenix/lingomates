@@ -51,7 +51,7 @@ export default function Login({
 
     try {
       let response = await axios.post(
-        "https://lingomates.vercel.app/auth/login",
+        "https://lingomates-backend-copy.onrender.com/auth/login",
         {
           email,
           password,

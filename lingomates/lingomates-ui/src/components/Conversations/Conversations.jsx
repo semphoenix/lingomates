@@ -5,7 +5,7 @@ import Chat from "../Chat/Chat";
 import axios from "axios";
 import chatImage from "../../../public/assets/let_s-chat-pic_720.png";
 
-const socket = io.connect("https://lingomates.vercel.app");
+const socket = io.connect("https://lingomates-backend-copy.onrender.com");
 import {
   Card,
   CardContent,
@@ -31,7 +31,7 @@ function Conversation({ userId, handleLogout, loggedIn }) {
     if (userId) {
       axios
         .get(
-          `https://lingomates.vercel.app/conversationRoutes/userConversations/${userId}`
+          `https://lingomates-backend-copy.onrender.com/conversationRoutes/userConversations/${userId}`
         )
         .then((response) => {
           console.log(response.data);

@@ -39,7 +39,7 @@ export default function Navbar({ userId, handleLogout, loggedIn }) {
   useEffect(() => {
     if (loggedIn) {
       axios
-        .get(`https://lingomates.vercel.app/profile/${userId}`)
+        .get(`https://lingomates-backend-copy.onrender.com/profile/${userId}`)
         .then((response) => {
           setCurrentUser(response.data.userData[0]);
         });

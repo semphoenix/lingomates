@@ -44,7 +44,7 @@ export default function Register({ setUserId, setLoggedIn }) {
     description
   ) => {
     let response = await axios.post(
-      "https://lingomates.vercel.app/auth/register",
+      "https://lingomates-backend-copy.onrender.com/auth/register",
       {
         email,
         password,

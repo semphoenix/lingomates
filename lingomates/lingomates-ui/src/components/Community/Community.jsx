@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import io from "socket.io-client";
-const socket = io.connect("https://lingomates.vercel.app");
+const socket = io.connect("https://lingomates-backend-copy.onrender.com");
 
 export default function Community({
   loggedIn,
@@ -43,7 +43,7 @@ export default function Community({
 
     try {
       const response = await axios.get(
-        `https://lingomates.vercel.app/community/viewUser/${searchUsername}`
+        `https://lingomates-backend-copy.onrender.com/community/viewUser/${searchUsername}`
       );
 
       if (response.status === 200) {
@@ -56,7 +56,7 @@ export default function Community({
       alert(err.response.data.message);
     }
     const response = await axios.get(
-      `https://lingomates.vercel.app/community/viewUser/${searchUsername}`
+      `https://lingomates-backend-copy.onrender.com/community/viewUser/${searchUsername}`
     );
   };
 
@@ -64,7 +64,9 @@ export default function Community({
     if (userId) {
       try {
         axios
-          .get(`https://lingomates.vercel.app/community/linguas/${userId}`)
+          .get(
+            `https://lingomates-backend-copy.onrender.com/community/linguas/${userId}`
+          )
           .then((languages) => {
             setDailyLanguages(languages.data.lingasData);
           });
@@ -88,7 +90,7 @@ export default function Community({
     if (languageId !== "Select a language") {
       axios
         .get(
-          `https://lingomates.vercel.app/community/recommended/${userId}/${languageId}`
+          `https://lingomates-backend-copy.onrender.com/community/recommended/${userId}/${languageId}`
         )
         .then((recUsers) => {
           setRecommendedUsers(recUsers.data.users);
@@ -107,7 +109,9 @@ export default function Community({
 
   const handleSendMessage = (chosenUser) => {
     axios
-      .get(`https://lingomates.vercel.app/conversationRoutes/${chosenUser}`)
+      .get(
+        `https://lingomates-backend-copy.onrender.com/conversationRoutes/${chosenUser}`
+      )
       .then((response) => {
         setSelectedProfile(response.data.userData[0]);
       });
@@ -115,7 +119,7 @@ export default function Community({
     setSelectedUserId(chosenUser);
     axios
       .post(
-        "https://lingomates.vercel.app/conversationRoutes/communityJoinRoom",
+        "https://lingomates-backend-copy.onrender.com/conversationRoutes/communityJoinRoom",
         {
           userId,
           chosenUser,

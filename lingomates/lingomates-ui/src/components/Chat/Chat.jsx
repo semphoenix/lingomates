@@ -25,7 +25,7 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
   useEffect(() => {
     axios
       .post(
-        "https://lingomates.vercel.app/conversationRoutes/previousMessages",
+        "https://lingomates-backend-copy.onrender.com/conversationRoutes/previousMessages",
         {
           room,
         }
@@ -40,7 +40,7 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
       setCurrentContact(receiverData.userData[0]);
       axios
         .post(
-          "https://lingomates.vercel.app/conversationRoutes/previousMessages",
+          "https://lingomates-backend-copy.onrender.com/conversationRoutes/previousMessages",
           {
             room,
           }
