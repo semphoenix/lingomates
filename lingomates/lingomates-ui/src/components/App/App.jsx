@@ -54,7 +54,7 @@ function App() {
       try {
         //gets current user that is logged in based on userId-comes from user id from token
         axios
-          .get(`https://lingomates-backend-copy.onrender.com/${userId}`)
+          .get(`https://lingomates-backend-copy.onrender.com/profile/${userId}`)
           .then((response) => {
             setUserData(response.data.userData[0]);
           });
