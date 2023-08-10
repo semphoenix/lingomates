@@ -5,7 +5,7 @@ import Chat from "../Chat/Chat";
 import axios from "axios";
 import chatImage from "../../../public/assets/let_s-chat-pic_720.png";
 
-const socket = io.connect("https://lingomatesbackend.onrender.com");
+const socket = io.connect("https://lingomates.vercel.app");
 import {
   Card,
   CardContent,
@@ -31,7 +31,7 @@ function Conversation({ userId, handleLogout, loggedIn }) {
     if (userId) {
       axios
         .get(
-          `https://lingomatesbackend.onrender.com/conversationRoutes/userConversations/${userId}`
+          `https://lingomates.vercel.app/conversationRoutes/userConversations/${userId}`
         )
         .then((response) => {
           console.log(response.data);
@@ -54,11 +54,16 @@ function Conversation({ userId, handleLogout, loggedIn }) {
           <h1 className="please-login-header">
             Please log in to see this page
           </h1>
-          </div>
+        </div>
       ) : (
         <div className="conversations-page">
           <div className="navbar-convo">
-            <Navbar id="navID" userId={userId} handleLogout={handleLogout} loggedIn={loggedIn} />
+            <Navbar
+              id="navID"
+              userId={userId}
+              handleLogout={handleLogout}
+              loggedIn={loggedIn}
+            />
           </div>
           <div className="convo-chat">
             <div className="conversation">
@@ -109,16 +114,16 @@ function Conversation({ userId, handleLogout, loggedIn }) {
                 </div>
               ) : (
                 <div>
-                   <Chat
+                  <Chat
                     key={roomData ? roomData.room : null}
                     socket={socket}
                     room={roomData.room}
                     senderId={userId}
                     receiverId={roomData.receiverId}
                     receiverData={receiverData}
-                  /> 
+                  />
                 </div>
-              )} 
+              )}
             </div>
           </div>
         </div>

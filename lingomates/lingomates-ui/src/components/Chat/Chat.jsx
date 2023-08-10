@@ -22,12 +22,14 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
   const [currentContact, setCurrentContact] = useState(null);
   const [viewTranslate, setViewTranslate] = useState(false);
 
-
   useEffect(() => {
     axios
-      .post("https://lingomatesbackend.onrender.com/conversationRoutes/previousMessages", {
-        room,
-      })
+      .post(
+        "https://lingomates.vercel.app/conversationRoutes/previousMessages",
+        {
+          room,
+        }
+      )
       .then((res) => {
         setPreviousMessages(res.data);
       });
@@ -37,9 +39,12 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
     if (receiverData.userD) {
       setCurrentContact(receiverData.userData[0]);
       axios
-        .post("https://lingomatesbackend.onrender.com/conversationRoutes/previousMessages", {
-          room,
-        })
+        .post(
+          "https://lingomates.vercel.app/conversationRoutes/previousMessages",
+          {
+            room,
+          }
+        )
         .then((res) => {
           setPreviousMessages(res.data);
         });
@@ -51,7 +56,6 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
   };
 
   const handleTranslate = async (text) => {
-
     try {
       const apiKey = import.meta.env.VITE_TRANSLATE_API;
       const targetLanguage = "en"; //Target code for english
@@ -118,7 +122,6 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
     };
   }, [socket, handleReceiveMessage]);
 
-  
   return (
     <div className="chatContainer">
       <div className="chat-window">
@@ -136,14 +139,12 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
             </p>
           </div>
           <div className="toggleSwitch">
-          
-          <Switcher
-          
-            name="my-switcher"
-            onChange={handleViewTranslate}
-            checked={viewTranslate}
-          />
-          <label htmlFor="my-switcher"> Translate</label>
+            <Switcher
+              name="my-switcher"
+              onChange={handleViewTranslate}
+              checked={viewTranslate}
+            />
+            <label htmlFor="my-switcher"> Translate</label>
           </div>
         </div>
 
@@ -174,7 +175,7 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
                       )
                     )
                   : ""}
-               {messageList.map((messageContent, index) => (
+                {messageList.map((messageContent, index) => (
                   <div
                     key={index}
                     className="message"
@@ -186,7 +187,7 @@ function Chat({ socket, room, senderId, receiverId, receiverData }) {
                       </div>
                     </div>
                   </div>
-                ))} 
+                ))}
               </div>
             ) : (
               <>
