@@ -4,6 +4,7 @@ const { BadRequestError, UnauthorizedError } = require("../utils/errors");
 
 class Profile {
   static async user_Language_prof(userIdRequested) {
+    console.log("In Profile model");
     const result = await db.query(
       `
         SELECT u.first_name, u.id, u.last_name,u.profilePicture, u.email, u.nativeLanguage, l.linguaName, l.countryFlag, 

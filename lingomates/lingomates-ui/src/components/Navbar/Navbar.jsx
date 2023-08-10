@@ -42,6 +42,7 @@ export default function Navbar({ userId, handleLogout, loggedIn }) {
         .get(`https://lingomates-backend-copy.onrender.com/profile/${userId}`)
         .then((response) => {
           setCurrentUser(response.data.userData[0]);
+          console.log(response.data);
         });
     }
   }, [userId, loggedIn]);
