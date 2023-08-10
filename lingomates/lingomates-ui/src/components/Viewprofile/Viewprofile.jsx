@@ -47,6 +47,7 @@ export default function Viewprofile({ userId, loggedIn, handleLogout }) {
 
   const handleSendMessage = (chosenUser) => {
     //console.log("chosen user is", chosenUser);
+    //forcing commit
 
     axios
       .post(
